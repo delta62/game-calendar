@@ -31,9 +31,12 @@ jobs:
       - run: docker push delta62/game-calendar
 workflows:
   version: 2
-  build_and_test:
+  test_and_deploy:
     jobs:
-      - test
+      - test:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - test
