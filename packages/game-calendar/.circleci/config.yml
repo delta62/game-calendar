@@ -27,7 +27,7 @@ jobs:
       - run: yarn install
       - run: yarn build
       - setup_remote_docker
-      - run: docker build -t delta62/game-calendar
+      - run: docker build -t delta62/game-calendar .
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker push delta62/game-calendar
 workflows:
