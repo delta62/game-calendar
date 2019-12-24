@@ -1,12 +1,14 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     mode: 'development',
-    entry: './src/main.tsx',
+    entry: {
+        'bundle': './src/main.tsx',
+        'service-worker': './src/service-worker.ts'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -25,14 +27,12 @@ module.exports = {
             react: 'preact/compat',
             'react-dom': 'preact/compat',
         },
-        extensions: [ '.js', '.tsx', '.ts' ]
+        extensions: [ '.js', '.tsx', '.ts', '.json' ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Gaming Calendar',
-            meta: {
-                viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-            }
-        })
+        new CopyPlugin([
+            './src/index.html',
+            './src/manifest.json'
+        ])
     ]
 }

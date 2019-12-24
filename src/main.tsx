@@ -4,6 +4,10 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './containers/app'
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+}
+
 render(
     <Provider store={store}>
         <App />
