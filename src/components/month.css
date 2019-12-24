@@ -13,3 +13,7 @@
     border-bottom: 2px solid pink;
     flex-grow: 1;
 }
+
+.checked {
+    fill: gold;
+}
