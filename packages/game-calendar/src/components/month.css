@@ -1,0 +1,15 @@
+.month {
+    display: flex;
+    padding: 1em;
+}
+
+.month-name {
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 2.5em;
+}
+
+.game-name {
+    border-bottom: 2px solid pink;
+    flex-grow: 1;
+}
