@@ -3,7 +3,8 @@ self.addEventListener('install', (event: any) => {
         caches.open('v1').then(cache => {
             return cache.addAll([
                 './index.html',
-                './bundle.js',
+                './app.css',
+                './app.bundle.js',
                 'https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap'
             ])
         })

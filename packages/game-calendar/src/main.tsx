@@ -5,7 +5,7 @@ import store from './store'
 import App from './containers/app'
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js')
+    navigator.serviceWorker.register('/service-worker.bundle.js')
 }
 
 render(
