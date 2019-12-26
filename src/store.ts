@@ -1,8 +1,8 @@
-import { Store, compose, createStore, combineReducers } from 'redux'
+import { compose, createStore, combineReducers } from 'redux'
 import persistState from 'redux-localstorage'
 
 import Action from './actions'
-import { Month, StoreState } from './models'
+import { Month } from './models'
 
 const DEFAULT_MONTHS: Month[] = [
     { monthName: "January",   monthAbbr: "Jan" },

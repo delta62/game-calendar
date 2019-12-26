@@ -1,13 +1,14 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    mode: 'development',
     entry: {
-        'bundle': './src/main.tsx',
+        'app': './src/main.tsx',
         'service-worker': './src/service-worker.ts'
     },
     output: {
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -16,10 +17,6 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader'
             },
-            {
-                test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
-            }
         ]
     },
     resolve: {
@@ -30,9 +27,10 @@ module.exports = {
         extensions: [ '.js', '.tsx', '.ts', '.json' ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new CopyPlugin([
             './src/index.html',
             './src/manifest.json'
-        ])
+        ]),
     ]
 }
