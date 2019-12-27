@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
+import * as pkg from '../../package.json'
 import App from '../components/app'
 import { StoreState } from '../models'
 
@@ -15,7 +16,8 @@ function mapDispatchToProps(dispatch: Dispatch) {
 
 function mapStateToProps(state: StoreState) {
     return {
-        months: state.months
+        months: state.months,
+        version: pkg.version,
     }
 }
 
