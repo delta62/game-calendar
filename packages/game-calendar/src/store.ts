@@ -23,7 +23,6 @@ function updateArray<T>(array: T[], index: number, replacer: (input: T) => T): T
     let newArray = array.slice()
     let oldElement = newArray[index]
     let newElement = replacer(oldElement)
-    console.log(oldElement, newElement)
     newArray.splice(index, 1, newElement)
     return newArray
 }

@@ -2,6 +2,7 @@ import { h } from 'preact'
 
 import { Month } from '../models'
 import Header from './header'
+import Footer from './footer'
 import MonthComponent from './month'
 
 import './app.css'
@@ -12,6 +13,7 @@ export interface Props {
     completeToggled(index: number): void
     startToggled(index: number): void
     months: Month[]
+    version: string
 }
 
 const App = (props: Props) => (
@@ -30,6 +32,7 @@ const App = (props: Props) => (
                 ))
             }
         </div>
+        <Footer version={props.version} />
     </div>
 )
 

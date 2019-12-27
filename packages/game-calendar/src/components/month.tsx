@@ -17,6 +17,27 @@ const FlagI = Flag as any
 const AwardI = Award as any
 const PlayI = Play as any
 
+function onStartToggle(props: Props) {
+    if (props.completeDate || props.hundredPercentDate) {
+        return
+    }
+    props.onStartToggle(props.index)
+}
+
+function onFinishToggle(props: Props) {
+    if (!props.startDate) {
+        return
+    }
+    props.onFinishToggle(props.index)
+}
+
+function onCompleteToggle(props: Props) {
+    if (!props.completeDate) {
+        return
+    }
+    props.onCompleteToggle(props.index)
+}
+
 const MonthComponent = (props: Props) => (
     <div class="month">
         <abbr class="month-name" title={props.monthName}>{props.monthAbbr}</abbr>
@@ -26,13 +47,13 @@ const MonthComponent = (props: Props) => (
             value={props.gameName} />
         <PlayI
             class={props.startDate ? 'checked' : ''}
-            onClick={() => props.onStartToggle(props.index)} />
+            onClick={() => onStartToggle(props)} />
         <FlagI
             class={props.completeDate ? 'checked' : ''}
-            onClick={() => props.onFinishToggle(props.index)} />
+            onClick={() => onFinishToggle(props)} />
         <AwardI
             class={props.hundredPercentDate ? 'checked' : ''}
-            onClick={() => props.onCompleteToggle(props.index)} />
+            onClick={() => onCompleteToggle(props)} />
     </div>
 )
 
