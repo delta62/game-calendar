@@ -25,7 +25,7 @@ function onStartToggle(props: Props) {
 }
 
 function onFinishToggle(props: Props) {
-    if (!props.startDate) {
+    if (!props.startDate || !!props.hundredPercentDate) {
         return
     }
     props.onFinishToggle(props.index)
