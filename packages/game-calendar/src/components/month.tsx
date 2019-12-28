@@ -18,21 +18,21 @@ const AwardI = Award as any
 const PlayI = Play as any
 
 function onStartToggle(props: Props) {
-    if (props.completeDate || props.hundredPercentDate) {
+    if (!props.gameName || props.completeDate || props.hundredPercentDate) {
         return
     }
     props.onStartToggle(props.index)
 }
 
 function onFinishToggle(props: Props) {
-    if (!props.startDate || !!props.hundredPercentDate) {
+    if (!props.gameName || !props.startDate || !!props.hundredPercentDate) {
         return
     }
     props.onFinishToggle(props.index)
 }
 
 function onCompleteToggle(props: Props) {
-    if (!props.completeDate) {
+    if (!props.gameName || !props.completeDate) {
         return
     }
     props.onCompleteToggle(props.index)
