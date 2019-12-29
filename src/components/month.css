@@ -6,6 +6,7 @@
 .month-name {
     font-weight: bold;
     text-transform: uppercase;
+    width: 2.2em;
 }
 
 .game-name {
