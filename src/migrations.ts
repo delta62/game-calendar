@@ -11,7 +11,7 @@ export function migrate(): void {
     let migratedMonths: Month[] = storageState.map((oldState: any) => ({
         // Delete "monthAbbr" and "monthName"
         // Change "gameName" to "game"
-        name: oldState.gameName,
+        game: oldState.gameName,
 
         // Change string dates to numbers
         startDate: oldState.startDate && new Date(oldState.startDate).getTime(),
