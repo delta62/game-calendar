@@ -15,11 +15,11 @@ export interface State {
 }
 
 export default class Swipeable extends Component<Props, State> {
-    private viewport: RefObject<HTMLDivElement>
+    private content: RefObject<HTMLDivElement>
 
     constructor(props: Props) {
         super(props)
-        this.viewport = createRef()
+        this.content = createRef()
         document.addEventListener('touchstart', this.onTouchStarted)
     }
 
@@ -31,7 +31,7 @@ export default class Swipeable extends Component<Props, State> {
         ]
         return (
             <div class="viewport">
-                <div ref={this.viewport} class="pages">
+                <div ref={this.content} class="pages">
                     {
                         items.map(({ idx, item }) => (
                             <div key={idx} class="page">{item}</div>
@@ -47,12 +47,12 @@ export default class Swipeable extends Component<Props, State> {
     }
 
     private onTouchStarted = (event: TouchEvent) => {
-        if (event.touches.length !== 1) {
+        if (event.touches.length !== 1 || !this.content.current) {
             return
         }
 
         let startX = event.touches[0].clientX
-        this.viewport.current!.style.transition = ''
+        this.content.current.style.transition = ''
         this.setState({ startX, diffX: 0 })
 
         document.addEventListener('touchmove', this.onTouchMove)
@@ -62,33 +62,33 @@ export default class Swipeable extends Component<Props, State> {
 
     private onTouchMove = (event: TouchEvent) => {
         let x = event.touches[0].clientX
-        let diff = x - this.state.startX
-        this.setState({ diffX: diff })
-        this.viewport.current!.style.transform = `translateX(${diff}px)`
+        let diffX = x - this.state.startX
+        this.setState({ diffX })
+        this.content.current!.style.transform = `translateX(${diffX}px)`
     }
 
     private onTouchEnd = () => {
-        // If scrolled > 50% into left or right panel then transition
+        let content = this.content.current!
         let diff = this.state.diffX
-        let width = this.viewport.current!.clientWidth / 3
-        this.viewport.current!.style.transition = `transform ${this.props.duration}ms`
+        let width = content.clientWidth / 3
+        content.style.transition = `transform ${this.props.duration}ms`
 
         if (diff > width / 2) {
-            this.viewport.current!.style.transform = 'translateX(33.33%)'
+            content.style.transform = 'translateX(33.33%)'
             setTimeout(() => {
                 this.props.onIndexChanged(this.props.index - 1)
-                this.viewport.current!.style.transition = ''
-                this.viewport.current!.style.transform = ''
-            }, 300)
+                content.style.transition = ''
+                content.style.transform = ''
+            }, this.props.duration + 100)
         } else if (diff < -(width / 2)) {
-            this.viewport.current!.style.transform = 'translateX(-33.33%)'
+            content.style.transform = 'translateX(-33.33%)'
             setTimeout(() => {
                 this.props.onIndexChanged(this.props.index + 1)
-                this.viewport.current!.style.transition = ''
-                this.viewport.current!.style.transform = ''
-            }, 300)
+                content.style.transition = ''
+                content.style.transform = ''
+            }, this.props.duration + 100)
         } else {
-            this.viewport.current!.style.transform = 'translateX(0)'
+            content.style.transform = 'translateX(0)'
         }
 
         document.removeEventListener('touchmove', this.onTouchMove)
@@ -100,6 +100,6 @@ export default class Swipeable extends Component<Props, State> {
         document.removeEventListener('touchmove', this.onTouchMove)
         document.addEventListener('touchend', this.onTouchEnd)
         document.addEventListener('touchcancel', this.onTouchEnd)
-        this.viewport.current!.style.transform = 'translateX(0)'
+        this.content.current!.style.transform = 'translateX(0)'
     }
 }
