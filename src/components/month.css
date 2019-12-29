@@ -6,17 +6,18 @@
 .month-name {
     font-weight: bold;
     text-transform: uppercase;
+    width: 2.2em;
 }
 
 .game-name {
     border-bottom: 2px solid pink;
-    color: #666;
+    color: #333;
     flex-grow: 1;
     font-size: 16px;
-    font-style: italic;
     font-weight: bold;
     margin: 0 1em;
     padding: .5em 0 .1em 0;
+    width: 0;
 }
 
 .month svg {

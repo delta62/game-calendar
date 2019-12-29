@@ -1,12 +1,10 @@
 export interface Month {
-    monthAbbr:           string
-    monthName:           string
-    gameName?:           string
-    startDate?:          Date
-    completeDate?:       Date
-    hundredPercentDate?: Date
+    game?:         string
+    startDate?:    number
+    finishDate?:   number
+    completeDate?: number
 }
 
 export interface StoreState {
-    months: Month[]
+    months: Record<number, Month[]>
 }

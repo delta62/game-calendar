@@ -1,60 +1,63 @@
-import { h } from 'preact'
+import { Component, h } from 'preact'
 import { Award, Play, Flag } from 'react-feather'
 
 import './month.css'
-
 import { Month } from '../models'
 
 export interface Props extends Month {
-    index: number
-    onChange(index: number, value: string): void
-    onStartToggle(index: number): void
-    onFinishToggle(index: number): void
-    onCompleteToggle(index: number): void
+    monthName: string
+    monthAbbr: string
+    onChange(value: string): void
+    onStartToggle(): void
+    onFinishToggle(): void
+    onCompleteToggle(): void
 }
 
 const FlagI = Flag as any
 const AwardI = Award as any
 const PlayI = Play as any
 
-function onStartToggle(props: Props) {
-    if (!props.gameName || props.completeDate || props.hundredPercentDate) {
-        return
+export default class MonthComponent extends Component<Props> {
+    public render() {
+        return (
+            <div class="month">
+                <abbr class="month-name" title={this.props.monthName}>{this.props.monthAbbr}</abbr>
+                <input
+                    class="game-name"
+                    readOnly={!!this.props.startDate}
+                    onChange={(e) => this.props.onChange((e.target as any).value)}
+                    value={this.props.game || ''} />
+                <PlayI
+                    class={this.props.startDate ? 'icon checked' : 'icon '}
+                    onClick={() => this.onStartToggle()} />
+                <FlagI
+                    class={this.props.finishDate ? 'icon checked' : 'icon '}
+                    onClick={() => this.onFinishToggle()} />
+                <AwardI
+                    class={this.props.completeDate ? 'icon checked' : 'icon '}
+                    onClick={() => this.onCompleteToggle()} />
+            </div>
+        )
     }
-    props.onStartToggle(props.index)
-}
 
-function onFinishToggle(props: Props) {
-    if (!props.gameName || !props.startDate || !!props.hundredPercentDate) {
-        return
+    private onStartToggle() {
+        if (!this.props.game || this.props.finishDate || this.props.completeDate) {
+            return
+        }
+        this.props.onStartToggle()
     }
-    props.onFinishToggle(props.index)
-}
 
-function onCompleteToggle(props: Props) {
-    if (!props.gameName || !props.completeDate) {
-        return
+    private onFinishToggle() {
+        if (!this.props.game || !this.props.startDate || this.props.completeDate) {
+            return
+        }
+        this.props.onFinishToggle()
     }
-    props.onCompleteToggle(props.index)
+
+    private onCompleteToggle() {
+        if (!this.props.game || !this.props.finishDate) {
+            return
+        }
+        this.props.onCompleteToggle()
+    }
 }
-
-const MonthComponent = (props: Props) => (
-    <div class="month">
-        <abbr class="month-name" title={props.monthName}>{props.monthAbbr}</abbr>
-        <input
-            class="game-name"
-            onChange={(e) => props.onChange(props.index, (e.target as any).value)}
-            value={props.gameName} />
-        <PlayI
-            class={props.startDate ? 'checked' : ''}
-            onClick={() => onStartToggle(props)} />
-        <FlagI
-            class={props.completeDate ? 'checked' : ''}
-            onClick={() => onFinishToggle(props)} />
-        <AwardI
-            class={props.hundredPercentDate ? 'checked' : ''}
-            onClick={() => onCompleteToggle(props)} />
-    </div>
-)
-
-export default MonthComponent
