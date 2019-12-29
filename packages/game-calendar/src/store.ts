@@ -4,51 +4,34 @@ import persistState from 'redux-localstorage'
 import Action from './actions'
 import { Month } from './models'
 
-const DEFAULT_MONTHS: Month[] = [
-    { monthName: "January",   monthAbbr: "Jan" },
-    { monthName: "February",  monthAbbr: "Feb" },
-    { monthName: "March",     monthAbbr: "Mar" },
-    { monthName: "April",     monthAbbr: "Apr" },
-    { monthName: "May",       monthAbbr: "May" },
-    { monthName: "June",      monthAbbr: "Jun" },
-    { monthName: "July",      monthAbbr: "Jul" },
-    { monthName: "August",    monthAbbr: "Aug" },
-    { monthName: "September", monthAbbr: "Sep" },
-    { monthName: "October",   monthAbbr: "Oct" },
-    { monthName: "November",  monthAbbr: "Nov" },
-    { monthName: "December",  monthAbbr: "Dec" },
-]
+type State = Record<number, Month[]>
 
-function updateArray<T>(array: T[], index: number, replacer: (input: T) => T): T[] {
-    let newArray = array.slice()
-    let oldElement = newArray[index]
-    let newElement = replacer(oldElement)
-    newArray.splice(index, 1, newElement)
-    return newArray
+function updateYear(state: State, year: number, month: number, replacement: Partial<Month>): State
+function updateYear(state: State, year: number, month: number, replacement: (oldVal: Month) => Month): State
+function updateYear(state: State, year: number, month: number, replacement: any): State {
+    let ret = { ...state }
+    let months = ret.hasOwnProperty(year) ? ret[year].slice() : new Array(12)
+
+    let oldVal = months[month]
+    if (typeof replacement === 'function') {
+        replacement = replacement(oldVal)
+    }
+    months.splice(month, 1, { ...oldVal, ...replacement })
+    ret[year] = months
+
+    return ret
 }
 
-function months(state: Month[] = DEFAULT_MONTHS, action: Action) {
+function months(state: State = { }, action: Action): Record<number, Month[]> {
     switch (action.type) {
         case 'MONTH_UPDATED':
-            return updateArray(state, action.idx, oldMonth => ({
-                ...oldMonth,
-                gameName: action.val,
-            }))
+            return updateYear(state, action.year, action.month, { game: action.game })
         case 'START_TOGGLED':
-            return updateArray(state, action.idx, oldMonth => ({
-                ...oldMonth,
-                startDate: oldMonth.startDate ? undefined : action.time,
-            }))
+            return updateYear(state, action.year, action.month, last => ({ startDate: last.startDate ? undefined : action.time }))
         case 'FINISH_TOGGLED':
-            return updateArray(state, action.idx, oldMonth => ({
-                ...oldMonth,
-                completeDate: oldMonth.completeDate ? undefined : action.time,
-            }))
+            return updateYear(state, action.year, action.month, last => ({ finishDate: last.finishDate ? undefined : action.time }))
         case 'COMPLETE_TOGGLED':
-            return updateArray(state, action.idx, oldMonth => ({
-                ...oldMonth,
-                hundredPercentDate: oldMonth.hundredPercentDate ? undefined : action.time
-            }))
+            return updateYear(state, action.year, action.month, last => ({ completeDate: last.completeDate ? undefined : action.time }))
         default:
             return state
     }

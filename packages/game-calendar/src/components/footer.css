@@ -1,12 +1,10 @@
 .footer {
     background: #444;
-    bottom: 0;
     color: white;
     display: flex;
     font-size: 12px;
-    left: 0;
+    margin-top: 5em;
     padding: 1em;
-    position: absolute;
     text-align: center;
     width: 100%;
 }
