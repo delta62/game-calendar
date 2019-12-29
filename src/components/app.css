@@ -13,6 +13,7 @@ html, body {
 body {
     font-family: 'Titillium Web', sans-serif;
     font-size: 18px;
+    min-width: 360px;
 }
 
 input {
