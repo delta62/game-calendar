@@ -30,7 +30,9 @@ module.exports = {
         new CleanWebpackPlugin(),
         new CopyPlugin([
             './src/index.html',
-            './src/manifest.json'
+            './src/manifest.json',
+            { from: './static/img/favicon.png', to: './img/favicon.png' },
+            { from: './static/img/logo.png', to: './img/logo.png' }
         ]),
     ]
 }
