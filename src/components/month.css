@@ -20,11 +20,12 @@
     width: 0;
 }
 
-.month svg {
+.month .icon {
+    cursor: pointer;
     stroke: #666;
 }
 
-.checked {
+.icon.checked {
     fill: gold;
     stroke: black;
 }
