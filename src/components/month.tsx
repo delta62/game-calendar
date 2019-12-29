@@ -24,8 +24,9 @@ export default class MonthComponent extends Component<Props> {
                 <abbr class="month-name" title={this.props.monthName}>{this.props.monthAbbr}</abbr>
                 <input
                     class="game-name"
+                    readOnly={!!this.props.startDate}
                     onChange={(e) => this.props.onChange((e.target as any).value)}
-                    value={this.props.game} />
+                    value={this.props.game || ''} />
                 <PlayI
                     class={this.props.startDate ? 'icon checked' : 'icon '}
                     onClick={() => this.onStartToggle()} />
@@ -54,7 +55,6 @@ export default class MonthComponent extends Component<Props> {
     }
 
     private onCompleteToggle() {
-        console.log(this.props)
         if (!this.props.game || !this.props.finishDate) {
             return
         }

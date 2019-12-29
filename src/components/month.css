@@ -11,10 +11,9 @@
 
 .game-name {
     border-bottom: 2px solid pink;
-    color: #666;
+    color: #333;
     flex-grow: 1;
     font-size: 16px;
-    font-style: italic;
     font-weight: bold;
     margin: 0 1em;
     padding: .5em 0 .1em 0;
