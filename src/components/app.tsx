@@ -1,8 +1,9 @@
-import { Component, h } from 'preact'
+import { Component, JSX, h } from 'preact'
 
 import './app.css'
 import Footer from './footer'
 import Year from '../containers/year'
+import Swipeable from './swipeable'
 
 export interface Props {
     version: string
@@ -23,14 +24,27 @@ export default class App extends Component<Props, State> {
     public render() {
         return (
             <div class="app">
-                <section class="years">
-                    <Year
-                        year={this.state.year}
-                        onNextYear={this.onNextYear.bind(this)}
-                        onPrevYear={this.onPrevYear.bind(this)} />
-                </section>
+                <Swipeable
+                    index={this.state.year}
+                    duration={200}
+                    loader={this.loader.bind(this)}
+                    onIndexChanged={this.onIndexChanged.bind(this)}
+                />
                 <Footer version={this.props.version} />
             </div>
+        )
+    }
+
+    private onIndexChanged(newIndex: number) {
+        this.setState({ year: newIndex })
+    }
+
+    private loader(index: number): JSX.Element {
+        return (
+            <Year
+                year={index}
+                onNextYear={this.onNextYear.bind(this)}
+                onPrevYear={this.onPrevYear.bind(this)} />
         )
     }
 

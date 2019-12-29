@@ -13,10 +13,6 @@ export interface Props extends Month {
     onCompleteToggle(): void
 }
 
-const FlagI = Flag as any
-const AwardI = Award as any
-const PlayI = Play as any
-
 export default class MonthComponent extends Component<Props> {
     public render() {
         return (
@@ -27,17 +23,21 @@ export default class MonthComponent extends Component<Props> {
                     readOnly={!!this.props.startDate}
                     onChange={(e) => this.props.onChange((e.target as any).value)}
                     value={this.props.game || ''} />
-                <PlayI
-                    class={this.props.startDate ? 'icon checked' : 'icon '}
-                    onClick={() => this.onStartToggle()} />
-                <FlagI
-                    class={this.props.finishDate ? 'icon checked' : 'icon '}
-                    onClick={() => this.onFinishToggle()} />
-                <AwardI
-                    class={this.props.completeDate ? 'icon checked' : 'icon '}
-                    onClick={() => this.onCompleteToggle()} />
+                <Play
+                    class={this.iconClass(!!this.props.startDate)}
+                    onClick={this.onStartToggle} />
+                <Flag
+                    class={this.iconClass(!!this.props.finishDate)}
+                    onClick={this.onFinishToggle} />
+                <Award
+                    class={this.iconClass(!!this.props.completeDate)}
+                    onClick={this.onCompleteToggle} />
             </div>
         )
+    }
+
+    private iconClass(checked: boolean) {
+        return `icon${checked ? ' checked' : ''}`
     }
 
     private onStartToggle() {

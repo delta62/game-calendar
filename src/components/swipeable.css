@@ -1,0 +1,18 @@
+.viewport {
+    flex-grow: 1;
+    overflow: hidden;
+    width: 100%;
+}
+
+.pages {
+    display: flex;
+    height: 100%;
+    margin-left: -100%;
+    width: 300%;
+    will-change: transform;
+}
+
+.page {
+    height: 100%;
+    width: 33.33%;
+}
