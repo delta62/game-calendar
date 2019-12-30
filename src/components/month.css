@@ -31,7 +31,7 @@
     font-weight: bold;
     margin: 0 1em;
     outline: 0;
-    padding: .5em 0 .1em 0;
+    padding: .3em;
     width: 0;
 }
 
@@ -45,6 +45,7 @@
     cursor: pointer;
     stroke: #666;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .month .icon.disabled {
