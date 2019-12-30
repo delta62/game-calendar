@@ -25,13 +25,13 @@ export default class MonthComponent extends Component<Props> {
                     value={this.props.game || ''} />
                 <Play
                     class={this.iconClass(!!this.props.startDate)}
-                    onClick={this.onStartToggle} />
+                    onClick={this.onStartToggle.bind(this)} />
                 <Flag
                     class={this.iconClass(!!this.props.finishDate)}
-                    onClick={this.onFinishToggle} />
+                    onClick={this.onFinishToggle.bind(this)} />
                 <Award
                     class={this.iconClass(!!this.props.completeDate)}
-                    onClick={this.onCompleteToggle} />
+                    onClick={this.onCompleteToggle.bind(this)} />
             </div>
         )
     }
@@ -40,23 +40,28 @@ export default class MonthComponent extends Component<Props> {
         return `icon${checked ? ' checked' : ''}`
     }
 
-    private onStartToggle() {
+    private preventClick(target: Element, duration: number) {
+        target.classList.add('disabled')
+        setTimeout(() => target.classList.remove('disabled'), duration)
+    }
+
+    private onStartToggle(e: Event) {
         if (!this.props.game || this.props.finishDate || this.props.completeDate) {
-            return
+            return this.preventClick(e.currentTarget as Element, 200);
         }
         this.props.onStartToggle()
     }
 
-    private onFinishToggle() {
+    private onFinishToggle(e: Event) {
         if (!this.props.game || !this.props.startDate || this.props.completeDate) {
-            return
+            return this.preventClick(e.currentTarget as Element, 200);
         }
         this.props.onFinishToggle()
     }
 
-    private onCompleteToggle() {
+    private onCompleteToggle(e: Event) {
         if (!this.props.game || !this.props.finishDate) {
-            return
+            return this.preventClick(e.currentTarget as Element, 200);
         }
         this.props.onCompleteToggle()
     }
