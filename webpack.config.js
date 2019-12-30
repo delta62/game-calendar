@@ -32,7 +32,8 @@ module.exports = {
             './src/index.html',
             './src/manifest.json',
             { from: './static/img/favicon.png', to: './img/favicon.png' },
-            { from: './static/img/logo.png', to: './img/logo.png' }
+            { from: './static/img/logo.png', to: './img/logo.png' },
+            { from: './static/img/logo512.png', to: './img/logo512.png' }
         ]),
     ]
 }
