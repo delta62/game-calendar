@@ -16,11 +16,6 @@ body {
     min-width: 360px;
 }
 
-input {
-    border: 0;
-    outline: 0;
-}
-
 .app {
     display: flex;
     flex-direction: column;
