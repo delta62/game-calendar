@@ -22,6 +22,7 @@ module.exports = merge(config, {
         })
     ],
     devServer: {
-        hot: true
+        host: '0.0.0.0',
+        hot: true,
     }
 })

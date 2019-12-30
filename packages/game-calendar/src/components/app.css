@@ -31,21 +31,3 @@ noscript {
     max-width: 1000px;
     min-height: 100%;
 }
-
-.years {
-    flex-grow: 1;
-    width: 100%;
-}
-
-.months {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
-    width: 100%;
-}
-
-@media only screen and (max-width: 800px) {
-    .months {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
