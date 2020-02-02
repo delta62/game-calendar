@@ -25,6 +25,13 @@ body {
     transition: background-color 300ms;
 }
 
+body.dark {
+    --background-color:  #1f1f1f;
+    --glyph-color:       white;
+    --light-glyph-color: #aaa;
+    --dark-glyph-color:  #aaa;
+}
+
 noscript {
     align-items: center;
     display: flex;
@@ -40,11 +47,4 @@ noscript {
     margin: 0 auto;
     max-width: 1000px;
     min-height: 100%;
-}
-
-body.dark {
-    --background-color:  #1f1f1f;
-    --glyph-color:       white;
-    --light-glyph-color: #aaa;
-    --dark-glyph-color:  #aaa;
 }
