@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import './footer.css'
+import './footer.scss'
 
 export interface Props {
     version: string
@@ -8,7 +8,7 @@ export interface Props {
 
 const Footer = ({ version }: Props) => (
     <footer class="footer">
-        <span>Sam Noedel, 2019</span>
+        <span>Sam Noedel, 2020</span>
         <span>
             This is open source software. Check out the code on <a href="https://github.com/delta62/game-calendar">GitHub</a>!
         </span>
