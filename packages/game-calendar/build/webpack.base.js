@@ -1,10 +1,11 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
     entry: {
-        'app': './src/main.tsx',
+        app:              './src/main.tsx',
         'service-worker': './src/service-worker.ts'
     },
     output: {
@@ -21,10 +22,10 @@ module.exports = {
     },
     resolve: {
         alias: {
-            react: 'preact/compat',
+            react:       'preact/compat',
             'react-dom': 'preact/compat',
         },
-        extensions: [ '.js', '.tsx', '.ts', '.json' ]
+        extensions: [ '.js', '.tsx', '.ts', '.json' ],
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -32,8 +33,14 @@ module.exports = {
             './src/index.html',
             './src/manifest.json',
             { from: './static/img/favicon.png', to: './img/favicon.png' },
-            { from: './static/img/logo.png', to: './img/logo.png' },
+            { from: './static/img/logo.png',    to: './img/logo.png'    },
             { from: './static/img/logo512.png', to: './img/logo512.png' }
         ]),
-    ]
+        new BundleAnalyzerPlugin({
+            analyzerMode:   'static',
+            reportFilename: 'report.html',
+            defaultSizes:   'parsed',
+            openAnalyzer:   false
+        }),
+    ],
 }
