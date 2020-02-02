@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
+:root {
+    --background-color:  white;
+    --glyph-color:       black;
+    --light-glyph-color: #666;
+    --dark-glyph-color:  #333;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,9 +18,11 @@ html, body {
 }
 
 body {
+    background: var(--background-color);
     font-family: 'Titillium Web', sans-serif;
     font-size: 18px;
     min-width: 360px;
+    transition: background-color 300ms;
 }
 
 noscript {
@@ -26,8 +35,16 @@ noscript {
 
 .app {
     display: flex;
+    color: var(--glyph-color);
     flex-direction: column;
     margin: 0 auto;
     max-width: 1000px;
     min-height: 100%;
+}
+
+body.dark {
+    --background-color:  #1f1f1f;
+    --glyph-color:       white;
+    --light-glyph-color: #aaa;
+    --dark-glyph-color:  #aaa;
 }

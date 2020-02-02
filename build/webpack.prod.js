@@ -1,4 +1,4 @@
-const config = require('./webpack.config')
+const config = require('./webpack.base')
 const merge = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')

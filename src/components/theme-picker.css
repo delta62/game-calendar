@@ -1,0 +1,22 @@
+.theme-picker {
+    display: inline-flex;
+    justify-content: flex-end;
+    margin: 1em;
+}
+
+.theme-picker-option {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1em;
+    margin-left: .5em;
+    width: 1em;
+}
+
+.theme-picker-option.dark {
+    background: #666;
+}
+
+.theme-picker-option.light {
+    background: #eee;
+}

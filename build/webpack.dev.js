@@ -1,4 +1,4 @@
-const config = require('./webpack.config')
+const config = require('./webpack.base')
 const merge = require('webpack-merge')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
@@ -15,10 +15,10 @@ module.exports = merge(config, {
     },
     plugins: [
         new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
+            analyzerMode:   'static',
             reportFilename: 'report.html',
-            defaultSizes: 'parsed',
-            openAnalyzer: false
+            defaultSizes:   'parsed',
+            openAnalyzer:   false
         })
     ],
     devServer: {
