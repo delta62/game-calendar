@@ -23,7 +23,7 @@ export default class MonthComponent extends Component<Props> {
                 <div class="primary">
                     <input
                         class="game-name"
-                        readOnly={!!this.props.startDate}
+                        disabled={!!this.props.startDate}
                         onChange={(e) => this.props.onChange((e.target as any).value)}
                         value={this.props.game || ''} />
                     <Progress
