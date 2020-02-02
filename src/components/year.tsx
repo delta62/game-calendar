@@ -1,8 +1,9 @@
 import { h } from 'preact'
 
-import './year.css'
 import MonthComponent from './month'
 import { Month } from '../models'
+
+import './year.scss'
 
 export interface Props {
     year: number

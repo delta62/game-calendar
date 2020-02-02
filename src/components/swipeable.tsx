@@ -1,6 +1,6 @@
 import { Component, JSX, RefObject, createRef, h } from 'preact'
 
-import './swipeable.css'
+import './swipeable.scss'
 
 export interface Props {
     loader(index: number): JSX.Element

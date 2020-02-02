@@ -1,7 +1,7 @@
 import { Component, h } from 'preact'
 import { Award, Play, Flag } from 'react-feather'
 
-import './month.css'
+import './month.scss'
 import { Month } from '../models'
 import Progress from './progress'
 
