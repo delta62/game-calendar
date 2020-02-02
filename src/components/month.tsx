@@ -3,6 +3,7 @@ import { Award, Play, Flag } from 'react-feather'
 
 import './month.css'
 import { Month } from '../models'
+import Progress from './progress'
 
 export interface Props extends Month {
     monthName: string
@@ -15,22 +16,29 @@ export interface Props extends Month {
 
 export default class MonthComponent extends Component<Props> {
     public render() {
+        let { startDate, finishDate, completeDate } = this.props
         return (
             <div class="month">
                 <abbr class="month-name" title={this.props.monthName}>{this.props.monthAbbr}</abbr>
-                <input
-                    class="game-name"
-                    readOnly={!!this.props.startDate}
-                    onChange={(e) => this.props.onChange((e.target as any).value)}
-                    value={this.props.game || ''} />
+                <div class="primary">
+                    <input
+                        class="game-name"
+                        readOnly={!!this.props.startDate}
+                        onChange={(e) => this.props.onChange((e.target as any).value)}
+                        value={this.props.game || ''} />
+                    <Progress
+                        startDate={startDate}
+                        finishDate={finishDate}
+                        completeDate={completeDate} />
+                </div>
                 <Play
-                    class={this.iconClass(!!this.props.startDate)}
+                    class={this.iconClass(!!startDate)}
                     onClick={this.onStartToggle.bind(this)} />
                 <Flag
-                    class={this.iconClass(!!this.props.finishDate)}
+                    class={this.iconClass(!!finishDate)}
                     onClick={this.onFinishToggle.bind(this)} />
                 <Award
-                    class={this.iconClass(!!this.props.completeDate)}
+                    class={this.iconClass(!!completeDate)}
                     onClick={this.onCompleteToggle.bind(this)} />
             </div>
         )

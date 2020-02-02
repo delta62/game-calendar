@@ -12,6 +12,7 @@ if (needsMigration()) {
     window.location.reload()
 }
 
+// Cache stuff for offline access
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.bundle.js')
 }

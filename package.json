@@ -26,6 +26,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "date-fns": "^2.9.0",
     "preact": "^10.1.1",
     "react-feather": "^2.0.3",
     "react-redux": "^7.1.3",
