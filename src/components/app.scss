@@ -23,13 +23,13 @@ body {
     font-size: 18px;
     min-width: 360px;
     transition: background-color 300ms;
-}
 
-body.dark {
-    --background-color:  #1f1f1f;
-    --glyph-color:       white;
-    --light-glyph-color: #aaa;
-    --dark-glyph-color:  #aaa;
+    &.dark {
+        --background-color:  #1f1f1f;
+        --glyph-color:       white;
+        --light-glyph-color: #aaa;
+        --dark-glyph-color:  #aaa;
+    }
 }
 
 noscript {

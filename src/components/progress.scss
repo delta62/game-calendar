@@ -5,45 +5,45 @@
     font-style: italic;
     margin-top: 0.5em;
     text-align: center;
-}
 
-.progress-label {
-    height: 1.5em;
-    margin-bottom: .3em;
-}
+    .bars {
+        display: flex;
+    }
 
-.progress .bars {
-    display: flex;
-}
+    .sliver {
+        height: .2em;
+        margin-right: .4em;
+        transform: skewX(-33deg);
+        visibility: hidden;
+        width: calc(33% - .4em);
 
-.progress .sliver {
-    height: .2em;
-    margin-right: .4em;
-    transform: skewX(-33deg);
-    visibility: hidden;
-    width: calc(33% - .4em);
-}
+        &.started {
+            background: orange;
+        }
 
-.progress.started .sliver.started {
-    visibility: visible;
-}
+        &.finished {
+            background: silver;
+        }
 
-.progress.finished .sliver.finished {
-    visibility: visible;
-}
+        &.completed {
+            background: gold;
+        }
+    }
 
-.progress.completed .sliver.completed {
-    visibility: visible;
-}
+    .progress-label {
+        height: 1.5em;
+        margin-bottom: .3em;
+    }
 
-.progress .sliver.started {
-    background: orange;
-}
+    &.started .sliver.started {
+        visibility: visible;
+    }
 
-.progress .sliver.finished {
-    background: silver;
-}
+    &.finished .sliver.finished {
+        visibility: visible;
+    }
 
-.progress .sliver.completed {
-    background: gold;
+    &.completed .sliver.completed {
+        visibility: visible;
+    }
 }

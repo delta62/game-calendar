@@ -14,55 +14,57 @@
 .month {
     display: flex;
     padding: 1em;
-}
 
-.month .primary {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin: 0 1em;
-}
+    .primary {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        margin: 0 1em;
 
-.month-name {
-    font-weight: bold;
-    text-transform: uppercase;
-    width: 2.2em;
-}
+        .month-name {
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 2.2em;
+        }
 
-.game-name {
-    background-color: transparent;
-    border: 2px solid transparent;
-    border-bottom: 2px solid pink;
-    color: var(--dark-glyph-color);
-    font-size: 16px;
-    font-weight: bold;
-    outline: 0;
-    padding: .3em;
-    transition: background-color 300ms;
-}
+        .game-name {
+            background-color: transparent;
+            border: 2px solid transparent;
+            border-bottom: 2px solid pink;
+            color: var(--dark-glyph-color);
+            font-size: 16px;
+            font-weight: bold;
+            outline: 0;
+            padding: .3em;
+            transition: background-color 300ms;
+        }
 
-.game-name:focus {
-    animation: expand 200ms 1;
-    background-color: var(--background-color);
-    border: 2px solid pink;
-    transform: scale(1.1);
-}
+        .game-name:focus {
+            animation: expand 200ms 1;
+            background-color: var(--background-color);
+            border: 2px solid pink;
+            transform: scale(1.1);
+        }
 
-.month .icon {
-    cursor: pointer;
-    stroke: var(--light-glyph-color);
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
+    }
 
-.month .icon.disabled {
-    animation: shake 100ms 3;
-}
+    .icon {
+        cursor: pointer;
+        stroke: var(--light-glyph-color);
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
 
-.month .icon.checked {
-    animation: expand 200ms 1;
-    fill: gold;
-    stroke: black;
+        &.disabled {
+            animation: shake 100ms 3;
+        }
+
+        &.checked {
+            animation: expand 200ms 1;
+            fill: gold;
+            stroke: black;
+        }
+
+    }
 }
 
 @keyframes expand {
