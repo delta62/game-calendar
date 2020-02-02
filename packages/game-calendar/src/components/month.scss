@@ -15,17 +15,17 @@
     display: flex;
     padding: 1em;
 
+    .month-name {
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 2.2em;
+    }
+
     .primary {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         margin: 0 1em;
-
-        .month-name {
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 2.2em;
-        }
 
         .game-name {
             background-color: transparent;
@@ -61,7 +61,7 @@
         &.checked {
             animation: expand 200ms 1;
             fill: gold;
-            stroke: black;
+            stroke: var(--dark-glyph-color);
         }
 
     }
