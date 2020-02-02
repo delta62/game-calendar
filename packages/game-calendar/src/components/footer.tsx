@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import './footer.css'
+import './footer.scss'
 
 export interface Props {
     version: string

@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { format } from 'date-fns'
 
-import './progress.css'
+import './progress.scss'
 
 export interface Props {
     startDate?:    number

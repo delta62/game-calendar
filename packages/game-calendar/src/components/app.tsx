@@ -5,7 +5,7 @@ import Year from '../containers/year'
 import Swipeable from './swipeable'
 import ThemePicker from './theme-picker'
 
-import './app.css'
+import './app.scss'
 
 export interface Props {
     onThemeChanged(theme: string): void

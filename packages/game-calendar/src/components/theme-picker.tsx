@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import './theme-picker.css'
+import './theme-picker.scss'
 
 export interface Props {
     onToggle(state: 'light' | 'dark'): void
