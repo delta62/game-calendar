@@ -14,9 +14,8 @@
         height: .2em;
         margin-right: .4em;
         transform: skewX(-33deg);
-        visibility: hidden;
         transition: width 150ms;
-        width: 1%;
+        width: 0%;
 
         &.started {
             background: orange;
@@ -37,17 +36,14 @@
     }
 
     &.started .sliver.started {
-        visibility: visible;
         width: calc(33% - .4em);
     }
 
     &.finished .sliver.finished {
-        visibility: visible;
         width: calc(33% - .4em);
     }
 
     &.completed .sliver.completed {
-        visibility: visible;
         width: calc(33% - .4em);
     }
 }
