@@ -6,14 +6,14 @@
     padding: 1em;
     text-align: center;
     width: 100%;
-}
 
-.footer span {
-    flex-grow: 1;
-}
+    span {
+        flex-grow: 1;
+    }
 
-.footer a {
-    color: pink;
+    a {
+        color: pink;
+    }
 }
 
 @media screen and (max-width: 800px) {

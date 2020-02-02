@@ -1,20 +1,22 @@
-.year header {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    justify-content: space-around;
-    margin-bottom: 2em;
-}
+.year {
+    header {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        justify-content: space-around;
+        margin-bottom: 2em;
+    }
 
-.year .year-number {
-    color: teal;
-    font-size: 3em;
-    margin: .2em 0;
-    text-align: center;
-}
+    .year-number {
+        color: teal;
+        font-size: 3em;
+        margin: .2em 0;
+        text-align: center;
+    }
 
-.year .year-link {
-    color: teal;
-    text-decoration: none;
+    .year-link {
+        color: teal;
+        text-decoration: none;
+    }
 }
