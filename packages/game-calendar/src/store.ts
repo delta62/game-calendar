@@ -37,7 +37,16 @@ function months(state: State = { }, action: Action): Record<number, Month[]> {
     }
 }
 
-const reducers = combineReducers({ months })
+function theme(state: string = 'light', action: Action): string {
+    switch (action.type) {
+        case 'THEME_CHANGED':
+            return action.theme
+        default:
+            return state
+    }
+}
+
+const reducers = combineReducers({ months, theme })
 const enhancer = compose(persistState()) as any
 const store = createStore(reducers, enhancer)
 export default store

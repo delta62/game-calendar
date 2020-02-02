@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
+    "start": "webpack-dev-server --config ./build/webpack.dev.js",
     "test": "echo 'lol k'",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config ./build/webpack.prod.js"
   },
   "devDependencies": {
     "@types/redux-localstorage": "^1.0.8",

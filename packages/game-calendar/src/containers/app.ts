@@ -1,12 +1,20 @@
 import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 
 import * as pkg from '../../package.json'
 import App from '../components/app'
 
-function mapStateToProps() {
+function mapStateToProps(state: any) {
     return {
+        theme: state.theme,
         version: pkg.version,
     }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+        onThemeChanged: (theme: string) => dispatch({ type: 'THEME_CHANGED', theme }),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

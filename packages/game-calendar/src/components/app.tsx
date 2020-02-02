@@ -1,11 +1,15 @@
 import { Component, JSX, h } from 'preact'
 
-import './app.css'
 import Footer from './footer'
 import Year from '../containers/year'
 import Swipeable from './swipeable'
+import ThemePicker from './theme-picker'
+
+import './app.css'
 
 export interface Props {
+    onThemeChanged(theme: string): void
+    theme: string
     version: string
 }
 
@@ -22,8 +26,10 @@ export default class App extends Component<Props, State> {
     }
 
     public render() {
+        document.body.className = this.props.theme
         return (
             <div class="app">
+                <ThemePicker onToggle={this.props.onThemeChanged} />
                 <Swipeable
                     index={this.state.year}
                     duration={200}

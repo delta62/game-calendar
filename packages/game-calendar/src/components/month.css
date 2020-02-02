@@ -23,15 +23,17 @@
 }
 
 .game-name {
+    background-color: transparent;
     border: 2px solid transparent;
     border-bottom: 2px solid pink;
-    color: #333;
+    color: var(--dark-glyph-color);
     flex-grow: 1;
     font-size: 16px;
     font-weight: bold;
     margin: 0 1em;
     outline: 0;
     padding: .3em;
+    transition: background-color 300ms;
     width: 0;
 }
 
@@ -43,7 +45,7 @@
 
 .month .icon {
     cursor: pointer;
-    stroke: #666;
+    stroke: var(--light-glyph-color);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }

@@ -40,8 +40,13 @@ interface CompleteToggledAction extends Action<'COMPLETE_TOGGLED'> {
     time: number
 }
 
+interface ThemeChangedAction extends Action<'THEME_CHANGED'> {
+    theme: string
+}
+
 type AppAction =
     MonthGameUpdateAction
+    | ThemeChangedAction
     | StartToggledAction
     | FinishToggledAction
     | CompleteToggledAction
