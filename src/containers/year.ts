@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
-import { startToggled, completeToggled, finishToggled, monthUpdated } from '../actions'
+import { startToggled, completeToggled, finishToggled, monthUpdated } from '../data/actions'
 import Year, { Props } from '../components/year'
 import { StoreState } from '../models'
-import monthNames from '../months'
+import monthNames from '../data/months'
 
 function mapStateToProps(state: StoreState, { year }: Props) {
     let storeMonths = state.months[year] || [ ]

@@ -1,8 +1,8 @@
 import { h, render } from 'preact'
 import { Provider } from 'react-redux'
 
-import { migrate, needsMigration } from './migrations'
-import store from './store'
+import { migrate, needsMigration } from './data/migrations'
+import store from './data/store'
 import App from './containers/app'
 
 // Run migrations before setting the store up
