@@ -49,4 +49,5 @@ function theme(state: string = 'light', action: Action): string {
 const reducers = combineReducers({ months, theme })
 const enhancer = compose(persistState()) as any
 const store = createStore(reducers, enhancer)
+
 export default store
