@@ -1,4 +1,4 @@
-import { Month } from './models'
+import { Month } from '../models'
 
 export function needsMigration(): boolean {
     let storageState = localStorage.getItem('redux')

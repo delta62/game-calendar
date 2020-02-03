@@ -2,7 +2,7 @@ import { compose, createStore, combineReducers } from 'redux'
 import persistState from 'redux-localstorage'
 
 import Action from './actions'
-import { Month } from './models'
+import { Month } from '../models'
 
 type State = Record<number, Month[]>
 

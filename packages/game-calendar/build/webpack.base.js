@@ -30,11 +30,11 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new CopyPlugin([
-            './src/index.html',
-            './src/manifest.json',
+            { from: './static/index.html',      to: 'index.html'        },
+            { from: './static/manifest.json',   to: 'manifest.json'     },
             { from: './static/img/favicon.png', to: './img/favicon.png' },
             { from: './static/img/logo.png',    to: './img/logo.png'    },
-            { from: './static/img/logo512.png', to: './img/logo512.png' }
+            { from: './static/img/logo512.png', to: './img/logo512.png' },
         ]),
         new BundleAnalyzerPlugin({
             analyzerMode:   'static',
