@@ -1,7 +1,9 @@
-const path = require('path')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const path = require('path')
+const pkg = require('../package.json')
+const webpack = require('webpack')
 
 module.exports = {
     entry: {
@@ -25,7 +27,7 @@ module.exports = {
             react:       'preact/compat',
             'react-dom': 'preact/compat',
         },
-        extensions: [ '.js', '.tsx', '.ts', '.json' ],
+        extensions: [ '.js', '.tsx', '.ts' ],
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -36,6 +38,9 @@ module.exports = {
             { from: './static/img/logo.png',    to: './img/logo.png'    },
             { from: './static/img/logo512.png', to: './img/logo512.png' },
         ]),
+        new webpack.DefinePlugin({
+            __VERSION__: JSON.stringify(pkg.version),
+        }),
         new BundleAnalyzerPlugin({
             analyzerMode:   'static',
             reportFilename: 'report.html',

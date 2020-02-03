@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import * as pkg from '../../package.json'
 import App from '../components/app'
 
 function mapStateToProps(state: any) {
     return {
         theme: state.theme,
-        version: pkg.version,
+        version: __VERSION__,
     }
 }
 
