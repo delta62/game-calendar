@@ -1,4 +1,4 @@
-import * as pkg from '../package.json'
+import pkg from '../package.json'
 
 self.addEventListener('install', (event: any) => {
     event.waitUntil(
