@@ -1,23 +1,23 @@
 .footer {
-    background: #444;
-    color: white;
-    display: flex;
-    font-size: 12px;
-    padding: 1em;
-    text-align: center;
-    width: 100%;
+  background: #444;
+  color: white;
+  display: flex;
+  font-size: 12px;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
 
-    span {
-        flex-grow: 1;
-    }
+  span {
+    flex-grow: 1;
+  }
 
-    a {
-        color: pink;
-    }
+  a {
+    color: pink;
+  }
 }
 
 @media screen and (max-width: 800px) {
-    .footer {
-        flex-direction: column;
-    }
+  .footer {
+    flex-direction: column;
+  }
 }

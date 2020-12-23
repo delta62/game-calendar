@@ -1,50 +1,51 @@
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap");
 
 :root {
-    --background-color:  white;
-    --glyph-color:       black;
-    --light-glyph-color: #666;
-    --dark-glyph-color:  #333;
+  --background-color: white;
+  --glyph-color: black;
+  --light-glyph-color: #666;
+  --dark-glyph-color: #333;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    background: var(--background-color);
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 18px;
-    min-width: 360px;
-    transition: background-color 300ms;
+  background: var(--background-color);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 18px;
+  min-width: 360px;
+  transition: background-color 300ms;
 
-    &.dark {
-        --background-color:  #1f1f1f;
-        --glyph-color:       white;
-        --light-glyph-color: #aaa;
-        --dark-glyph-color:  #666;
-    }
+  &.dark {
+    --background-color: #1f1f1f;
+    --glyph-color: white;
+    --light-glyph-color: #aaa;
+    --dark-glyph-color: #666;
+  }
 }
 
 noscript {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 
 .app {
-    display: flex;
-    color: var(--glyph-color);
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 1000px;
-    min-height: 100%;
+  display: flex;
+  color: var(--glyph-color);
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-height: 100%;
 }

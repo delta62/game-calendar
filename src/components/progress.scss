@@ -1,49 +1,49 @@
 .progress {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: 0.5em;
+  text-align: center;
+
+  .bars {
     display: flex;
-    flex-direction: column;
-    font-size: 0.8em;
-    font-style: italic;
-    margin-top: 0.5em;
-    text-align: center;
+  }
 
-    .bars {
-        display: flex;
+  .sliver {
+    height: 0.2em;
+    margin-right: 0.4em;
+    transform: skewX(-33deg);
+    transition: width 150ms;
+    width: 0%;
+
+    &.started {
+      background: orange;
     }
 
-    .sliver {
-        height: .2em;
-        margin-right: .4em;
-        transform: skewX(-33deg);
-        transition: width 150ms;
-        width: 0%;
-
-        &.started {
-            background: orange;
-        }
-
-        &.finished {
-            background: silver;
-        }
-
-        &.completed {
-            background: gold;
-        }
+    &.finished {
+      background: silver;
     }
 
-    .progress-label {
-        height: 1.5em;
-        margin-bottom: .3em;
+    &.completed {
+      background: gold;
     }
+  }
 
-    &.started .sliver.started {
-        width: calc(33% - .4em);
-    }
+  .progress-label {
+    height: 1.5em;
+    margin-bottom: 0.3em;
+  }
 
-    &.finished .sliver.finished {
-        width: calc(33% - .4em);
-    }
+  &.started .sliver.started {
+    width: calc(33% - 0.4em);
+  }
 
-    &.completed .sliver.completed {
-        width: calc(33% - .4em);
-    }
+  &.finished .sliver.finished {
+    width: calc(33% - 0.4em);
+  }
+
+  &.completed .sliver.completed {
+    width: calc(33% - 0.4em);
+  }
 }
