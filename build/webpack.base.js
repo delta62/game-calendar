@@ -31,13 +31,15 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new CopyPlugin([
-            { from: './static/index.html',      to: 'index.html'        },
-            { from: './static/manifest.json',   to: 'manifest.json'     },
-            { from: './static/img/favicon.png', to: './img/favicon.png' },
-            { from: './static/img/logo.png',    to: './img/logo.png'    },
-            { from: './static/img/logo512.png', to: './img/logo512.png' },
-        ]),
+        new CopyPlugin({
+            patterns: [
+                { from: './static/index.html',      to: 'index.html'        },
+                { from: './static/manifest.json',   to: 'manifest.json'     },
+                { from: './static/img/favicon.png', to: './img/favicon.png' },
+                { from: './static/img/logo.png',    to: './img/logo.png'    },
+                { from: './static/img/logo512.png', to: './img/logo512.png' },
+            ],
+        }),
         new webpack.DefinePlugin({
             __VERSION__: JSON.stringify(pkg.version),
         }),
