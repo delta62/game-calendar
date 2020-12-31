@@ -1,0 +1,12 @@
+.game-title {
+  align-items: center;
+  display: flex;
+
+  .text {
+    margin-right: 1rem;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+}

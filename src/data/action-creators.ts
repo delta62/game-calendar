@@ -6,7 +6,8 @@ import {
   SelectGame,
   SetDuration,
   SetRating,
-  StartGame
+  SetTitle,
+  StartGame,
 } from './actions'
 
 export let addGame = (name: string): AddGame => ({
@@ -53,4 +54,10 @@ export let setRating = (id: number, rating: number): SetRating => ({
   type: 'SET_RATING',
   id,
   rating,
+})
+
+export let setTitle = (id: number, title: string): SetTitle => ({
+  type: 'SET_TITLE',
+  id,
+  title,
 })

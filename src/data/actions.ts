@@ -38,6 +38,11 @@ export interface SetRating extends Action<'SET_RATING'> {
   rating: number
 }
 
+export interface SetTitle extends Action<'SET_TITLE'> {
+  id: number
+  title: string
+}
+
 type AppAction =
   | AddGame
   | CompleteGame
@@ -46,6 +51,7 @@ type AppAction =
   | SelectGame
   | SetDuration
   | SetRating
+  | SetTitle
   | StartGame
 
 export default AppAction
