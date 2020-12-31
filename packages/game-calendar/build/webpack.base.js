@@ -8,7 +8,7 @@ const webpack = require('webpack')
 module.exports = {
     entry: {
         app:              './src/main.tsx',
-        'service-worker': './src/service-worker.ts'
+        // 'service-worker': './src/service-worker.ts'
     },
     output: {
         filename: '[name].bundle.js',

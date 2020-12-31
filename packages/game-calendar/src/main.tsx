@@ -1,25 +1,21 @@
-import { h, render } from "preact"
+import { render } from "preact"
 import { Provider } from "react-redux"
 
-import { migrate, needsMigration } from "./data/migrations"
-import store from "./data/store"
-import App from "./containers/app"
-
-// Run migrations before setting the store up
-if (needsMigration()) {
-  migrate()
-  // localstorage doesn't take immediately. Re-load the page after updating the data.
-  window.location.reload()
-}
-
-// Cache stuff for offline access
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.bundle.js")
-}
+import AddGame from './containers/add-game'
+import GameList from './containers/game-list'
+import Details from './containers/details'
+import store, { getGames } from './data/store'
+import './components/app.scss'
 
 render(
   <Provider store={store}>
-    <App />
+    <section class="sidebar">
+      <AddGame />
+      <GameList selector={getGames} />
+    </section>
+    <section class="main-pane">
+      <Details />
+    </section>
   </Provider>,
   document.body
 )

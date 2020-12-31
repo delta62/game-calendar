@@ -1,4 +1,3 @@
-import { h } from "preact"
 import { format } from "date-fns"
 
 import "./progress.scss"

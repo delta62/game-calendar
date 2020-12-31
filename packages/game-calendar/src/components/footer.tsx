@@ -1,5 +1,3 @@
-import { h } from "preact"
-
 import "./footer.scss"
 
 export interface Props {

@@ -1,5 +1,3 @@
-import pkg from "../package.json"
-
 self.addEventListener("install", (event: any) => {
   event.waitUntil(
     caches
@@ -7,14 +5,14 @@ self.addEventListener("install", (event: any) => {
       .then((keyList) => {
         return Promise.all(
           keyList.map((key) => {
-            if (key !== pkg.version) {
+            if (key === '42') {
               return caches.delete(key)
             }
           })
         )
       })
       .then(() =>
-        caches.open(`v${pkg.version}`).then((cache) => {
+        caches.open(`v${42}`).then((cache) => {
           return cache.addAll([
             "./index.html",
             "./app.css",

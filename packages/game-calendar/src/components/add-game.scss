@@ -1,0 +1,17 @@
+.add-game {
+  display: flex;
+  margin: .5rem;
+  margin-bottom: 1rem;
+
+  .text-input {
+    flex-grow: 1;
+    font-weight: bold;
+  }
+
+  .add-button {
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 0 1rem;
+  }
+}
