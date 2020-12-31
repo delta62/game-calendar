@@ -1,4 +1,4 @@
-import { Component, JSX, RefObject, createRef, h } from "preact"
+import { Component, JSX, RefObject, createRef } from "preact"
 
 import "./swipeable.scss"
 

@@ -1,5 +1,3 @@
-import { h } from "preact"
-
 import "./theme-picker.scss"
 
 export interface Props {

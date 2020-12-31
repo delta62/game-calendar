@@ -1,74 +1,51 @@
 import { Action } from "redux"
 
-export const monthUpdated = (
-  year: number,
-  month: number,
-  game: string
-): MonthGameUpdateAction => ({ type: "MONTH_UPDATED", year, month, game })
-
-export const startToggled = (
-  year: number,
-  month: number
-): StartToggledAction => ({
-  type: "START_TOGGLED",
-  year,
-  month,
-  time: new Date().getTime(),
-})
-
-export const finishToggled = (
-  year: number,
-  month: number
-): FinishToggledAction => ({
-  type: "FINISH_TOGGLED",
-  year,
-  month,
-  time: new Date().getTime(),
-})
-
-export const completeToggled = (
-  year: number,
-  month: number
-): CompleteToggledAction => ({
-  type: "COMPLETE_TOGGLED",
-  year,
-  month,
-  time: new Date().getTime(),
-})
-
-interface MonthGameUpdateAction extends Action<"MONTH_UPDATED"> {
-  year: number
-  month: number
-  game: string
+export interface AddGame extends Action<'ADD_GAME'> {
+  id: number
+  name: string
 }
 
-interface StartToggledAction extends Action<"START_TOGGLED"> {
-  year: number
-  month: number
-  time: number
+export interface CompleteGame extends Action<'COMPLETE_GAME'> {
+  id: number
+  time?: number
 }
 
-interface FinishToggledAction extends Action<"FINISH_TOGGLED"> {
-  year: number
-  month: number
-  time: number
+export interface FinishGame extends Action<'FINISH_GAME'> {
+  id: number
+  time?: number
 }
 
-interface CompleteToggledAction extends Action<"COMPLETE_TOGGLED"> {
-  year: number
-  month: number
-  time: number
+export interface StartGame extends Action<'START_GAME'> {
+  id: number
+  time?: number
 }
 
-interface ThemeChangedAction extends Action<"THEME_CHANGED"> {
-  theme: string
+export interface SelectGame extends Action<'SELECT_GAME'> {
+  id: number
+}
+
+export interface DeleteGame extends Action<'DELETE_GAME'> {
+  id: number
+}
+
+export interface SetDuration extends Action<'SET_DURATION'> {
+  duration: number
+  id: number
+}
+
+export interface SetRating extends Action<'SET_RATING'> {
+  id: number
+  rating: number
 }
 
 type AppAction =
-  | MonthGameUpdateAction
-  | ThemeChangedAction
-  | StartToggledAction
-  | FinishToggledAction
-  | CompleteToggledAction
+  | AddGame
+  | CompleteGame
+  | DeleteGame
+  | FinishGame
+  | SelectGame
+  | SetDuration
+  | SetRating
+  | StartGame
 
 export default AppAction

@@ -1,0 +1,15 @@
+.game-list-item {
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  list-style-type: none;
+  padding: .3rem;
+
+  &.active {
+    color: green;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+}
