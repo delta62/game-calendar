@@ -1,5 +1,6 @@
 import { useCallback } from 'preact/hooks'
 
+import GameTitle from './game-title'
 import Progress from './progress'
 import { Game } from '../data/store'
 import Duration from './duration'
@@ -14,6 +15,7 @@ export interface Props {
   onRatingSet(id: number, rating: number): void
   onFinish(id: number, state: boolean): void
   onStart(id: number, state: boolean): void
+  onTitleSet(id: number, title: string): void
 }
 
 let Details = ({
@@ -23,7 +25,8 @@ let Details = ({
   onFinish,
   onStart,
   onRatingSet,
-  onDurationSet
+  onDurationSet,
+  onTitleSet,
 }: Props) => {
   if (game) {
     let onDeleteClick = useCallback(() => {
@@ -54,13 +57,21 @@ let Details = ({
       onRatingSet(game.id, rating)
     }, [ game, onRatingSet ])
 
+    let onTitleChange = useCallback((title: string) => {
+      onTitleSet(game.id, title)
+    }, [ game, onTitleSet ])
+
     return (
       <div class="details">
-        <h1>{game.name}</h1>
-
-        <Duration onChange={onDurationChange} value={game.duration ?? 0} />
+        <GameTitle text={game.name} onChange={onTitleChange} />
 
         <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
+
+        <Progress
+          startDate={game.started}
+          finishDate={game.finished}
+          completeDate={game.completed}
+        />
 
         <input type="button" value="Delete" onClick={onDeleteClick} />
 
@@ -85,11 +96,7 @@ let Details = ({
           onClick={onCompleteClick}
         />
 
-        <Progress
-          startDate={game.started}
-          finishDate={game.finished}
-          completeDate={game.completed}
-        />
+        <Duration onChange={onDurationChange} value={game.duration ?? 0} />
       </div>
     )
   } else {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { State, getGame, completeGame, deleteGame, finishGame, startGame, setDuration, setRating } from '../data/store'
+import { State, getGame, completeGame, deleteGame, finishGame, startGame, setDuration, setRating, setTitle } from '../data/store'
 import Details from '../components/details'
 
 let mapState = (state: State) => ({
@@ -14,6 +14,7 @@ let mapDispatch = {
   onStart: startGame,
   onRatingSet: setRating,
   onDurationSet: setDuration,
+  onTitleSet: setTitle,
 }
 
 export default connect(mapState, mapDispatch)(Details)

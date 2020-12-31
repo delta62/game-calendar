@@ -59,6 +59,14 @@ let byId = (state: ByIdState = { }, action: Action): ByIdState => {
           duration: action.duration,
         }
       }
+    case 'SET_TITLE':
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          name: action.title,
+        }
+      }
     default:
       return state
   }
