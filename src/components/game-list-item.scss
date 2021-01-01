@@ -1,15 +1,25 @@
 .game-list-item {
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #333;
   cursor: pointer;
   list-style-type: none;
   padding: .3rem;
 
   &.active {
-    color: green;
+    color: #ee025b;
   }
 
-  .layout {
+  .horizontal {
+    align-items: center;
+    display: flex;
+  }
+
+  .vertical {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .game-name {
+    flex-grow: 1;
   }
 }
