@@ -17,3 +17,8 @@ export interface State {
   games: Normalized<number, Game>
   selectedGame: number | null
 }
+
+export interface Event {
+  type: 'started' | 'finished' | 'completed'
+  time?: number
+}

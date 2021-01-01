@@ -1,8 +1,9 @@
 import classnames from 'classnames'
 import { useCallback } from 'preact/hooks'
 
-import { Game } from '../data/store'
+import Chevron from './chevron'
 import Progress from './progress'
+import { Game } from '../data/store'
 import './game-list-item.scss'
 
 export interface Props {
@@ -18,14 +19,17 @@ let GameListItem = ({ active, game, onSelect }: Props) => {
 
   return (
     <li class={classnames('game-list-item', { active })} onClick={onClick}>
-      <div class="layout">
-        <span class="game-name">{game.name}</span>
-        <Progress
-          startDate={game.started}
-          finishDate={game.finished}
-          completeDate={game.completed}
-        />
+      <div class="horizontal">
+        <div class="vertical">
+          <span class="game-name">{game.name}</span>
+          <Progress
+            startDate={game.started}
+            finishDate={game.finished}
+            completeDate={game.completed}
+          />
         </div>
+        <Chevron />
+      </div>
     </li>
   )
 }

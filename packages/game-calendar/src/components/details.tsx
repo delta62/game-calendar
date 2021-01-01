@@ -1,10 +1,10 @@
 import { useCallback } from 'preact/hooks'
 
 import GameTitle from './game-title'
-import Progress from './progress'
 import { Game } from '../data/store'
-import Duration from './duration'
 import Rating from './rating'
+import Timeline from '../containers/timeline'
+import Trash from './trash'
 import './details.scss'
 
 export interface Props {
@@ -20,38 +20,14 @@ export interface Props {
 
 let Details = ({
   game,
-  onComplete,
   onDelete,
-  onFinish,
-  onStart,
   onRatingSet,
-  onDurationSet,
   onTitleSet,
 }: Props) => {
   if (game) {
     let onDeleteClick = useCallback(() => {
       onDelete(game.id)
     }, [ onDelete, game ])
-
-    let startDisabled = !!game.finished
-    let finishDisabled = !game.started || !!game.completed
-    let completeDisabled = !game.finished
-
-    let onStartClick = useCallback(() => {
-      onStart(game.id, !game.started)
-    }, [ onStart, game ])
-
-    let onFinishClick = useCallback(() => {
-      onFinish(game.id, !game.finished)
-    }, [ onFinish, game ])
-
-    let onCompleteClick = useCallback(() => {
-      onComplete(game.id, !game.completed)
-    }, [ onComplete, game ])
-
-    let onDurationChange = useCallback((duration: number) => {
-      onDurationSet(game.id, duration)
-    }, [ onDurationSet, game ])
 
     let onRatingChange = useCallback((rating: number) => {
       onRatingSet(game.id, rating)
@@ -64,39 +40,12 @@ let Details = ({
     return (
       <div class="details">
         <GameTitle text={game.name} onChange={onTitleChange} />
-
-        <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
-
-        <Progress
-          startDate={game.started}
-          finishDate={game.finished}
-          completeDate={game.completed}
-        />
-
-        <input type="button" value="Delete" onClick={onDeleteClick} />
-
-        <input
-          type="button"
-          disabled={startDisabled}
-          value="Start playing"
-          onClick={onStartClick}
-        />
-
-        <input
-          type="button"
-          disabled={finishDisabled}
-          value="Finished"
-          onClick={onFinishClick}
-        />
-
-        <input
-          type="button"
-          disabled={completeDisabled}
-          value="100% Complete"
-          onClick={onCompleteClick}
-        />
-
-        <Duration onChange={onDurationChange} value={game.duration ?? 0} />
+        <div class="metadata">
+          <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
+          <span class="spacer"></span>
+          <Trash onClick={onDeleteClick} />
+        </div>
+        <Timeline id={game.id} />
       </div>
     )
   } else {
