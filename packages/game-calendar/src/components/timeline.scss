@@ -15,8 +15,17 @@
   }
 
   .event {
-    border: 1px solid #666;
+    border: 1px dashed #333;
     padding: 1rem;
     text-align: center;
+
+    &.finished {
+      border-color: #666;
+      border-style: solid;
+
+      &:last-of-type {
+        border-color: #0cbd9c;
+      }
+    }
   }
 }

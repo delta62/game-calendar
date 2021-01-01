@@ -9,6 +9,7 @@ export interface Props {
 
 let mapState = (state: State, ownProps: Props) => ({
   events: getEvents(state, ownProps.id),
+  game: ownProps.id,
 })
 
 export default connect(mapState)(Timeline)

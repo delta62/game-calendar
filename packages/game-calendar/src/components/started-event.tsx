@@ -1,17 +1,27 @@
 import { format } from "date-fns"
 
+import Button from './button'
+
 export interface Props {
+  onStartPlaying(): void
+  onStopPlaying(): void
   time?: number
 }
 
-export default ({ time }: Props) => {
+export default ({ onStartPlaying, onStopPlaying, time }: Props) => {
   if (!time) {
     return (
-      <h3>Not started yet</h3>
+      <>
+        <p>Not started yet</p>
+        <Button text="Start playing" type="primary" onClick={onStartPlaying} />
+      </>
     )
   }
 
   return (
-    <h3>Started on {format(time, 'LLL do yyyy')}</h3>
+    <>
+      <p>Started on {format(time, 'LLL do yyyy')}</p>
+      <Button text="Stop playing" onClick={onStopPlaying} />
+    </>
   )
 }

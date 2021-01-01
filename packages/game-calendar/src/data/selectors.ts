@@ -30,19 +30,18 @@ export let getEvents = (state: State, id: number): Event[] => {
   let game = state.games.byId[id]
 
   let started: Event = { type: 'started' }
-  if (game.started) {
-    started.time = game.started
-  }
   let ret = [ started ]
 
-  if (game.finished) {
+  if (game.started) {
+    started.time = game.started
+
     ret.push({
       type: 'finished',
       time: game.finished,
     })
   }
 
-  if (game.completed) {
+  if (game.finished) {
     ret.push({
       type: 'completed',
       time: game.completed,

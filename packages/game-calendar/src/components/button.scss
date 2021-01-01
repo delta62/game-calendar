@@ -1,0 +1,12 @@
+.button {
+  background: transparent;
+  border: 1px solid #666;
+  border-radius: .2rem;
+  color: #666;
+  padding: .5rem .8rem;
+
+  &.primary {
+    border-color: #ee025b;
+    color: #ee025b;
+  }
+}
