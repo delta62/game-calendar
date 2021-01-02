@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import './button.scss'
 
 export interface Props {
-  onClick?(): void
+  onClick(): void
   text: string
   type?: 'primary'
 }
