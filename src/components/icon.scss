@@ -1,0 +1,33 @@
+.icon {
+  cursor: move;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+
+  .handle {
+    transform: scale(var(--ggs,1))
+  }
+
+  .handle,
+  .handle::after,
+  .handle::before {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 3px;
+    background: currentColor
+  }
+
+  .handle::after,
+  .handle::before {
+    content: "";
+    position: absolute;
+    top: -6px
+  }
+
+  .handle::after {
+    top: 6px
+  }
+}

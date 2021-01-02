@@ -4,9 +4,7 @@ import {
   State,
   getGame,
   getIsActive,
-  startGame,
-  finishGame,
-  completeGame,
+  reorderGame,
   selectGame
 } from '../data/store'
 import GameListItem from '../components/game-list-item'
@@ -21,10 +19,8 @@ let mapState = (state: State, { id }: Props) => ({
 })
 
 let mapDispatch = {
+  onReorder: reorderGame,
   onSelect: selectGame,
-  onStarted: startGame,
-  onFinished: finishGame,
-  onCompleted: completeGame,
 }
 
 export default connect(mapState, mapDispatch)(GameListItem)
