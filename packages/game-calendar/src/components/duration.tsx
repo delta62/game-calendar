@@ -1,4 +1,5 @@
 import { useRef, useCallback } from 'preact/hooks'
+
 import './duration.scss'
 
 export interface Props {

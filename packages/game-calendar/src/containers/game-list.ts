@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import GameList from '../components/game-list'
-import { State } from '../data/store'
+import GameList from '@components/game-list'
+import { State } from '@store'
 
 export interface Props {
   selector(state: State): number[]

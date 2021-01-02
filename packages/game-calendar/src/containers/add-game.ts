@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { State, addGame } from '../data/store'
-import AddGame from '../components/add-game'
+import { State, addGame } from '@store'
+import AddGame from '@components/add-game'
 
 let mapState = (_state: State) => ({ })
 

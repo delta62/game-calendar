@@ -1,4 +1,5 @@
 import { useRef, useCallback } from 'preact/hooks'
+
 import './add-game.scss'
 
 export interface Props {

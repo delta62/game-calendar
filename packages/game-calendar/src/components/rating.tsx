@@ -1,6 +1,7 @@
 import classnames from 'classnames'
 import { useCallback } from 'preact/hooks'
 import { Star } from 'react-feather'
+
 import './rating.scss'
 
 export interface Props {

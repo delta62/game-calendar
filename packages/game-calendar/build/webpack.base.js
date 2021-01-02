@@ -2,11 +2,11 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
-const pkg = require('../package.json')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/main.tsx',
+    app: './src/index.tsx',
   },
   output: {
     filename: '[name].bundle.js',
@@ -26,6 +26,9 @@ module.exports = {
       'react-dom': 'preact/compat',
     },
     extensions: [ '.js', '.tsx', '.ts' ],
+    plugins: [
+      new TsconfigPathsPlugin(),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),

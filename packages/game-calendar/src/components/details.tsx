@@ -1,10 +1,11 @@
 import { useCallback } from 'preact/hooks'
 
-import GameTitle from './game-title'
-import { Game } from '../data/store'
-import Rating from './rating'
-import Timeline from '../containers/timeline'
-import Trash from './trash'
+import GameTitle from '@components/game-title'
+import { Game } from '@store'
+import Rating from '@components/rating'
+import Timeline from '@containers/timeline'
+import Trash from '@components/trash'
+
 import './details.scss'
 
 export interface Props {

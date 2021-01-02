@@ -5,8 +5,8 @@ import {
   getGame,
   reorderGame,
   selectGame
-} from '../data/store'
-import GameListItem from '../components/game-list-item'
+} from '@store'
+import GameListItem from '@components/game-list-item'
 
 export interface Props {
   id: number

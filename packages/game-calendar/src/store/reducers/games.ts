@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import Action from '../actions'
-import { Game } from '../../models'
+import { Game } from '../models'
 
 type AllIds = number[]
 type ByIdState = Record<number, Game>
