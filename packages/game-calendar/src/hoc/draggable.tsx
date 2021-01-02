@@ -1,22 +1,22 @@
 import { RefObject, RenderableProps, createContext } from 'preact'
 import { useEffect, useContext, useRef, useCallback } from 'preact/hooks'
 
-interface DragLocationData {
+export interface DragLocationData {
   above: boolean
   below: boolean
   left: boolean
   right: boolean
 }
 
-interface DropLocationData extends DragLocationData {
+export interface DropLocationData extends DragLocationData {
   key: string
 }
 
-type DraggableEndEvent = CustomEvent
-type DraggableMoveEvent = CustomEvent<DragLocationData>
-type DraggableOverEvent = CustomEvent<DragLocationData>
-type DraggableOutEvent = CustomEvent
-type DraggableDropEvent = CustomEvent<DropLocationData>
+export type DraggableEndEvent = CustomEvent
+export type DraggableMoveEvent = CustomEvent<DragLocationData>
+export type DraggableOverEvent = CustomEvent<DragLocationData>
+export type DraggableOutEvent = CustomEvent
+export type DraggableDropEvent = CustomEvent<DropLocationData>
 
 interface DragContextState {
   key: string | null

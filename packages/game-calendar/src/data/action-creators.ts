@@ -3,6 +3,7 @@ import {
   CompleteGame,
   DeleteGame,
   FinishGame,
+  ReorderGame,
   SelectGame,
   SetDuration,
   SetRating,
@@ -60,4 +61,11 @@ export let setTitle = (id: number, title: string): SetTitle => ({
   type: 'SET_TITLE',
   id,
   title,
+})
+
+export let reorderGame = (id: number, before: boolean, target: number): ReorderGame => ({
+  type: 'REORDER_GAME',
+  id,
+  before,
+  target,
 })

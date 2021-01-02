@@ -43,11 +43,18 @@ export interface SetTitle extends Action<'SET_TITLE'> {
   title: string
 }
 
+export interface ReorderGame extends Action<'REORDER_GAME'> {
+  id: number
+  before: boolean
+  target: number
+}
+
 type AppAction =
   | AddGame
   | CompleteGame
   | DeleteGame
   | FinishGame
+  | ReorderGame
   | SelectGame
   | SetDuration
   | SetRating

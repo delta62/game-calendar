@@ -12,6 +12,17 @@ let allIds = (state: AllIds = [ ], action: Action): AllIds => {
       return [ ...state, action.id ]
     case 'DELETE_GAME':
       return state.filter(x => x !== action.id)
+    case 'REORDER_GAME':
+      let newState = state.filter(x => x !== action.id)
+      let targetIdx = newState.findIndex(x => x === action.target)
+
+      if (!action.before) {
+        targetIdx += 1
+      }
+
+      newState.splice(targetIdx, 0, action.id)
+
+      return newState
     default:
       return state
   }

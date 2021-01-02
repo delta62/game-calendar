@@ -3,6 +3,7 @@
   cursor: pointer;
   list-style-type: none;
   padding: .3rem;
+  user-select: none;
 
   &.active {
     color: #ee025b;
@@ -11,6 +12,14 @@
   .horizontal {
     align-items: center;
     display: flex;
+
+    & > :first-child {
+      margin-right: .5rem;
+    }
+
+    & > :last-child {
+      margin-left: .5rem;
+    }
   }
 
   .vertical {
