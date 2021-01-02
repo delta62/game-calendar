@@ -6,21 +6,24 @@ import Progress from './progress'
 import { Game } from '../data/store'
 import { DraggableDropEvent, useDrag, useDrop } from '../hoc/draggable'
 import Icon from './icon'
+import { useSelection } from '../context/selection'
+
 import './game-list-item.scss'
 
 export interface Props {
-  active: boolean
   game: Game
   onReorder(id: number, above: boolean, target: number): void
-  onSelect(id: number): void
 }
 
-let GameListItem = ({ active, game, onReorder, onSelect }: Props) => {
+let GameListItem = ({ game, onReorder }: Props) => {
+  let [ selectedId, setSelectedId ] = useSelection()
+  let active = selectedId == game.id
+
   let dragProps = useDrag(`${game.id}`)
 
   let onClick = useCallback(() => {
-    onSelect(game.id)
-  }, [ game, onSelect ])
+    setSelectedId(game.id)
+  }, [ game, setSelectedId ])
 
   let onDrop = useCallback(({ detail }: DraggableDropEvent) => {
     onReorder(parseInt(detail.key, 10), detail.above, game.id)

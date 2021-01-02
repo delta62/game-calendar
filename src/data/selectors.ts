@@ -18,10 +18,6 @@ export let getGame = (state: State, id: number): Game => (
   state.games.byId[id]
 )
 
-export let getIsActive = (state: State, id: number): boolean => (
-  state.selectedGame === id
-)
-
 export let getGames = (state: State): number[] => (
   state.games.allIds
 )

@@ -1,17 +1,18 @@
 import { connect } from 'react-redux'
 
-import { State, getGame, completeGame, deleteGame, finishGame, startGame, setDuration, setRating, setTitle } from '../data/store'
+import { State, getGame, deleteGame, setDuration, setRating, setTitle } from '../data/store'
 import Details from '../components/details'
 
-let mapState = (state: State) => ({
-  game: state.selectedGame ? getGame(state, state.selectedGame) : null,
+export interface Props {
+  game: number | null
+}
+
+let mapState = (state: State, ownProps: Props) => ({
+  game: ownProps.game ? getGame(state, ownProps.game) : null,
 })
 
 let mapDispatch = {
-  onComplete: completeGame,
   onDelete: deleteGame,
-  onFinish: finishGame,
-  onStart: startGame,
   onRatingSet: setRating,
   onDurationSet: setDuration,
   onTitleSet: setTitle,
