@@ -13,7 +13,9 @@ let GameList = ({ games }: RenderableProps<Props>) => (
   <div class="game-list">
     <DragProvider>
       <ol>
-        {games.map(id => <GameListItem id={id} />)}
+        {games.map(id => (
+          <GameListItem id={id} />
+        ))}
       </ol>
     </DragProvider>
   </div>

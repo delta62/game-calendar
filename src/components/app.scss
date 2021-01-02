@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
 :root {
   --background-color: #222;
@@ -23,7 +23,7 @@ body {
   background: var(--background-color);
   color: var(--foreground-color);
   display: flex;
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   font-size: 18px;
   min-width: 360px;
   overflow: hidden;
@@ -36,13 +36,13 @@ body {
   }
 }
 
-input[type=text],
-input[type=number] {
+input[type='text'],
+input[type='number'] {
   background: transparent;
   border: none;
   border-bottom: 2px solid #666;
   color: #999;
-  padding: .4rem .1rem;
+  padding: 0.4rem 0.1rem;
 }
 
 .main-pane {

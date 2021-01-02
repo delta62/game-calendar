@@ -15,13 +15,16 @@ let AddGame = ({ addGame }: Props) => {
       addGame(value)
       ref.current!.value = ''
     }
-  }, [ addGame ])
+  }, [addGame])
 
-  let onKeyUp = useCallback((event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      onClick()
-    }
-  }, [ onClick, addGame ])
+  let onKeyUp = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        onClick()
+      }
+    },
+    [onClick, addGame]
+  )
 
   return (
     <div class="add-game">
@@ -32,12 +35,7 @@ let AddGame = ({ addGame }: Props) => {
         placeholder="Add a game"
         onKeyUp={onKeyUp}
       />
-      <input
-        class="add-button"
-        type="button"
-        value="+"
-        onClick={onClick}
-      />
+      <input class="add-button" type="button" value="+" onClick={onClick} />
     </div>
   )
 }

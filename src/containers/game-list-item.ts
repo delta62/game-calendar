@@ -1,11 +1,6 @@
 import { connect } from 'react-redux'
 
-import {
-  State,
-  getGame,
-  reorderGame,
-  selectGame
-} from '@store'
+import { State, getGame, reorderGame, selectGame } from '@store'
 import GameListItem from '@components/game-list-item'
 
 export interface Props {

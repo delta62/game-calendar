@@ -1,6 +1,13 @@
 import { connect } from 'react-redux'
 
-import { State, getGame, deleteGame, setDuration, setRating, setTitle } from '@store'
+import {
+  State,
+  getGame,
+  deleteGame,
+  setDuration,
+  setRating,
+  setTitle,
+} from '@store'
 import Details from '@components/details'
 
 export interface Props {

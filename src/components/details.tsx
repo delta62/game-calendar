@@ -16,24 +16,25 @@ export interface Props {
   onTitleSet(id: number, title: string): void
 }
 
-let Details = ({
-  game,
-  onDelete,
-  onRatingSet,
-  onTitleSet,
-}: Props) => {
+let Details = ({ game, onDelete, onRatingSet, onTitleSet }: Props) => {
   if (game) {
     let onDeleteClick = useCallback(() => {
       onDelete(game.id)
-    }, [ onDelete, game ])
+    }, [onDelete, game])
 
-    let onRatingChange = useCallback((rating: number) => {
-      onRatingSet(game.id, rating)
-    }, [ game, onRatingSet ])
+    let onRatingChange = useCallback(
+      (rating: number) => {
+        onRatingSet(game.id, rating)
+      },
+      [game, onRatingSet]
+    )
 
-    let onTitleChange = useCallback((title: string) => {
-      onTitleSet(game.id, title)
-    }, [ game, onTitleSet ])
+    let onTitleChange = useCallback(
+      (title: string) => {
+        onTitleSet(game.id, title)
+      },
+      [game, onTitleSet]
+    )
 
     return (
       <div class="details">
@@ -47,9 +48,7 @@ let Details = ({
       </div>
     )
   } else {
-    return (
-      <p>Select a game</p>
-    )
+    return <p>Select a game</p>
   }
 }
 

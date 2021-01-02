@@ -17,9 +17,15 @@ let Timeline = ({ events, game }: Props) => (
     {events.map(event => (
       <>
         <div class={classnames('event', { finished: !!event.time })}>
-          {event.type === 'started' && <StartedEvent game={game} time={event.time} />}
-          {event.type === 'finished' && <FinishedEvent game={game} time={event.time} />}
-          {event.type === 'completed' && <CompletedEvent game={game} time={event.time} />}
+          {event.type === 'started' && (
+            <StartedEvent game={game} time={event.time} />
+          )}
+          {event.type === 'finished' && (
+            <FinishedEvent game={game} time={event.time} />
+          )}
+          {event.type === 'completed' && (
+            <CompletedEvent game={game} time={event.time} />
+          )}
         </div>
         <span class="line"></span>
       </>

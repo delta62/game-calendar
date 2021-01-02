@@ -1,4 +1,4 @@
-import { Action } from "redux"
+import { Action } from 'redux'
 
 export interface AddGame extends Action<'ADD_GAME'> {
   id: number

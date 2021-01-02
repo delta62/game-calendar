@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --config ./build/webpack.dev.js",
     "test": "echo 'lol k'",
-    "build": "webpack --config ./build/webpack.prod.js"
+    "build": "webpack --config ./build/webpack.prod.js",
+    "fmt": "prettier -w src/**"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -44,6 +45,8 @@
     "redux-localstorage": "^0.4.1"
   },
   "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true,
     "semi": false
   }
 }

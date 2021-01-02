@@ -6,10 +6,10 @@ import { Game } from '../models'
 type AllIds = number[]
 type ByIdState = Record<number, Game>
 
-let allIds = (state: AllIds = [ ], action: Action): AllIds => {
+let allIds = (state: AllIds = [], action: Action): AllIds => {
   switch (action.type) {
     case 'ADD_GAME':
-      return [ ...state, action.id ]
+      return [...state, action.id]
     case 'DELETE_GAME':
       return state.filter(x => x !== action.id)
     case 'REORDER_GAME':
@@ -28,12 +28,12 @@ let allIds = (state: AllIds = [ ], action: Action): AllIds => {
   }
 }
 
-let byId = (state: ByIdState = { }, action: Action): ByIdState => {
+let byId = (state: ByIdState = {}, action: Action): ByIdState => {
   switch (action.type) {
     case 'ADD_GAME':
       return {
         ...state,
-        [action.id]: { id: action.id, name: action.name }
+        [action.id]: { id: action.id, name: action.name },
       }
     case 'START_GAME':
       return {
@@ -60,7 +60,7 @@ let byId = (state: ByIdState = { }, action: Action): ByIdState => {
         [action.id]: {
           ...state[action.id],
           rating: action.rating,
-        }
+        },
       }
     case 'SET_DURATION':
       return {
@@ -68,7 +68,7 @@ let byId = (state: ByIdState = { }, action: Action): ByIdState => {
         [action.id]: {
           ...state[action.id],
           duration: action.duration,
-        }
+        },
       }
     case 'SET_TITLE':
       return {
@@ -76,7 +76,7 @@ let byId = (state: ByIdState = { }, action: Action): ByIdState => {
         [action.id]: {
           ...state[action.id],
           name: action.title,
-        }
+        },
       }
     default:
       return state

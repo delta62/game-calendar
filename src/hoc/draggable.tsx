@@ -28,8 +28,8 @@ const CLASS_NAME = '__draggable__'
 
 let DragContext = createContext<DragContextState>({
   key: null,
-  setKey() { },
-  setPreviewNode() { },
+  setKey() {},
+  setPreviewNode() {},
 })
 DragContext.displayName = 'Drag'
 
@@ -71,7 +71,9 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
     lastX: 0,
     lastY: 0,
     preview: null,
-    setKey(key: string) { ref.current.key = key },
+    setKey(key: string) {
+      ref.current.key = key
+    },
     setPreviewNode(node: HTMLElement, initialX: number, initialY: number) {
       let clone = node.cloneNode(true) as HTMLElement
       clone.classList.add('drag-preview')
@@ -86,51 +88,61 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
     },
   })
 
-  let updateState = useCallback((props: Partial<ContextState>) => {
-    let entries = Object.entries(props) as [keyof ContextState, never][]
-    for (let [k, v] of entries) {
-      ref.current[k] = v
-    }
-  }, [ ref ])
-
-  let onMove = useCallback((event: MouseEvent | TouchEvent) => {
-    if (!ref.current.key) {
-      return
-    }
-
-    // Prevent iOS from scrolling like a maniac
-    event.preventDefault()
-
-    let x = event instanceof MouseEvent ? event.pageX : event.touches[0].pageX
-    let y = event instanceof MouseEvent ? event.pageY : event.touches[0].pageY
-
-    if (ref.current.preview) {
-      ref.current.preview.style.transform = `translate(${x}px, ${y}px)`
-    }
-
-    let dropTargets = document.getElementsByClassName(CLASS_NAME)
-    for (let target of dropTargets) {
-      let isHovered = hitTest(target, x, y)
-      let wasHovered = hitTest(target, ref.current.lastX, ref.current.lastY)
-
-      if (!wasHovered && isHovered) {
-        target.dispatchEvent(new CustomEvent('draggable:dragover', {
-          detail: isHovered
-        }))
-      } else if (isHovered) {
-        target.dispatchEvent(new CustomEvent('draggable:dragmove', {
-          detail: isHovered
-        }))
-      } else if (wasHovered && !isHovered) {
-        target.dispatchEvent(new CustomEvent('draggable:dragout'))
+  let updateState = useCallback(
+    (props: Partial<ContextState>) => {
+      let entries = Object.entries(props) as [keyof ContextState, never][]
+      for (let [k, v] of entries) {
+        ref.current[k] = v
       }
-    }
+    },
+    [ref]
+  )
 
-    updateState({
-      lastX: x,
-      lastY: y,
-    })
-  }, [ ref ])
+  let onMove = useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      if (!ref.current.key) {
+        return
+      }
+
+      // Prevent iOS from scrolling like a maniac
+      event.preventDefault()
+
+      let x = event instanceof MouseEvent ? event.pageX : event.touches[0].pageX
+      let y = event instanceof MouseEvent ? event.pageY : event.touches[0].pageY
+
+      if (ref.current.preview) {
+        ref.current.preview.style.transform = `translate(${x}px, ${y}px)`
+      }
+
+      let dropTargets = document.getElementsByClassName(CLASS_NAME)
+      for (let target of dropTargets) {
+        let isHovered = hitTest(target, x, y)
+        let wasHovered = hitTest(target, ref.current.lastX, ref.current.lastY)
+
+        if (!wasHovered && isHovered) {
+          target.dispatchEvent(
+            new CustomEvent('draggable:dragover', {
+              detail: isHovered,
+            })
+          )
+        } else if (isHovered) {
+          target.dispatchEvent(
+            new CustomEvent('draggable:dragmove', {
+              detail: isHovered,
+            })
+          )
+        } else if (wasHovered && !isHovered) {
+          target.dispatchEvent(new CustomEvent('draggable:dragout'))
+        }
+      }
+
+      updateState({
+        lastX: x,
+        lastY: y,
+      })
+    },
+    [ref]
+  )
 
   let onDrop = useCallback(() => {
     if (!ref.current.key) {
@@ -142,12 +154,14 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
       let isHovered = hitTest(target, ref.current.lastX, ref.current.lastY)
 
       if (isHovered) {
-        target.dispatchEvent(new CustomEvent('draggable:drop', {
-          detail: {
-            key: ref.current.key,
-            ...isHovered,
-          },
-        }))
+        target.dispatchEvent(
+          new CustomEvent('draggable:drop', {
+            detail: {
+              key: ref.current.key,
+              ...isHovered,
+            },
+          })
+        )
       }
 
       target.dispatchEvent(new CustomEvent('draggable:dragend'))
@@ -161,8 +175,7 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
       lastY: 0,
       preview: null,
     })
-
-  }, [ document, updateState, ref ])
+  }, [document, updateState, ref])
 
   useEffect(() => {
     document.addEventListener('mousemove', onMove)
@@ -176,26 +189,27 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
       document.removeEventListener('mouseup', onDrop)
       document.removeEventListener('touchend', onDrop)
     }
-  }, [ document, onMove, onDrop ])
+  }, [document, onMove, onDrop])
 
   return (
-    <DragContext.Provider value={ref.current}>
-      {children}
-    </DragContext.Provider>
+    <DragContext.Provider value={ref.current}>{children}</DragContext.Provider>
   )
 }
 
 export let useDrag = (data: string, preview?: RefObject<HTMLElement>) => {
   let { setKey, setPreviewNode } = useContext(DragContext)
 
-  let onDragStart = useCallback((event: MouseEvent | TouchEvent) => {
-    let e = event as any
-    let x = e.pageX ?? e.touches[0].pageX
-    let y = e.pageY ?? e.touches[0].pageY
+  let onDragStart = useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      let e = event as any
+      let x = e.pageX ?? e.touches[0].pageX
+      let y = e.pageY ?? e.touches[0].pageY
 
-    setKey(data)
-    preview && preview.current && setPreviewNode(preview.current, x, y)
-  }, [ preview, setKey, data ])
+      setKey(data)
+      preview && preview.current && setPreviewNode(preview.current, x, y)
+    },
+    [preview, setKey, data]
+  )
 
   return {
     onMouseDown: onDragStart,
@@ -216,7 +230,7 @@ export function useDrop<T extends HTMLElement>({
   onDragMove,
   onDragOut,
   onDragOver,
-  onDrop
+  onDrop,
 }: UseDropArgs) {
   let ref = useRef<T>(null)
 
@@ -228,18 +242,22 @@ export function useDrop<T extends HTMLElement>({
 
     onDragMove && el.addEventListener('draggable:dragmove', onDragMove as any)
     onDragOver && el.addEventListener('draggable:dragover', onDragOver as any)
-    onDragOut  && el.addEventListener('draggable:dragout',  onDragOut as any)
-    onDrop     && el.addEventListener('draggable:drop',     onDrop as any)
-    onDragEnd  && el.addEventListener('draggable:dragend',  onDragEnd as any)
+    onDragOut && el.addEventListener('draggable:dragout', onDragOut as any)
+    onDrop && el.addEventListener('draggable:drop', onDrop as any)
+    onDragEnd && el.addEventListener('draggable:dragend', onDragEnd as any)
 
     return () => {
-      onDragMove && el!.removeEventListener('draggable:dragmove', onDragMove as any)
-      onDragEnd  && el!.removeEventListener('draggable:dragend',  onDragEnd as any)
-      onDragOver && el!.removeEventListener('draggable:dragover', onDragOver as any)
-      onDragOut  && el!.removeEventListener('draggable:dragout',  onDragOut as any)
-      onDrop     && el!.removeEventListener('draggable:drop',     onDrop as any)
+      onDragMove &&
+        el!.removeEventListener('draggable:dragmove', onDragMove as any)
+      onDragEnd &&
+        el!.removeEventListener('draggable:dragend', onDragEnd as any)
+      onDragOver &&
+        el!.removeEventListener('draggable:dragover', onDragOver as any)
+      onDragOut &&
+        el!.removeEventListener('draggable:dragout', onDragOut as any)
+      onDrop && el!.removeEventListener('draggable:drop', onDrop as any)
     }
-  }, [ onDragEnd, onDragOver, onDragOut, onDrop, ref.current ])
+  }, [onDragEnd, onDragOver, onDragOut, onDrop, ref.current])
 
   return {
     forwardRef: ref,
