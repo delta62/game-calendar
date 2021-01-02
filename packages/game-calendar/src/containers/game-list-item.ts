@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {
   State,
   getGame,
-  getIsActive,
   reorderGame,
   selectGame
 } from '../data/store'
@@ -14,7 +13,6 @@ export interface Props {
 }
 
 let mapState = (state: State, { id }: Props) => ({
-  active: getIsActive(state, id),
   game: getGame(state, id),
 })
 

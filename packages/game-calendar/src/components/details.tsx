@@ -9,12 +9,9 @@ import './details.scss'
 
 export interface Props {
   game: Game | null
-  onComplete(id: number, state: boolean): void
   onDelete(id: number): void
   onDurationSet(id: number, duration: number): void
   onRatingSet(id: number, rating: number): void
-  onFinish(id: number, state: boolean): void
-  onStart(id: number, state: boolean): void
   onTitleSet(id: number, title: string): void
 }
 

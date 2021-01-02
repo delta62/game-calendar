@@ -15,7 +15,6 @@ export interface Normalized<Id extends string | number | symbol, Model> {
 
 export interface State {
   games: Normalized<number, Game>
-  selectedGame: number | null
 }
 
 export interface Event {
