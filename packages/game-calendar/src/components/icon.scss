@@ -5,7 +5,7 @@
   width: 20px;
 
   .handle {
-    transform: scale(var(--ggs,1))
+    transform: scale(var(--ggs, 1));
   }
 
   .handle,
@@ -17,17 +17,17 @@
     width: 20px;
     height: 2px;
     border-radius: 3px;
-    background: currentColor
+    background: currentColor;
   }
 
   .handle::after,
   .handle::before {
-    content: "";
+    content: '';
     position: absolute;
-    top: -6px
+    top: -6px;
   }
 
   .handle::after {
-    top: 6px
+    top: 6px;
   }
 }

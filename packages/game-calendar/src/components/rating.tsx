@@ -10,23 +10,26 @@ export interface Props {
 }
 
 let Rating = ({ onChange, rating }: Props) => {
-  let onChangeClick = useCallback((i: number) => {
-    return () => {
-      onChange((i + 1) * 2)
-    }
-  }, [ onChange, rating ])
+  let onChangeClick = useCallback(
+    (i: number) => {
+      return () => {
+        onChange((i + 1) * 2)
+      }
+    },
+    [onChange, rating]
+  )
 
   return (
     <div class="rating">
-    {new Array(5).fill(0).map((_, i) => {
-      let filled = (i + 1) * 2 <= rating
-      return (
-        <Star
-          className={classnames('icon', { filled })}
-          onClick={onChangeClick(i)}
+      {new Array(5).fill(0).map((_, i) => {
+        let filled = (i + 1) * 2 <= rating
+        return (
+          <Star
+            className={classnames('icon', { filled })}
+            onClick={onChangeClick(i)}
           />
-      )
-    })}
+        )
+      })}
     </div>
   )
 }

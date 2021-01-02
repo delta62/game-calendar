@@ -14,19 +14,15 @@ import { Event, Game, State } from './models'
 //     .map(game => game.id)
 // )
 
-export let getGame = (state: State, id: number): Game => (
-  state.games.byId[id]
-)
+export let getGame = (state: State, id: number): Game => state.games.byId[id]
 
-export let getGames = (state: State): number[] => (
-  state.games.allIds
-)
+export let getGames = (state: State): number[] => state.games.allIds
 
 export let getEvents = (state: State, id: number): Event[] => {
   let game = state.games.byId[id]
 
   let started: Event = { type: 'started' }
-  let ret = [ started ]
+  let ret = [started]
 
   if (game.started) {
     started.time = game.started

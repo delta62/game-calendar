@@ -20,19 +20,19 @@ export let addGame = (name: string): AddGame => ({
 export let startGame = (id: number, state: boolean): StartGame => ({
   type: 'START_GAME',
   id,
-  time: state ? Date.now() : undefined
+  time: state ? Date.now() : undefined,
 })
 
 export let finishGame = (id: number, state: boolean): FinishGame => ({
   type: 'FINISH_GAME',
   id,
-  time: state ? Date.now() : undefined
+  time: state ? Date.now() : undefined,
 })
 
 export let completeGame = (id: number, state: boolean): CompleteGame => ({
   type: 'COMPLETE_GAME',
   id,
-  time: state ? Date.now() : undefined
+  time: state ? Date.now() : undefined,
 })
 
 export let selectGame = (id: number): SelectGame => ({
@@ -63,7 +63,11 @@ export let setTitle = (id: number, title: string): SetTitle => ({
   title,
 })
 
-export let reorderGame = (id: number, before: boolean, target: number): ReorderGame => ({
+export let reorderGame = (
+  id: number,
+  before: boolean,
+  target: number
+): ReorderGame => ({
   type: 'REORDER_GAME',
   id,
   before,

@@ -7,7 +7,7 @@ import { useSelection } from '@context/selection'
 import './app.scss'
 
 let App = () => {
-  let [ selectedId ] = useSelection()
+  let [selectedId] = useSelection()
 
   return (
     <>

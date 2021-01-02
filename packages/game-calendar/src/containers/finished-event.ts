@@ -8,11 +8,15 @@ export interface Props {
   game: number
 }
 
-let mapState = () => ({ })
+let mapState = () => ({})
 
 let mapDispatch = (dispatch: Dispatch, ownProps: Props) => ({
-  onFinishGame() { dispatch(finishGame(ownProps.game, true)) },
-  onUnfinishGame() { dispatch(finishGame(ownProps.game, false)) },
+  onFinishGame() {
+    dispatch(finishGame(ownProps.game, true))
+  },
+  onUnfinishGame() {
+    dispatch(finishGame(ownProps.game, false))
+  },
 })
 
 export default connect(mapState, mapDispatch)(FinishedEvent)

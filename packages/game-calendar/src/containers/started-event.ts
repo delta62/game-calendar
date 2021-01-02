@@ -8,7 +8,7 @@ export interface Props {
   game: number
 }
 
-let mapState = (_state: State) => ({ })
+let mapState = (_state: State) => ({})
 
 let mapDispatch = (dispatch: Dispatch, ownProps: Props) => ({
   onStartPlaying: () => dispatch(startGame(ownProps.game, true)),

@@ -24,28 +24,28 @@ let Duration = ({ onChange, value }: Props) => {
     let newVal = hoursVal * MS_TO_HOUR + minutesVal * MS_TO_MINUTE
 
     onChange(newVal)
-  }, [ onChange, hoursRef, minutesRef])
+  }, [onChange, hoursRef, minutesRef])
 
   return (
     <div class="duration">
       <label class="form-item">
-      <input
-        class="hours"
-        ref={hoursRef}
-        type="number"
-        value={hours}
-        onChange={onValueChange}
-      />
+        <input
+          class="hours"
+          ref={hoursRef}
+          type="number"
+          value={hours}
+          onChange={onValueChange}
+        />
         hours
       </label>
       <label class="form-item">
-      <input
-        class="minutes"
-        ref={minutesRef}
-        type="number"
-        value={minutes}
-        onChange={onValueChange}
-      />
+        <input
+          class="minutes"
+          ref={minutesRef}
+          type="number"
+          value={minutes}
+          onChange={onValueChange}
+        />
         minutes
       </label>
     </div>

@@ -16,18 +16,21 @@ export interface Props {
 }
 
 let GameListItem = ({ game, onReorder }: Props) => {
-  let [ selectedId, setSelectedId ] = useSelection()
+  let [selectedId, setSelectedId] = useSelection()
   let active = selectedId == game.id
 
   let dragProps = useDrag(`${game.id}`)
 
   let onClick = useCallback(() => {
     setSelectedId(game.id)
-  }, [ game, setSelectedId ])
+  }, [game, setSelectedId])
 
-  let onDrop = useCallback(({ detail }: DraggableDropEvent) => {
-    onReorder(parseInt(detail.key, 10), detail.above, game.id)
-  }, [ onReorder, game ])
+  let onDrop = useCallback(
+    ({ detail }: DraggableDropEvent) => {
+      onReorder(parseInt(detail.key, 10), detail.above, game.id)
+    },
+    [onReorder, game]
+  )
 
   let { forwardRef, forwardClass } = useDrop<HTMLLIElement>({ onDrop })
 

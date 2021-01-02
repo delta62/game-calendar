@@ -1,6 +1,6 @@
-import { format } from "date-fns"
+import { format } from 'date-fns'
 
-import "./progress.scss"
+import './progress.scss'
 
 export interface Props {
   startDate?: number
@@ -13,32 +13,32 @@ function getText(props: Props): string {
   let text: string | undefined
   if (props.completeDate) {
     date = props.completeDate
-    text = "Completed"
+    text = 'Completed'
   } else if (props.finishDate) {
     date = props.finishDate
-    text = "Finished"
+    text = 'Finished'
   } else if (props.startDate) {
     date = props.startDate
-    text = "Started"
+    text = 'Started'
   }
   if (!date || !text) {
-    return ""
+    return ''
   }
-  return `${text} ${format(date, "LLL do")}`
+  return `${text} ${format(date, 'LLL do')}`
 }
 
 function getClass(props: Props): string {
-  let classes = ["progress"]
+  let classes = ['progress']
   if (props.startDate) {
-    classes.push("started")
+    classes.push('started')
   }
   if (props.finishDate) {
-    classes.push("finished")
+    classes.push('finished')
   }
   if (props.completeDate) {
-    classes.push("completed")
+    classes.push('completed')
   }
-  return classes.join(" ")
+  return classes.join(' ')
 }
 
 const Progress = (props: Props) => (

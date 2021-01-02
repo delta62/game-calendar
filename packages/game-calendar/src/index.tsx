@@ -11,5 +11,5 @@ render(
       <App />
     </Provider>
   </SelectionProvider>,
-  document.body,
+  document.body
 )
