@@ -1,9 +1,10 @@
 import classnames from 'classnames'
 
-import { Event } from '../models'
-import StartedEvent from '../containers/started-event'
-import FinishedEvent from '../containers/finished-event'
-import CompletedEvent from '../containers/completed-event'
+import { Event } from '@store'
+import StartedEvent from '@containers/started-event'
+import FinishedEvent from '@containers/finished-event'
+import CompletedEvent from '@containers/completed-event'
+
 import './timeline.scss'
 
 export interface Props {

@@ -1,8 +1,8 @@
-import AddGame from '../containers/add-game'
-import GameList from '../containers/game-list'
-import Details from '../containers/details'
-import { getGames } from '../data/store'
-import { useSelection } from '../context/selection'
+import AddGame from '@containers/add-game'
+import GameList from '@containers/game-list'
+import Details from '@containers/details'
+import { getGames } from '@store'
+import { useSelection } from '@context/selection'
 
 import './app.scss'
 

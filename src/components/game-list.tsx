@@ -1,7 +1,7 @@
 import { RenderableProps } from 'preact'
 
-import GameListItem from '../containers/game-list-item'
-import { DragProvider } from '../hoc/draggable.tsx'
+import GameListItem from '@containers/game-list-item'
+import { DragProvider } from '@hoc/draggable.tsx'
 
 import './game-list.scss'
 

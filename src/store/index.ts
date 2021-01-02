@@ -1,11 +1,11 @@
-import { Store, createStore } from "redux"
-import persistState from "redux-localstorage"
+import { Store, createStore } from 'redux'
+import persistState from 'redux-localstorage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { State } from '../models'
+import { State } from './models'
 
 export * from './action-creators'
-export * from '../models'
+export * from './models'
 export * from './selectors'
 import reducer from './reducers'
 

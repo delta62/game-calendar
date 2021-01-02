@@ -1,6 +1,6 @@
 import { format } from "date-fns"
 
-import Button from './button'
+import Button from '@components/button'
 
 export interface Props {
   onStartPlaying(): void

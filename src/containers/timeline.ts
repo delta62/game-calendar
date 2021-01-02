@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { State, getEvents } from '../data/store'
-import Timeline from '../components/timeline'
+import { State, getEvents } from '@store'
+import Timeline from '@components/timeline'
 
 export interface Props {
   id: number

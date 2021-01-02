@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
-import StartedEvent from '../components/started-event'
-import { State, startGame } from '../data/store'
+import StartedEvent from '@components/started-event'
+import { State, startGame } from '@store'
 
 export interface Props {
   game: number

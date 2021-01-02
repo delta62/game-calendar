@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
-import { finishGame } from '../data/store'
-import FinishedEvent from '../components/finished-event'
+import { finishGame } from '@store'
+import FinishedEvent from '@components/finished-event'
 
 export interface Props {
   game: number
