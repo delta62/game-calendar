@@ -43,14 +43,17 @@ let Details = ({ game, hasGames, onDelete, onRatingSet, onTitleSet }: Props) => 
         <div class="metadata">
           <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
           <span class="spacer"></span>
-          <Trash onClick={onDeleteClick} />
+          <div class="delete">
+            <Trash onClick={onDeleteClick} />
+            Delete
+          </div>
         </div>
         <Timeline id={game.id} />
       </div>
     )
   } else {
     let message = hasGames? 'Select a game' : 'Add some games to your list to get started'
-    return <p class="empty">{message}</p>
+    return <p class="details-empty">{message}</p>
   }
 }
 
