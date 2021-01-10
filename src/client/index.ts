@@ -1,26 +1,13 @@
 import { Game, User } from '@store'
-import * as Firebase from './firebase'
-
-export interface ClientOpts {
-  apiKey: string
-  projectId: string
-}
+import * as firebaseClient from './firebase'
 
 export interface Client {
-  getGames(userId: string): Promise<Game[]>
+  getGames(userId: string, authToken: string): Promise<Game[]>
   login(email: string, password: string): Promise<User>
+  refreshToken(refreshToken: string): Promise<Partial<User>>
   saveGame(userId: string, game: Game): Promise<void>
 }
 
-let getClient = (opts: ClientOpts): Client => ({
-  getGames: (userId: string) => Firebase.getGames(opts, userId),
-  login: (email: string, password: string) =>
-    Firebase.login(opts, email, password),
-  saveGame: (userId: string, game: Game) =>
-    Firebase.saveGame(opts, userId, game),
-})
+let client: Client = firebaseClient
 
-export default getClient({
-  apiKey: __API_KEY__,
-  projectId: __PROJECT_ID__,
-})
+export default client

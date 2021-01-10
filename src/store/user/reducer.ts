@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux'
 
-import Action, { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS } from './actions'
+import Action, {
+  LOGIN_ERROR,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  UPDATE_USER,
+} from './actions'
 import { Error, User } from './models'
 
 type DataState = User | null
@@ -11,6 +16,11 @@ let data = (state: DataState = null, action: Action): DataState => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return action.user
+    case UPDATE_USER:
+      return {
+        ...state,
+        ...action.user,
+      } as User
     default:
       return state
   }

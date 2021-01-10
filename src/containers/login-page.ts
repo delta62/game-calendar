@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
 
-import { actionCreators } from '@store'
+import { State, actionCreators, selectors } from '@store'
 import LoginPage from '@components/login-page'
 
-let mapState = () => ({})
+let mapState = (state: State) => ({
+  isLoggedIn: selectors.getIsLoggedIn(state),
+})
 
 let mapDispatch = {
   onLogin: actionCreators.loginRequest,

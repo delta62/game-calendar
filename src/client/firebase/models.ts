@@ -91,6 +91,15 @@ export interface Login {
 
 export type LoginResponse = FirebaseResponse<Login>
 
+export interface RefreshResponse {
+  expires_in: string
+  token_type: 'Bearer'
+  refresh_token: string
+  id_token: string
+  user_id: string
+  project_id: string
+}
+
 export type Signup = Login
 
 export type SignupResponse = FirebaseResponse<Signup>

@@ -1,10 +1,13 @@
 import { useRef, useCallback } from 'preact/hooks'
 
+import { Redirect } from '../router'
+
 export interface Props {
+  isLoggedIn: boolean
   onLogin(email: string, password: string): void
 }
 
-let LoginPage = ({ onLogin }: Props) => {
+let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
   let email = useRef<HTMLInputElement>(null)
   let password = useRef<HTMLInputElement>(null)
 
@@ -28,6 +31,7 @@ let LoginPage = ({ onLogin }: Props) => {
 
   return (
     <div>
+      <Redirect to="/" when={isLoggedIn} />
       <h1>Log in</h1>
       <input
         ref={email}

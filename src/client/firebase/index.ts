@@ -1,7 +1,6 @@
 import { Game, User } from '@store'
-import { ClientOpts } from '../index'
 import { json } from '../http'
-import { FirestoreResponse } from './models'
+import { FirestoreResponse, RefreshResponse } from './models'
 import unwrap from './unwrap'
 import wrap from './wrap'
 
@@ -18,11 +17,10 @@ interface FirebaseToken {
 }
 
 export let login = async (
-  options: ClientOpts,
   userEmail: string,
   password: string
 ): Promise<User> => {
-  let url = `${ID_API_ROOT}/accounts:signInWithPassword?key=${options.apiKey}`
+  let url = `${ID_API_ROOT}/accounts:signInWithPassword?key=${__API_KEY__}`
 
   let init: RequestInit = {
     method: 'POST',
@@ -49,20 +47,21 @@ export let login = async (
 }
 
 export let getGames = async (
-  { projectId }: ClientOpts,
-  userId: string
+  userId: string,
+  authToken: string
 ): Promise<Game[]> => {
-  let url = `${API_ROOT}/projects/${projectId}/databases/(default)/documents/users/${userId}/games`
-  let response = await json<FirestoreResponse>(url)
+  let url = `${API_ROOT}/projects/${__PROJECT_ID__}/databases/(default)/documents/users/${userId}/games`
+  let init: RequestInit = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }
+  let response = await json<FirestoreResponse>(url, init)
   return response.documents?.map(unwrap) ?? []
 }
 
-export let saveGame = (
-  options: ClientOpts,
-  userId: string,
-  game: Game
-): Promise<void> => {
-  let path = `projects/${options.projectId}/databases/(default)/documents/users/${userId}/games/${game.id}`
+export let saveGame = (userId: string, game: Game): Promise<void> => {
+  let path = `projects/${__PROJECT_ID__}/databases/(default)/documents/users/${userId}/games/${game.id}`
   let url = `${API_ROOT}/${path}`
 
   let init: RequestInit = {
@@ -81,4 +80,30 @@ export let saveGame = (
       throw new Error(`Got status code ${res.status} from ${url}`)
     }
   })
+}
+
+export let refreshToken = async (
+  refreshToken: string
+): Promise<Partial<User>> => {
+  let url = `https://securetoken.googleapis.com/v1/token?key=${__API_KEY__}`
+
+  let init: RequestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `grant_type=refresh_token&refresh_token=${encodeURIComponent(
+      refreshToken
+    )}`,
+  }
+
+  let res = await json<RefreshResponse>(url, init)
+
+  let tokenExpires = Date.now() + parseInt(res.expires_in, 10) * 1000
+
+  return {
+    refreshToken: res.refresh_token,
+    idToken: res.id_token,
+    tokenExpires,
+  }
 }
