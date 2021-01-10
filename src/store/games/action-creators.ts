@@ -1,9 +1,14 @@
-import apiClient from '@client'
+import { Game } from './models'
 import {
+  FETCH_ERROR,
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
   AddGame,
-  AsyncAction,
   CompleteGame,
   DeleteGame,
+  FetchError,
+  FetchRequest,
+  FetchSuccess,
   FinishGame,
   ReorderGame,
   SelectGame,
@@ -13,13 +18,13 @@ import {
   StartGame,
 } from './actions'
 
-export let addGame = (userId: string, name: string): AddGame => {
+export let addGame = (name: string): AddGame => {
   let game = {
     id: Date.now(),
     name,
   }
 
-  apiClient.saveGame(userId, game)
+  // apiClient.saveGame(userId, game)
 
   return {
     type: 'ADD_GAME',
@@ -73,28 +78,19 @@ export let setTitle = (id: number, title: string): SetTitle => ({
   title,
 })
 
-export let fetchGames = (userId: string): AsyncAction => {
-  return async dispatch => {
-    dispatch({ type: 'FETCH_GAMES' })
-    try {
-      let games = await apiClient.getGames(userId)
-      dispatch({ type: 'FETCH_GAMES_OK', games })
-    } catch (error) {
-      dispatch({ type: 'FETCH_GAMES_ERROR', error })
-    }
-  }
-}
+export let fetchRequest = (): FetchRequest => ({
+  type: FETCH_REQUEST,
+})
 
-export let login = (email: string, password: string): AsyncAction => {
-  return async dispatch => {
-    try {
-      let user = await apiClient.login(email, password)
-      dispatch({ type: 'LOGGED_IN', user })
-    } catch (error) {
-      console.error('Error logging in', error)
-    }
-  }
-}
+export let fetchSuccess = (games: Game[]): FetchSuccess => ({
+  type: FETCH_SUCCESS,
+  games,
+})
+
+export let fetchError = (error: any): FetchError => ({
+  type: FETCH_ERROR,
+  error,
+})
 
 export let reorderGame = (
   id: number,

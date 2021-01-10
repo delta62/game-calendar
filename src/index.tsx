@@ -7,8 +7,6 @@ import { Route, RouteProvider } from './router'
 import App from '@containers/app'
 import LoginPage from '@containers/login-page'
 
-store.dispatch({ type: 'FETCH_GAMES' })
-
 render(
   <RouteProvider>
     <SelectionProvider>

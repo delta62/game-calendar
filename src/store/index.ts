@@ -1,29 +1,59 @@
-import { Store, applyMiddleware, createStore } from 'redux'
+import { Store, applyMiddleware, createStore, combineReducers } from 'redux'
 import persistState from 'redux-localstorage'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import thunk, { ThunkDispatch } from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 
-import Action from './actions'
 import { State } from './models'
+import rootSaga from './saga'
 
-export { AsyncAction } from './actions'
-export * from './action-creators'
 export * from './models'
-export * from './selectors'
-import reducer from './reducers'
+
+export { Event, Game } from './games'
+export { User } from './user'
+import {
+  reducer as user,
+  actionCreators as userActionCreators,
+  selectors as userSelectors,
+} from './user'
+import {
+  reducer as games,
+  actionCreators as gamesActionCreators,
+  selectors as gamesSelectors,
+} from './games'
+
+let actionCreators = {
+  ...userActionCreators,
+  ...gamesActionCreators,
+}
+
+export { actionCreators }
+
+let selectors = {
+  ...userSelectors,
+  ...gamesSelectors,
+}
+
+export { selectors }
+
+let reducer = combineReducers<State>({ games, user })
+
+// -- MIGRATION CODE -------------------------------------
 import { migrate, needsMigration } from './migrations'
-
-export type Dispatch = ThunkDispatch<State, never, Action>
-
 if (needsMigration()) {
   migrate()
   window.location.reload()
 }
+// -------------------------------------------------------
+
+let sagaMiddleware = createSagaMiddleware()
 
 let enhancer = composeWithDevTools(
-  (persistState as any)('user', { key: 'reduxx' }) as any,
-  applyMiddleware(thunk)
-) as any
-let store: Store<State, Action> = createStore(reducer, enhancer)
+  (persistState as any)('user', { key: 'reduxx' }),
+  applyMiddleware(sagaMiddleware),
+)
+
+let store: Store<State> = createStore(reducer, enhancer)
+
+sagaMiddleware.run(rootSaga)
 
 export default store

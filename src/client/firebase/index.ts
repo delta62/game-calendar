@@ -1,7 +1,12 @@
 import { Game, User } from '@store'
 import { ClientOpts } from '../index'
+import { json } from '../http'
+import { FirestoreResponse } from './models'
 import unwrap from './unwrap'
 import wrap from './wrap'
+
+const ID_API_ROOT = 'https://identitytoolkit.googleapis.com/v1'
+const API_ROOT = 'https://firestore.googleapis.com/v1'
 
 interface FirebaseToken {
   idToken: string
@@ -14,10 +19,10 @@ interface FirebaseToken {
 
 export let login = async (
   options: ClientOpts,
-  email: string,
+  userEmail: string,
   password: string
 ): Promise<User> => {
-  let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${options.apiKey}`
+  let url = `${ID_API_ROOT}/accounts:signInWithPassword?key=${options.apiKey}`
 
   let init: RequestInit = {
     method: 'POST',
@@ -25,32 +30,25 @@ export let login = async (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      email,
+      email: userEmail,
       password,
       returnSecureToken: true,
     }),
   }
 
-  return fetch(url, init)
-    .then(res => res.json())
-    .then((body: FirebaseToken) => ({
-      email: body.email,
-      id: body.localId,
-      idToken: body.idToken,
-      refreshToken: body.refreshToken,
-      tokenExpires: Date.now() + parseInt(body.expiresIn, 10) * 1000,
-    }))
+  let { email, localId, idToken, refreshToken, expiresIn } = await json<FirebaseToken>(url, init)
+  let tokenExpires = Date.now() + parseInt(expiresIn, 10) * 1000
+
+  return { email, id: localId, idToken, refreshToken, tokenExpires }
 }
 
 export let getGames = async (
-  options: ClientOpts,
+  { projectId }: ClientOpts,
   userId: string
 ): Promise<Game[]> => {
-  let url = `https://firestore.googleapis.com/v1/projects/${options.projectId}/databases/(default)/documents/users/${userId}/games`
-
-  return fetch(url)
-    .then(res => res.json())
-    .then(body => body.documents.map((doc: any) => unwrap(doc)))
+  let url = `${API_ROOT}/projects/${projectId}/databases/(default)/documents/users/${userId}/games`
+  let response = await json<FirestoreResponse>(url)
+  return response.documents?.map(unwrap) ?? [ ]
 }
 
 export let saveGame = (
@@ -59,7 +57,7 @@ export let saveGame = (
   game: Game
 ): Promise<void> => {
   let path = `projects/${options.projectId}/databases/(default)/documents/users/${userId}/games/${game.id}`
-  let url = `https://firestore.googleapis.com/v1/${path}`
+  let url = `${API_ROOT}/${path}`
 
   let init: RequestInit = {
     method: 'PATCH',

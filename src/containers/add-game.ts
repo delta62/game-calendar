@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { AsyncAction, State, addGame, getUserId } from '@store'
+import { State, selectors, actionCreators } from '@store'
 import AddGame from '@components/add-game'
 
 export interface Props {
@@ -8,16 +8,11 @@ export interface Props {
 }
 
 let mapState = (state: State) => ({
-  userId: getUserId(state),
+  userId: selectors.getUserId(state),
 })
 
 let mapDispatch = {
-  addGame: (name: string): AsyncAction => (dispatch, getState) => {
-    let userId = getUserId(getState())
-    if (userId) {
-      dispatch(addGame(userId, name))
-    }
-  },
+  addGame: actionCreators.addGame
 }
 
 export default connect(mapState, mapDispatch)(AddGame)

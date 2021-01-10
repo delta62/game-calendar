@@ -1,7 +1,10 @@
 import { Action } from 'redux'
-import { ThunkAction } from 'redux-thunk'
 
-import { Game, State, User } from './models'
+import { Game } from './models'
+
+export const FETCH_ERROR = 'FETCH_ERROR'
+export const FETCH_REQUEST = 'FETCH_REQUEST'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 
 export interface AddGame extends Action<'ADD_GAME'> {
   id: number
@@ -52,29 +55,24 @@ export interface ReorderGame extends Action<'REORDER_GAME'> {
   target: number
 }
 
-export interface FetchGames extends Action<'FETCH_GAMES'> {}
+export interface FetchRequest extends Action<typeof FETCH_REQUEST> {}
 
-export interface FetchGamesOk extends Action<'FETCH_GAMES_OK'> {
+export interface FetchSuccess extends Action<typeof FETCH_SUCCESS> {
   games: Game[]
 }
 
-export interface FetchGamesError extends Action<'FETCH_GAMES_ERROR'> {
+export interface FetchError extends Action<typeof FETCH_ERROR> {
   error: unknown
-}
-
-export interface LoggedIn extends Action<'LOGGED_IN'> {
-  user: User
 }
 
 type AppAction =
   | AddGame
   | CompleteGame
   | DeleteGame
-  | FetchGames
-  | FetchGamesError
-  | FetchGamesOk
+  | FetchError
+  | FetchRequest
+  | FetchSuccess
   | FinishGame
-  | LoggedIn
   | ReorderGame
   | SelectGame
   | SetDuration
@@ -83,5 +81,3 @@ type AppAction =
   | StartGame
 
 export default AppAction
-
-export type AsyncAction<R = unknown> = ThunkAction<R, State, {}, AppAction>

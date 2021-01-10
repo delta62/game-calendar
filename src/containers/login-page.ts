@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 
-import { login } from '@store'
+import { actionCreators } from '@store'
 import LoginPage from '@components/login-page'
 
 let mapState = () => ({})
 
 let mapDispatch = {
-  onLogin: login,
+  onLogin: actionCreators.loginRequest,
 }
 
 export default connect(mapState, mapDispatch)(LoginPage)

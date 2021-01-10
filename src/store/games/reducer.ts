@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import Action from '../actions'
-import { Game } from '../models'
+import Action, { FETCH_SUCCESS } from './actions'
+import { Game } from './models'
 
 type AllIds = number[]
 type ByIdState = Record<number, Game>
@@ -24,7 +24,7 @@ let allIds = (state: AllIds = [], action: Action): AllIds => {
 
       return newState
 
-    case 'FETCH_GAMES_OK':
+    case FETCH_SUCCESS:
       return action.games.map(game => game.id)
     default:
       return state
@@ -81,7 +81,7 @@ let byId = (state: ByIdState = {}, action: Action): ByIdState => {
           name: action.title,
         },
       }
-    case 'FETCH_GAMES_OK':
+    case FETCH_SUCCESS:
       return action.games.reduce((acc, game) => {
         acc[game.id] = game
         return acc
