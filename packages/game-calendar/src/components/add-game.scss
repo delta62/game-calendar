@@ -1,17 +1,23 @@
 .add-game {
+  background-color: hsla(0, 0, 100%, 0.05);
   display: flex;
-  margin: 0.5rem;
+  padding: 0.5rem;
   margin-bottom: 1rem;
 
   .text-input {
     flex-grow: 1;
-    font-weight: bold;
+    font-size: 18px;
   }
 
   .add-button {
     background: transparent;
     border: none;
+    font-size: 24px;
     color: #999;
     padding: 0 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
