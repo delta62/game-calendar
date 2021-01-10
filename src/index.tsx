@@ -5,6 +5,8 @@ import store from '@store'
 import { SelectionProvider } from '@context/selection'
 import App from '@components/app'
 
+store.dispatch({ type: 'FETCH_GAMES' })
+
 render(
   <SelectionProvider>
     <Provider store={store}>

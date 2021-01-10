@@ -1,4 +1,7 @@
 import { Action } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+
+import { Game, State } from './models'
 
 export interface AddGame extends Action<'ADD_GAME'> {
   id: number
@@ -49,10 +52,23 @@ export interface ReorderGame extends Action<'REORDER_GAME'> {
   target: number
 }
 
+export interface FetchGames extends Action<'FETCH_GAMES'> { }
+
+export interface FetchGamesOk extends Action<'FETCH_GAMES_OK'> {
+  games: Game[]
+}
+
+export interface FetchGamesError extends Action<'FETCH_GAMES_ERROR'> {
+  error: unknown
+}
+
 type AppAction =
   | AddGame
   | CompleteGame
   | DeleteGame
+  | FetchGames
+  | FetchGamesError
+  | FetchGamesOk
   | FinishGame
   | ReorderGame
   | SelectGame
@@ -62,3 +78,5 @@ type AppAction =
   | StartGame
 
 export default AppAction
+
+export type AsyncAction<R = unknown> = ThunkAction<R, State, {}, AppAction>

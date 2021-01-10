@@ -1,5 +1,7 @@
+import apiClient from '@client'
 import {
   AddGame,
+  AsyncAction,
   CompleteGame,
   DeleteGame,
   FinishGame,
@@ -62,6 +64,18 @@ export let setTitle = (id: number, title: string): SetTitle => ({
   id,
   title,
 })
+
+export let fetchGames = (userId: string): AsyncAction => {
+  return async dispatch => {
+    dispatch({ type: 'FETCH_GAMES' })
+    try {
+      let games = await apiClient.getGames(userId)
+      dispatch({ type: 'FETCH_GAMES_OK', games })
+    } catch (error) {
+      dispatch({ type: 'FETCH_GAMES_ERROR', error })
+    }
+  }
+}
 
 export let reorderGame = (
   id: number,
