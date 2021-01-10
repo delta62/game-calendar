@@ -5,7 +5,7 @@
   width: 20px;
 
   .handle {
-    transform: scale(var(--ggs, 1));
+    transform: scale(var(--ggs, 1)) translateY(12px);
   }
 
   .handle,

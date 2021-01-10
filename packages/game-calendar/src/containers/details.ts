@@ -2,8 +2,9 @@ import { connect } from 'react-redux'
 
 import {
   State,
-  getGame,
   deleteGame,
+  getGame,
+  hasGames,
   setDuration,
   setRating,
   setTitle,
@@ -16,6 +17,7 @@ export interface Props {
 
 let mapState = (state: State, ownProps: Props) => ({
   game: ownProps.game ? getGame(state, ownProps.game) : null,
+  hasGames: hasGames(state),
 })
 
 let mapDispatch = {

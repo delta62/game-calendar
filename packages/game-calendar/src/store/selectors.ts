@@ -42,3 +42,5 @@ export let getEvents = (state: State, id: number): Event[] => {
 
   return ret
 }
+
+export let hasGames = (state: State): boolean => state.games.allIds.length > 0
