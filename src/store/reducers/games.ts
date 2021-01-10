@@ -85,7 +85,7 @@ let byId = (state: ByIdState = {}, action: Action): ByIdState => {
       return action.games.reduce((acc, game) => {
         acc[game.id] = game
         return acc
-      }, { } as ByIdState)
+      }, {} as ByIdState)
     default:
       return state
   }

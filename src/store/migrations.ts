@@ -11,7 +11,7 @@ export let migrate = () => {
 
   let stateStr = localStorage.getItem('redux') ?? '{}'
   let state = JSON.parse(stateStr)
-  let games = state.games ?? { byId: { }, allIds: [ ] }
+  let games = state.games ?? { byId: {}, allIds: [] }
   let userId = state.user?.id
 
   if (!userId) {
@@ -19,7 +19,7 @@ export let migrate = () => {
     return
   }
 
-  Object.entries(games.byId).forEach(([ id, game ]) => {
+  Object.entries(games.byId).forEach(([id, game]) => {
     console.log('migrate', id, game)
     apiClient.saveGame(userId, game as any)
   })
