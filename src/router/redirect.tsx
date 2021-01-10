@@ -4,11 +4,17 @@ import Context from './context'
 
 interface RedirectProps {
   to: string
+  when?: boolean
 }
 
-export function Redirect({ to }: RedirectProps) {
+export function Redirect({ to, when = true }: RedirectProps) {
   let { setPath } = useContext(Context)
-  useEffect(() => setPath(to), [])
+
+  useEffect(() => {
+    if (when) {
+      setPath(to)
+    }
+  }, [to, when])
 
   return null
 }
