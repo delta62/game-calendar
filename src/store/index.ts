@@ -11,11 +11,17 @@ export * from './action-creators'
 export * from './models'
 export * from './selectors'
 import reducer from './reducers'
+import { migrate, needsMigration } from './migrations'
 
 export type Dispatch = ThunkDispatch<State, never, Action>
 
+if (needsMigration()) {
+  migrate()
+  window.location.reload()
+}
+
 let enhancer = composeWithDevTools(
-  persistState() as any,
+  (persistState as any)('user', { key: 'reduxx' }) as any,
   applyMiddleware(thunk)
 ) as any
 let store: Store<State, Action> = createStore(reducer, enhancer)

@@ -23,6 +23,9 @@ let allIds = (state: AllIds = [], action: Action): AllIds => {
       newState.splice(targetIdx, 0, action.id)
 
       return newState
+
+    case 'FETCH_GAMES_OK':
+      return action.games.map(game => game.id)
     default:
       return state
   }
@@ -78,6 +81,11 @@ let byId = (state: ByIdState = {}, action: Action): ByIdState => {
           name: action.title,
         },
       }
+    case 'FETCH_GAMES_OK':
+      return action.games.reduce((acc, game) => {
+        acc[game.id] = game
+        return acc
+      }, { } as ByIdState)
     default:
       return state
   }

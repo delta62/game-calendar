@@ -1,5 +1,6 @@
 import { Game, User } from '@store'
 import { ClientOpts } from '../index'
+import unwrap from './unwrap'
 import wrap from './wrap'
 
 interface FirebaseToken {
@@ -49,14 +50,7 @@ export let getGames = async (
 
   return fetch(url)
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-    })
-    .then(() => [])
-  // .then(mapResponse)
-  // .then((body: FirebaseGame[]) => body.map(game => ({
-  //   game: game,
-  // })))
+    .then(body => body.documents.map((doc: any) => unwrap(doc)))
 }
 
 export let saveGame = (
