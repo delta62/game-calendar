@@ -49,7 +49,7 @@ let sagaMiddleware = createSagaMiddleware()
 
 let enhancer = composeWithDevTools(
   (persistState as any)('user', { key: 'reduxx' }),
-  applyMiddleware(sagaMiddleware),
+  applyMiddleware(sagaMiddleware)
 )
 
 let store: Store<State> = createStore(reducer, enhancer)

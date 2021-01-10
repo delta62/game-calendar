@@ -19,9 +19,6 @@ export interface LoginSuccess extends Action<typeof LOGIN_SUCCESS> {
   user: User
 }
 
-type UserAction =
-  | LoginError
-  | LoginRequest
-  | LoginSuccess
+type UserAction = LoginError | LoginRequest | LoginSuccess
 
 export default UserAction

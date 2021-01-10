@@ -36,7 +36,13 @@ export let login = async (
     }),
   }
 
-  let { email, localId, idToken, refreshToken, expiresIn } = await json<FirebaseToken>(url, init)
+  let {
+    email,
+    localId,
+    idToken,
+    refreshToken,
+    expiresIn,
+  } = await json<FirebaseToken>(url, init)
   let tokenExpires = Date.now() + parseInt(expiresIn, 10) * 1000
 
   return { email, id: localId, idToken, refreshToken, tokenExpires }
@@ -48,7 +54,7 @@ export let getGames = async (
 ): Promise<Game[]> => {
   let url = `${API_ROOT}/projects/${projectId}/databases/(default)/documents/users/${userId}/games`
   let response = await json<FirestoreResponse>(url)
-  return response.documents?.map(unwrap) ?? [ ]
+  return response.documents?.map(unwrap) ?? []
 }
 
 export let saveGame = (

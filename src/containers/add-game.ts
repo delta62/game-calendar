@@ -12,7 +12,7 @@ let mapState = (state: State) => ({
 })
 
 let mapDispatch = {
-  addGame: actionCreators.addGame
+  addGame: actionCreators.addGame,
 }
 
 export default connect(mapState, mapDispatch)(AddGame)

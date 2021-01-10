@@ -1,4 +1,7 @@
-export let json = async <T = unknown>(url: string, init?: RequestInit): Promise<T> => {
+export let json = async <T = unknown>(
+  url: string,
+  init?: RequestInit
+): Promise<T> => {
   let response = await fetch(url, init)
 
   if (!response.ok) {
