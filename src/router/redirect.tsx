@@ -8,7 +8,7 @@ interface RedirectProps {
 
 export function Redirect({ to }: RedirectProps) {
   let { setPath } = useContext(Context)
-  useEffect(() => setPath(to), [ ])
+  useEffect(() => setPath(to), [])
 
   return null
 }

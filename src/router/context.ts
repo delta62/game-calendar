@@ -5,7 +5,10 @@ interface RouteContextState {
   setPath(newLocation: string): void
 }
 
-let Context = createContext<RouteContextState>({ path: location.pathname, setPath() { } })
+let Context = createContext<RouteContextState>({
+  path: location.pathname,
+  setPath() {},
+})
 Context.displayName = 'Router'
 
 export default Context

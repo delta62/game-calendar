@@ -20,7 +20,7 @@ render(
           <LoginPage />
         </Route>
       </Provider>
-      </SelectionProvider>
+    </SelectionProvider>
   </RouteProvider>,
   document.body
 )

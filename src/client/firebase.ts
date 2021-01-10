@@ -13,7 +13,7 @@ interface FirebaseToken {
 export let login = async (
   options: ClientOpts,
   email: string,
-  password: string,
+  password: string
 ): Promise<User> => {
   let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${options.apiKey}`
 
@@ -36,7 +36,7 @@ export let login = async (
       id: body.localId,
       idToken: body.idToken,
       refreshToken: body.refreshToken,
-      tokenExpires: Date.now() + (parseInt(body.expiresIn, 10) * 1000),
+      tokenExpires: Date.now() + parseInt(body.expiresIn, 10) * 1000,
     }))
 }
 

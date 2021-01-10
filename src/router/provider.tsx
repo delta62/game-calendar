@@ -1,13 +1,9 @@
-import React, {
-  PropsWithChildren,
-  useState,
-  useEffect
-} from 'react'
+import React, { PropsWithChildren, useState, useEffect } from 'react'
 
 import Context from './context'
 
 export function RouteProvider(props: PropsWithChildren<unknown>) {
-  let [ href, setHref ] = useState(location.pathname)
+  let [href, setHref] = useState(location.pathname)
 
   function onPopState() {
     setHref(location.pathname)
@@ -18,7 +14,7 @@ export function RouteProvider(props: PropsWithChildren<unknown>) {
     setHref(href)
   }
 
-  useEffect(() => onpopstate = onPopState, [ ])
+  useEffect(() => (onpopstate = onPopState), [])
 
   return (
     <Context.Provider value={{ path: href, setPath }}>

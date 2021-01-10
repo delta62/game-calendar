@@ -12,9 +12,9 @@ interface AnchorProps {
 export function Anchor({
   children,
   className,
-  href
+  href,
 }: RenderableProps<AnchorProps>) {
-  let [ isActive, setIsActive ] = useState(false)
+  let [isActive, setIsActive] = useState(false)
   let { setPath } = useContext(Context)
   useEffect(() => setIsActive(location.pathname === href))
 
