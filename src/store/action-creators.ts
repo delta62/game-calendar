@@ -77,6 +77,17 @@ export let fetchGames = (userId: string): AsyncAction => {
   }
 }
 
+export let login = (email: string, password: string): AsyncAction => {
+  return async dispatch => {
+    try {
+      let user = await apiClient.login(email, password)
+      dispatch({ type: 'LOGGED_IN', user })
+    } catch (error) {
+      console.error('Error logging in', error)
+    }
+  }
+}
+
 export let reorderGame = (
   id: number,
   before: boolean,
