@@ -3,10 +3,16 @@
   cursor: pointer;
   list-style-type: none;
   padding: 0.3rem;
+  transition: background-color 0.2s color 0.2s;
   user-select: none;
 
   &.active {
     color: #ee025b;
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
+
+  &:hover:not(.active) {
+    background-color: hsla(0, 0%, 100%, 0.05)
   }
 
   .horizontal {
@@ -20,6 +26,8 @@
     & > :last-child {
       margin-left: 0.5rem;
     }
+
+
   }
 
   .vertical {
