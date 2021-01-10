@@ -13,11 +13,19 @@ import {
   StartGame,
 } from './actions'
 
-export let addGame = (name: string): AddGame => ({
-  type: 'ADD_GAME',
-  id: Date.now(),
-  name,
-})
+export let addGame = (userId: string, name: string): AddGame => {
+  let game = {
+    id: Date.now(),
+    name,
+  }
+
+  apiClient.saveGame(userId, game)
+
+  return {
+    type: 'ADD_GAME',
+    ...game,
+  }
+}
 
 export let startGame = (id: number, state: boolean): StartGame => ({
   type: 'START_GAME',

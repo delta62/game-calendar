@@ -6,6 +6,8 @@ export let getGame = (state: State, id: number): Game => state.games.byId[id]
 
 export let getGames = (state: State): number[] => state.games.allIds
 
+export let getUserId = (state: State): string | null => state.user?.id ?? null
+
 export let getEvents = (state: State, id: number): Event[] => {
   let game = state.games.byId[id]
 

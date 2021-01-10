@@ -1,7 +1,6 @@
 import AddGame from '@containers/add-game'
 import GameList from '@containers/game-list'
 import Details from '@containers/details'
-import { getGames } from '@store'
 import { useSelection } from '@context/selection'
 import { Redirect } from '../router'
 
@@ -19,7 +18,7 @@ let App = ({ isLoggedIn }: Props) => {
       <Redirect to="/login" when={!isLoggedIn} />
       <section class="sidebar">
         <AddGame />
-        <GameList selector={getGames} />
+        <GameList />
       </section>
       <section class="main-pane">
         <Details game={selectedId} />
