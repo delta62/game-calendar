@@ -21,6 +21,6 @@ let getClient = (opts: ClientOpts): Client => ({
 })
 
 export default getClient({
-  apiKey: 'AIzaSyA1hiQ-CrYWvVymh6S2u3iCdABTA6Lr3Zk',
-  projectId: 'game-calendar-d681b',
+  apiKey: __API_KEY__,
+  projectId: __PROJECT_ID__,
 })
