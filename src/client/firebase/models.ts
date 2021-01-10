@@ -45,10 +45,7 @@ interface UnaryFilter {
   }
 }
 
-type Filter =
-  | CompositeFilter
-  | FieldFilter
-  | UnaryFilter
+type Filter = CompositeFilter | FieldFilter | UnaryFilter
 
 type Direction = 'ASCENDING' | 'DESCENDING'
 
@@ -122,7 +119,7 @@ export interface ChangePassword {
 
 export type ChangePasswordResponse = FirebaseResponse<ChangePassword>
 
-interface DeleteAccount { }
+interface DeleteAccount {}
 
 export type DeleteAccountResponse = FirebaseResponse<DeleteAccount>
 

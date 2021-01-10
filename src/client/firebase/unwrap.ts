@@ -11,13 +11,13 @@ import {
 
 export default (response: MapValueInternal) => {
   if (!response.fields) {
-    return { }
+    return {}
   }
 
-  return Object.entries(response.fields).reduce((acc, [ key, value ]) => {
+  return Object.entries(response.fields).reduce((acc, [key, value]) => {
     acc[key] = unwrap(value)
     return acc
-  }, { } as any)
+  }, {} as any)
 }
 
 function unwrap(response: Value): any {
@@ -34,17 +34,20 @@ function unwrap(response: Value): any {
   }
 
   if (isArrayValue(response)) {
-    return response.arrayValue.values?.map(unwrap) ?? [ ]
+    return response.arrayValue.values?.map(unwrap) ?? []
   }
 
   if (isMapValue(response)) {
     if (response.mapValue.fields) {
-      return Object.entries(response.mapValue.fields).reduce((acc, [ key, value ]) => {
-        acc[key] = unwrap(value)
-        return acc
-      }, { } as Record<string, Value>)
+      return Object.entries(response.mapValue.fields).reduce(
+        (acc, [key, value]) => {
+          acc[key] = unwrap(value)
+          return acc
+        },
+        {} as Record<string, Value>
+      )
     }
-    return { }
+    return {}
   }
 
   if (isNullValue(response)) {

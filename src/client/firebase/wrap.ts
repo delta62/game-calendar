@@ -1,12 +1,12 @@
 import { ArrayValue, MapValue, MapValueInternal, Value } from './models'
 
 export default (fields: any): MapValueInternal => {
-  let wrappedFields = Object.entries(fields).reduce((acc, [ key, value ]) => {
+  let wrappedFields = Object.entries(fields).reduce((acc, [key, value]) => {
     if (value !== undefined) {
       acc[key] = wrap(value)
     }
     return acc
-  }, { } as Record<string, Value>)
+  }, {} as Record<string, Value>)
 
   return {
     fields: wrappedFields,
@@ -32,7 +32,7 @@ function wrap(value: any): Value {
 
   if (Array.isArray(value)) {
     let ret: ArrayValue = {
-      arrayValue: { }
+      arrayValue: {},
     }
 
     if (value.length > 0) {
@@ -44,15 +44,15 @@ function wrap(value: any): Value {
 
   if (typeof value === 'object') {
     let ret: MapValue = {
-      mapValue: {  }
+      mapValue: {},
     }
 
-    let fields = Object.entries(value).reduce((acc, [ key, value ]) => {
+    let fields = Object.entries(value).reduce((acc, [key, value]) => {
       if (value !== undefined) {
         acc[key] = wrap(value)
       }
       return acc
-    }, { } as Record<string, Value>)
+    }, {} as Record<string, Value>)
 
     ret.mapValue.fields = fields
 

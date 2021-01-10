@@ -17,7 +17,7 @@ let GameList = ({ fetchGames, games, userId }: RenderableProps<Props>) => {
     if (userId) {
       fetchGames(userId)
     }
-  }, [ fetchGames, userId ])
+  }, [fetchGames, userId])
 
   return (
     <div class="game-list">

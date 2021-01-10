@@ -52,11 +52,11 @@ export let getGames = async (
     .then(res => {
       console.log(res)
     })
-    .then(() => [ ])
-    // .then(mapResponse)
-    // .then((body: FirebaseGame[]) => body.map(game => ({
-    //   game: game,
-    // })))
+    .then(() => [])
+  // .then(mapResponse)
+  // .then((body: FirebaseGame[]) => body.map(game => ({
+  //   game: game,
+  // })))
 }
 
 export let saveGame = (
@@ -78,10 +78,9 @@ export let saveGame = (
     }),
   }
 
-  return fetch(url, init)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Got status code ${res.status} from ${url}`)
-      }
-    })
+  return fetch(url, init).then(res => {
+    if (!res.ok) {
+      throw new Error(`Got status code ${res.status} from ${url}`)
+    }
+  })
 }
