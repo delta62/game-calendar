@@ -3,14 +3,20 @@
   cursor: pointer;
   list-style-type: none;
   padding: 0.3rem;
+  transition: background-color 0.2s color 0.2s;
   user-select: none;
 
   &.active {
     color: #ee025b;
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
+
+  &:hover:not(.active) {
+    background-color: hsla(0, 0%, 100%, 0.05)
   }
 
   .horizontal {
-    align-items: center;
+    align-items: baseline;
     display: flex;
 
     & > :first-child {
@@ -20,12 +26,20 @@
     & > :last-child {
       margin-left: 0.5rem;
     }
+
+
   }
 
   .vertical {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+  }
+
+  .selector {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
   }
 
   .game-name {

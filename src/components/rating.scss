@@ -1,6 +1,10 @@
 .rating {
+  display: flex;
+
   .icon {
+    color: gold;
     cursor: pointer;
+    margin-right: 0.1rem;
   }
 
   .filled {

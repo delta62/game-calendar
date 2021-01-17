@@ -51,7 +51,9 @@ let GameListItem = ({ game, onReorder }: Props) => {
             completeDate={game.completed}
           />
         </div>
-        <Chevron />
+        <div class="selector">
+          <Chevron />
+        </div>
       </div>
     </li>
   )

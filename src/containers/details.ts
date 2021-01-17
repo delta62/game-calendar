@@ -9,6 +9,7 @@ export interface Props {
 
 let mapState = (state: State, ownProps: Props) => ({
   game: ownProps.game ? selectors.getGame(state, ownProps.game) : null,
+  hasGames: selectors.hasGames(state),
 })
 
 let mapDispatch = {

@@ -47,6 +47,9 @@ input[type='number'] {
 
 .main-pane {
   flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  background-color: var(--background-color); /* for scrollbar */
 }
 
 .sidebar {

@@ -10,13 +10,14 @@ import './details.scss'
 
 export interface Props {
   game: Game | null
+  hasGames: boolean
   onDelete(id: number): void
   onDurationSet(id: number, duration: number): void
   onRatingSet(id: number, rating: number): void
   onTitleSet(id: number, title: string): void
 }
 
-let Details = ({ game, onDelete, onRatingSet, onTitleSet }: Props) => {
+let Details = ({ game, hasGames, onDelete, onRatingSet, onTitleSet }: Props) => {
   if (game) {
     let onDeleteClick = useCallback(() => {
       onDelete(game.id)
@@ -42,13 +43,17 @@ let Details = ({ game, onDelete, onRatingSet, onTitleSet }: Props) => {
         <div class="metadata">
           <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
           <span class="spacer"></span>
-          <Trash onClick={onDeleteClick} />
+          <div class="delete">
+            <Trash onClick={onDeleteClick} />
+            Delete
+          </div>
         </div>
         <Timeline id={game.id} />
       </div>
     )
   } else {
-    return <p>Select a game</p>
+    let message = hasGames? 'Select a game' : 'Add some games to your list to get started'
+    return <p class="details-empty">{message}</p>
   }
 }
 
