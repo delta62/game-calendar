@@ -1,18 +1,24 @@
 import { combineReducers } from 'redux'
 
-import Action, { FETCH_SUCCESS } from './actions'
+import Action, {
+  ADD_GAME,
+  DELETE_GAME,
+  FETCH_SUCCESS,
+  REORDER_GAME,
+  UPDATE_GAME,
+} from './actions'
 import { Game } from './models'
 
 type AllIds = number[]
-type ByIdState = Record<number, Game>
+type ById = Record<number, Game>
 
 let allIds = (state: AllIds = [], action: Action): AllIds => {
   switch (action.type) {
-    case 'ADD_GAME':
+    case ADD_GAME:
       return [...state, action.id]
-    case 'DELETE_GAME':
+    case DELETE_GAME:
       return state.filter(x => x !== action.id)
-    case 'REORDER_GAME':
+    case REORDER_GAME:
       let newState = state.filter(x => x !== action.id)
       let targetIdx = newState.findIndex(x => x === action.target)
 
@@ -23,7 +29,6 @@ let allIds = (state: AllIds = [], action: Action): AllIds => {
       newState.splice(targetIdx, 0, action.id)
 
       return newState
-
     case FETCH_SUCCESS:
       return action.games.map(game => game.id)
     default:
@@ -31,61 +36,27 @@ let allIds = (state: AllIds = [], action: Action): AllIds => {
   }
 }
 
-let byId = (state: ByIdState = {}, action: Action): ByIdState => {
+let byId = (state: ById = {}, action: Action): ById => {
   switch (action.type) {
-    case 'ADD_GAME':
+    case ADD_GAME:
       return {
         ...state,
         [action.id]: { id: action.id, name: action.name },
       }
-    case 'START_GAME':
-      return {
-        ...state,
-        [action.id]: { ...state[action.id], started: action.time },
-      }
-    case 'FINISH_GAME':
-      return {
-        ...state,
-        [action.id]: { ...state[action.id], finished: action.time },
-      }
-    case 'COMPLETE_GAME':
-      return {
-        ...state,
-        [action.id]: { ...state[action.id], completed: action.time },
-      }
-    case 'DELETE_GAME':
+    case DELETE_GAME:
       let newState = { ...state }
       delete newState[action.id]
       return newState
-    case 'SET_RATING':
+    case UPDATE_GAME:
       return {
         ...state,
-        [action.id]: {
-          ...state[action.id],
-          rating: action.rating,
-        },
-      }
-    case 'SET_DURATION':
-      return {
-        ...state,
-        [action.id]: {
-          ...state[action.id],
-          duration: action.duration,
-        },
-      }
-    case 'SET_TITLE':
-      return {
-        ...state,
-        [action.id]: {
-          ...state[action.id],
-          name: action.title,
-        },
+        [action.game.id]: { ...state[action.game.id], ...action.game },
       }
     case FETCH_SUCCESS:
       return action.games.reduce((acc, game) => {
         acc[game.id] = game
         return acc
-      }, {} as ByIdState)
+      }, {} as ById)
     default:
       return state
   }

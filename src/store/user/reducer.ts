@@ -4,7 +4,7 @@ import Action, {
   LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  UPDATE_USER,
+  REFRESH_SUCCESS,
 } from './actions'
 import { Error, User } from './models'
 
@@ -16,7 +16,7 @@ let data = (state: DataState = null, action: Action): DataState => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return action.user
-    case UPDATE_USER:
+    case REFRESH_SUCCESS:
       return {
         ...state,
         ...action.user,

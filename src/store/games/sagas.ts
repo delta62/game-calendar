@@ -1,55 +1,82 @@
-import { call, put, select, take } from 'redux-saga/effects'
+import { call, fork, put, select, takeEvery, takeLeading } from 'redux-saga/effects'
 
-import { fetchSuccess, fetchError } from './action-creators'
-import { FETCH_REQUEST } from './actions'
+import { fetchSuccess, fetchError, updateError } from './action-creators'
+import { ADD_GAME, DELETE_GAME, FETCH_REQUEST, UPDATE_GAME, AddGame, DeleteGame, UpdateGame } from './actions'
 import {
-  actionCreators as userActionCreators,
+  sagas as userSagas,
   selectors as userSelectors,
 } from '../user'
 import apiClient from '@client'
 
-function* refreshAuthToken(refreshToken: string) {
-  try {
-    let user = yield call(apiClient.refreshToken, refreshToken)
-    yield put(userActionCreators.updateUser(user))
-    return user.idToken
-  } catch (error) {
-    console.error('Unable to refresh auth token', error)
-    throw error
-  }
-}
-
 function* fetchGames() {
   try {
-    let userId = yield select(userSelectors.getUserId)
+    let userId = yield select(userSelectors.getUserId)!
+    let idToken = yield userSagas.idToken()
+    let response = yield call(apiClient.getGames, userId, idToken)
 
-    if (!userId) {
-      throw new Error(`Attempted to fetch games with no user id`)
-    }
-
-    let expiresAt = yield select(userSelectors.getExpiresAt)
-    let authToken
-
-    if (expiresAt < Date.now() - 60_000) {
-      // Refresh the token
-      let refreshToken = yield select(userSelectors.getRefreshToken)
-      authToken = yield call(refreshAuthToken, refreshToken)
-    } else {
-      authToken = yield select(userSelectors.getAuthToken)
-    }
-
-    let response = yield call(apiClient.getGames, userId, authToken)
     yield put(fetchSuccess(response))
   } catch (error) {
     yield put(fetchError(error))
   }
 }
 
-function* watchLogin() {
-  while (true) {
-    yield take(FETCH_REQUEST)
-    yield call(fetchGames)
+function* updateGame({ game }: UpdateGame) {
+  try {
+    let userId = yield select(userSelectors.getUserId)!
+    let idToken = yield userSagas.idToken()
+    let path = `users/${userId}/games/${game.id}`
+
+    yield call(apiClient.patch, path, idToken, game)
+  } catch (error) {
+    yield put(updateError(error))
   }
 }
 
-export default watchLogin
+function* addGame({ id, name }: AddGame) {
+  try {
+    let userId = yield select(userSelectors.getUserId)!
+    let idToken = yield userSagas.idToken()
+    let path = `users/${userId}/games/`
+
+    yield call(apiClient.create, path, `${id}`, idToken, { id, name })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+function* deleteGame({ id }: DeleteGame) {
+  try {
+    let userId = yield select(userSelectors.getUserId)!
+    let idToken = yield userSagas.idToken()
+    let path = `users/${userId}/games/${id}`
+
+    yield call(apiClient.drop, path, idToken)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+function* watchLogin() {
+  yield takeLeading(FETCH_REQUEST, fetchGames)
+}
+
+function* watchUpdate() {
+  yield takeEvery(UPDATE_GAME, updateGame)
+}
+
+function* watchAdd() {
+  yield takeEvery(ADD_GAME, addGame)
+}
+
+function* watchDelete() {
+  yield takeEvery(DELETE_GAME, deleteGame)
+}
+
+function* gamesSaga() {
+  yield fork(watchLogin)
+  yield fork(watchUpdate)
+  yield fork(watchAdd)
+  yield fork(watchDelete)
+}
+
+export default gamesSaga

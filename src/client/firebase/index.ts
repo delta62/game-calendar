@@ -60,7 +60,7 @@ export let getGames = async (
   return response.documents?.map(unwrap) ?? []
 }
 
-export let saveGame = (userId: string, game: Game): Promise<void> => {
+export let saveGame = async (userId: string, game: Game): Promise<void> => {
   let path = `projects/${__PROJECT_ID__}/databases/(default)/documents/users/${userId}/games/${game.id}`
   let url = `${API_ROOT}/${path}`
 
@@ -75,11 +75,78 @@ export let saveGame = (userId: string, game: Game): Promise<void> => {
     }),
   }
 
-  return fetch(url, init).then(res => {
-    if (!res.ok) {
-      throw new Error(`Got status code ${res.status} from ${url}`)
-    }
-  })
+  let res = await fetch(url, init)
+  if (!res.ok) {
+    throw new Error(`Got status code ${res.status} from ${url}`)
+  }
+}
+
+export let create = async<T extends {}>(
+  path: string,
+  documentId: string,
+  authToken: string,
+  document: T,
+): Promise<void> => {
+  path = `projects/${__PROJECT_ID__}/databases/(default)/documents/${path}?documentId=${documentId}`
+  let url = `${API_ROOT}/${path}`
+
+  let init: RequestInit = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      ...wrap(document),
+    }),
+  }
+
+  await fetch(url, init)
+}
+
+export let drop = async(
+  path: string,
+  authToken: string,
+): Promise<void> => {
+  path = `projects/${__PROJECT_ID__}/databases/(default)/documents/${path}`
+  let url = `${API_ROOT}/${path}`
+  let init: RequestInit = {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }
+
+  await fetch(url, init)
+}
+
+export let patch = async <T extends {}>(
+  path: string,
+  authToken: string,
+  document: T,
+): Promise<void> => {
+  let updateMask = Object
+    .keys(document)
+    .map(x => `updateMask.fieldPaths=${encodeURIComponent(x)}`)
+    .join('&')
+
+  path = `projects/${__PROJECT_ID__}/databases/(default)/documents/${path}?${updateMask}`
+  let url = `${API_ROOT}/${path}`
+
+
+  let init: RequestInit = {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: path,
+      ...wrap(document),
+    }),
+  }
+
+  await fetch(url, init)
 }
 
 export let refreshToken = async (

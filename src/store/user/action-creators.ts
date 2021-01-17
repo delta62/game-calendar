@@ -3,11 +3,15 @@ import {
   LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  UPDATE_USER,
+  REFRESH_ERROR,
+  REFRESH_REQUEST,
+  REFRESH_SUCCESS,
   LoginError,
   LoginRequest,
   LoginSuccess,
-  UpdateUser,
+  RefreshError,
+  RefreshRequest,
+  RefreshSuccess,
 } from './actions'
 
 export let loginRequest = (email: string, password: string): LoginRequest => ({
@@ -26,7 +30,17 @@ export let loginError = (error: Error): LoginError => ({
   error,
 })
 
-export let updateUser = (user: Partial<User>): UpdateUser => ({
-  type: UPDATE_USER,
+export let refreshTokenRequest = (refreshToken: string): RefreshRequest => ({
+  type: REFRESH_REQUEST,
+  refreshToken,
+})
+
+export let refreshTokenSuccess = (user: Partial<User>): RefreshSuccess => ({
+  type: REFRESH_SUCCESS,
   user,
+})
+
+export let refreshTokenError = (error: Error): RefreshError => ({
+  type: REFRESH_ERROR,
+  error,
 })
