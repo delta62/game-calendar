@@ -1,14 +1,6 @@
 import { connect } from 'react-redux'
 
-import {
-  State,
-  deleteGame,
-  getGame,
-  hasGames,
-  setDuration,
-  setRating,
-  setTitle,
-} from '@store'
+import { State, actionCreators, selectors } from '@store'
 import Details from '@components/details'
 
 export interface Props {
@@ -16,15 +8,15 @@ export interface Props {
 }
 
 let mapState = (state: State, ownProps: Props) => ({
-  game: ownProps.game ? getGame(state, ownProps.game) : null,
-  hasGames: hasGames(state),
+  game: ownProps.game ? selectors.getGame(state, ownProps.game) : null,
+  hasGames: selectors.hasGames(state),
 })
 
 let mapDispatch = {
-  onDelete: deleteGame,
-  onRatingSet: setRating,
-  onDurationSet: setDuration,
-  onTitleSet: setTitle,
+  onDelete: actionCreators.deleteGame,
+  onRatingSet: actionCreators.setRating,
+  onDurationSet: actionCreators.setDuration,
+  onTitleSet: actionCreators.setTitle,
 }
 
 export default connect(mapState, mapDispatch)(Details)

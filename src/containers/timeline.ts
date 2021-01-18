@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { State, getEvents } from '@store'
+import { State, selectors } from '@store'
 import Timeline from '@components/timeline'
 
 export interface Props {
@@ -8,7 +8,7 @@ export interface Props {
 }
 
 let mapState = (state: State, ownProps: Props) => ({
-  events: getEvents(state, ownProps.id),
+  events: selectors.getEvents(state, ownProps.id),
   game: ownProps.id,
 })
 

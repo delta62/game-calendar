@@ -3,13 +3,22 @@ import { render } from 'preact'
 
 import store from '@store'
 import { SelectionProvider } from '@context/selection'
-import App from '@components/app'
+import { Route, RouteProvider } from './router'
+import App from '@containers/app'
+import LoginPage from '@containers/login-page'
 
 render(
-  <SelectionProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </SelectionProvider>,
+  <RouteProvider>
+    <SelectionProvider>
+      <Provider store={store}>
+        <Route path="/">
+          <App />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+      </Provider>
+    </SelectionProvider>
+  </RouteProvider>,
   document.body
 )

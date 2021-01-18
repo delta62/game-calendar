@@ -21,6 +21,7 @@ export type DraggableDropEvent = CustomEvent<DropLocationData>
 interface DragContextState {
   key: string | null
   setKey(key: string): void
+  setLastCoords(x: number, y: number): void
   setPreviewNode(node: Node, initialX: number, initialY: number): void
 }
 
@@ -29,6 +30,7 @@ const CLASS_NAME = '__draggable__'
 let DragContext = createContext<DragContextState>({
   key: null,
   setKey() {},
+  setLastCoords() { },
   setPreviewNode() {},
 })
 DragContext.displayName = 'Drag'
@@ -62,6 +64,7 @@ interface ContextState {
   lastY: number
   preview: HTMLElement | null
   setKey(key: string): void
+  setLastCoords(x: number, y: number): void
   setPreviewNode(node: HTMLElement, initialX: number, initialY: number): void
 }
 
@@ -73,6 +76,10 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
     preview: null,
     setKey(key: string) {
       ref.current.key = key
+    },
+    setLastCoords(x: number, y: number) {
+      ref.current.lastX = x
+      ref.current.lastY = y
     },
     setPreviewNode(node: HTMLElement, initialX: number, initialY: number) {
       let clone = node.cloneNode(true) as HTMLElement
@@ -146,11 +153,13 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
 
   let onDrop = useCallback(() => {
     if (!ref.current.key) {
+      console.log('early drag return')
       return
     }
 
     let dropTargets = document.getElementsByClassName(CLASS_NAME)
     for (let target of dropTargets) {
+      // console.log('onDrop event', event)
       let isHovered = hitTest(target, ref.current.lastX, ref.current.lastY)
 
       if (isHovered) {
@@ -197,7 +206,7 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
 }
 
 export let useDrag = (data: string, preview?: RefObject<HTMLElement>) => {
-  let { setKey, setPreviewNode } = useContext(DragContext)
+  let { setKey, setPreviewNode, setLastCoords } = useContext(DragContext)
 
   let onDragStart = useCallback(
     (event: MouseEvent | TouchEvent) => {
@@ -206,6 +215,7 @@ export let useDrag = (data: string, preview?: RefObject<HTMLElement>) => {
       let y = e.pageY ?? e.touches[0].pageY
 
       setKey(data)
+      setLastCoords(x, y)
       preview && preview.current && setPreviewNode(preview.current, x, y)
     },
     [preview, setKey, data]

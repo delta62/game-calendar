@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 
 import GameList from '@components/game-list'
-import { State } from '@store'
+import { State, actionCreators, selectors } from '@store'
 
-export interface Props {
-  selector(state: State): number[]
-}
-
-let mapState = (state: State, ownProps: Props) => ({
-  games: ownProps.selector(state),
+let mapState = (state: State) => ({
+  games: selectors.getGames(state),
+  userId: selectors.getUserId(state),
 })
 
-export default connect(mapState)(GameList)
+let mapDispatch = {
+  fetchGames: actionCreators.fetchRequest,
+}
+
+export default connect(mapState, mapDispatch)(GameList)
