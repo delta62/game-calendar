@@ -15,7 +15,7 @@ export interface Props {
   onReorder(id: number, above: boolean, target: number): void
 }
 
-let GameListItem = ({ game, onReorder }: Props) => {
+let GameListItem = ({ game , onReorder }: Props) => {
   let [selectedId, setSelectedId] = useSelection()
   let active = selectedId == game.id
 
@@ -27,7 +27,9 @@ let GameListItem = ({ game, onReorder }: Props) => {
 
   let onDrop = useCallback(
     ({ detail }: DraggableDropEvent) => {
-      onReorder(parseInt(detail.key, 10), detail.above, game.id)
+      if (detail.key !== `${game.id}`) {
+        onReorder(parseInt(detail.key, 10), detail.above, game.id)
+      }
     },
     [onReorder, game]
   )

@@ -3,6 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const webpack = require('webpack')
+const firebaseSettings = require('../firebase-config.json')
 
 module.exports = {
   entry: {
@@ -47,5 +49,9 @@ module.exports = {
       defaultSizes:   'parsed',
       openAnalyzer:   false
     }),
+    new webpack.DefinePlugin(Object.entries(firebaseSettings).reduce((acc, [ key, val ]) => {
+        acc[key] = JSON.stringify(val)
+        return acc
+    }, { })),
   ],
 }

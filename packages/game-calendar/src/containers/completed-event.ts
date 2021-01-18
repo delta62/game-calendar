@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
-import { completeGame } from '@store'
+import { actionCreators } from '@store'
 import CompletedEvent from '@components/completed-event'
 
 export interface Props {
@@ -12,10 +12,10 @@ let mapState = () => ({})
 
 let mapDispatch = (dispatch: Dispatch, ownProps: Props) => ({
   onCompleteGame() {
-    dispatch(completeGame(ownProps.game, true))
+    dispatch(actionCreators.completeGame(ownProps.game, true))
   },
   onUncompleteGame() {
-    dispatch(completeGame(ownProps.game, false))
+    dispatch(actionCreators.completeGame(ownProps.game, false))
   },
 })
 

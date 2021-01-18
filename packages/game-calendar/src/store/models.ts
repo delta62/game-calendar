@@ -1,23 +1,7 @@
-export interface Game {
-  id: number
-  name: string
-  started?: number
-  finished?: number
-  completed?: number
-  duration?: number
-  rating?: number
-}
-
-export interface Normalized<Id extends string | number | symbol, Model> {
-  allIds: Id[]
-  byId: Record<Id, Model>
-}
+import { State as UserState } from './user'
+import { State as GamesState } from './games'
 
 export interface State {
-  games: Normalized<number, Game>
-}
-
-export interface Event {
-  type: 'started' | 'finished' | 'completed'
-  time?: number
+  games: GamesState
+  user: UserState
 }

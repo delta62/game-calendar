@@ -1,18 +1,5 @@
-import { Event, Game, State } from './models'
-
-// export let getInProgress = (state: State): number[] => (
-//   state.games.allIds
-//     .map(id => state.games.byId[id])
-//     .filter(game => game.started)
-//     .map(game => game.id)
-// )
-//
-// export let getNotStarted = (state: State): number[] => (
-//   state.games.allIds
-//     .map(id => state.games.byId[id])
-//     .filter(game => !game.started)
-//     .map(game => game.id)
-// )
+import { Event, Game } from './models'
+import { State } from '../models'
 
 export let getGame = (state: State, id: number): Game => state.games.byId[id]
 
