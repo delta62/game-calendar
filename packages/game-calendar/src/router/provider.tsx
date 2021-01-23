@@ -4,6 +4,7 @@ import Context from './context'
 
 export function RouteProvider(props: PropsWithChildren<unknown>) {
   let [href, setHref] = useState(location.pathname)
+  let [params, setParams] = useState({ })
 
   function onPopState() {
     setHref(location.pathname)
@@ -14,10 +15,14 @@ export function RouteProvider(props: PropsWithChildren<unknown>) {
     setHref(href)
   }
 
+  function setRouteParams(params: Record<string, string>) {
+    setParams(params)
+  }
+
   useEffect(() => (onpopstate = onPopState), [])
 
   return (
-    <Context.Provider value={{ path: href, setPath }}>
+    <Context.Provider value={{ path: href, setPath, setRouteParams, params }}>
       {props.children}
     </Context.Provider>
   )

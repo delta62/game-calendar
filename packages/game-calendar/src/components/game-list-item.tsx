@@ -1,12 +1,12 @@
 import classnames from 'classnames'
-import { useCallback } from 'preact/hooks'
+import { useCallback, useContext } from 'preact/hooks'
 
 import Chevron from '@components/chevron'
 import { DraggableDropEvent, useDrag, useDrop } from '@hoc/draggable'
 import { Game } from '@store'
 import Icon from '@components/icon'
 import Progress from '@components/progress'
-import { useSelection } from '@context/selection'
+import { Context } from '../router'
 
 import './game-list-item.scss'
 
@@ -16,14 +16,15 @@ export interface Props {
 }
 
 let GameListItem = ({ game , onReorder }: Props) => {
-  let [selectedId, setSelectedId] = useSelection()
-  let active = selectedId == game.id
+  let { setPath } = useContext(Context)
+
+  let active = false; // selectedId == game.id
 
   let dragProps = useDrag(`${game.id}`)
 
   let onClick = useCallback(() => {
-    setSelectedId(game.id)
-  }, [game, setSelectedId])
+    setPath(`/games/${game.id}`)
+  }, [game, setPath])
 
   let onDrop = useCallback(
     ({ detail }: DraggableDropEvent) => {

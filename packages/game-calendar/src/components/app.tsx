@@ -1,8 +1,9 @@
+import { useContext } from 'preact/hooks'
+
 import AddGame from '@containers/add-game'
 import GameList from '@containers/game-list'
 import Details from '@containers/details'
-import { useSelection } from '@context/selection'
-import { Redirect } from '../router'
+import { Context, Redirect } from '../router'
 
 import './app.scss'
 
@@ -11,7 +12,8 @@ export interface Props {
 }
 
 let App = ({ isLoggedIn }: Props) => {
-  let [selectedId] = useSelection()
+  let { params } = useContext(Context)
+  let game = parseInt(params.game, 10)
 
   return (
     <>
@@ -21,7 +23,7 @@ let App = ({ isLoggedIn }: Props) => {
         <GameList />
       </section>
       <section class="main-pane">
-        <Details game={selectedId} />
+        <Details game={game} />
       </section>
     </>
   )
