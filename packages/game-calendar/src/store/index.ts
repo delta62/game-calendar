@@ -20,22 +20,25 @@ import {
   actionCreators as gamesActionCreators,
   selectors as gamesSelectors,
 } from './games'
+import {
+  reducer as platforms,
+  selectors as platformSelectors,
+} from './platforms'
 
 let actionCreators = {
   ...userActionCreators,
   ...gamesActionCreators,
 }
 
-export { actionCreators }
-
 let selectors = {
   ...userSelectors,
   ...gamesSelectors,
+  ...platformSelectors,
 }
 
-export { selectors }
+export { actionCreators, selectors }
 
-let reducer = combineReducers<State>({ games, user })
+let reducer = combineReducers<State>({ games, platforms, user })
 
 // -- MIGRATION CODE -------------------------------------
 import { migrate, needsMigration } from './migrations'

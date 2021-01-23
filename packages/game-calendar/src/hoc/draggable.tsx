@@ -153,13 +153,11 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
 
   let onDrop = useCallback(() => {
     if (!ref.current.key) {
-      console.log('early drag return')
       return
     }
 
     let dropTargets = document.getElementsByClassName(CLASS_NAME)
     for (let target of dropTargets) {
-      // console.log('onDrop event', event)
       let isHovered = hitTest(target, ref.current.lastX, ref.current.lastY)
 
       if (isHovered) {

@@ -103,6 +103,14 @@ export let updateError = (error: any): UpdateError => ({
   error,
 })
 
+export let setPlatform = (id: number, platform: number): UpdateGame => ({
+  type: UPDATE_GAME,
+  game: {
+    id,
+    platform,
+  },
+})
+
 export let reorderGame = (
   id: number,
   before: boolean,

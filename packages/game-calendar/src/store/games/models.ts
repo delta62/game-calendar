@@ -1,6 +1,7 @@
 export interface Game {
   id: number
   name: string
+  platform?: number
   started?: number
   finished?: number
   completed?: number

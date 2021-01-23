@@ -10,11 +10,13 @@ export interface Props {
 let mapState = (state: State, ownProps: Props) => ({
   game: ownProps.game ? selectors.getGame(state, ownProps.game) : null,
   hasGames: selectors.hasGames(state),
+  platforms: selectors.getPlatformOptions(state),
 })
 
 let mapDispatch = {
   onDelete: actionCreators.deleteGame,
   onRatingSet: actionCreators.setRating,
+  onPlatformSet: actionCreators.setPlatform,
   onDurationSet: actionCreators.setDuration,
   onTitleSet: actionCreators.setTitle,
 }
