@@ -14,7 +14,8 @@ export interface Props {
   hasGames: boolean
   platforms: Option[]
   onDelete(id: number): void
-  onDurationSet(id: number, duration: number): void
+  onFinishDurationSet(id: number, duration: number): void
+  onCompleteDurationSet(id: number, duration: number): void
   onPlatformSet(id: number, platform: number): void
   onRatingSet(id: number, rating: number): void
   onTitleSet(id: number, title: string): void
@@ -68,7 +69,7 @@ let Details = ({
               emptyLabel="None"
               onChange={onPlatformChange}
               options={platforms}
-              selected={`${game.platform}`}
+              selected={game.platform ? `${game.platform}` : undefined}
             />
           </label>
           <span class="spacer"></span>

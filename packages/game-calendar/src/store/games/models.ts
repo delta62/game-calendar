@@ -1,12 +1,13 @@
 export interface Game {
+  completed?: number
+  completeDuration?: number
+  finishDuration?: number
+  finished?: number
   id: number
   name: string
   platform?: number
-  started?: number
-  finished?: number
-  completed?: number
-  duration?: number
   rating?: number
+  started?: number
 }
 
 export interface State {

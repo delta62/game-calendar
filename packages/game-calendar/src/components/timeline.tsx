@@ -21,7 +21,10 @@ let Timeline = ({ events, game }: Props) => (
             <StartedEvent game={game} time={event.time} />
           )}
           {event.type === 'finished' && (
-            <FinishedEvent game={game} time={event.time} />
+            <FinishedEvent
+              game={game}
+              time={event.time}
+            />
           )}
           {event.type === 'completed' && (
             <CompletedEvent game={game} time={event.time} />

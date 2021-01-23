@@ -60,14 +60,6 @@ export let deleteGame = (id: number): DeleteGame => ({
   id,
 })
 
-export let setDuration = (id: number, duration: number): UpdateGame => ({
-  type: UPDATE_GAME,
-  game: {
-    id,
-    duration,
-  }
-})
-
 export let setRating = (id: number, rating: number): UpdateGame => ({
   type: UPDATE_GAME,
   game: {
@@ -108,6 +100,22 @@ export let setPlatform = (id: number, platform: number): UpdateGame => ({
   game: {
     id,
     platform,
+  },
+})
+
+export let setFinishDuration = (id: number, finishDuration: number): UpdateGame => ({
+  type: UPDATE_GAME,
+  game: {
+    id,
+    finishDuration,
+  },
+})
+
+export let setCompleteDuration = (id: number, completeDuration: number): UpdateGame => ({
+  type: UPDATE_GAME,
+  game: {
+    id,
+    completeDuration,
   },
 })
 

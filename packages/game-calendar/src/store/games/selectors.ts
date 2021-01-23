@@ -31,3 +31,11 @@ export let getEvents = (state: State, id: number): Event[] => {
 }
 
 export let hasGames = (state: State): boolean => state.games.allIds.length > 0
+
+export let getFinishDuration = (state: State, game: number) => (
+  state.games.byId[game].finishDuration
+)
+
+export let getCompleteDuration = (state: State, game: number) => (
+  state.games.byId[game].completeDuration
+)

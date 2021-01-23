@@ -17,7 +17,8 @@ let mapDispatch = {
   onDelete: actionCreators.deleteGame,
   onRatingSet: actionCreators.setRating,
   onPlatformSet: actionCreators.setPlatform,
-  onDurationSet: actionCreators.setDuration,
+  onFinishDurationSet: actionCreators.setFinishDuration,
+  onCompleteDurationSet: actionCreators.setCompleteDuration,
   onTitleSet: actionCreators.setTitle,
 }
 
