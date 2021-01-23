@@ -69,7 +69,7 @@ let Details = ({
               emptyLabel="None"
               onChange={onPlatformChange}
               options={platforms}
-              selected={game.platform ? `${game.platform}` : undefined}
+              selected={game.platform != null ? `${game.platform}` : undefined}
             />
           </label>
           <span class="spacer"></span>
