@@ -28,6 +28,9 @@ body {
   min-width: 360px;
   overflow: hidden;
 
+  scrollbar-color: #666 #1c1c1c;
+  scrollbar-width: thin;
+
   &.dark {
     --background-color: #1f1f1f;
     --glyph-color: white;

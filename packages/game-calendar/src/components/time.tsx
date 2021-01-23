@@ -29,24 +29,21 @@ let Time = ({ onChange, value }: Props) => {
 
   return (
     <div class="time">
-      <label class="hours">
-        <input
-          type="number"
-          onChange={onFieldChanged}
-          ref={hoursRef}
-          value={hoursVal}
-        />
-        h
-      </label>
-      <label class="minutes">
-        <input
-          type="number"
-          onChange={onFieldChanged}
-          ref={minutesRef}
-          value={minutesVal}
-        />
-        m
-      </label>
+      <input
+        type="number"
+        class="hours"
+        onChange={onFieldChanged}
+        ref={hoursRef}
+        value={hoursVal}
+      />
+      :
+      <input
+        type="number"
+        class="minutes"
+        onChange={onFieldChanged}
+        ref={minutesRef}
+        value={minutesVal}
+      />
     </div>
   )
 }

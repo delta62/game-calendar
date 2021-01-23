@@ -19,6 +19,10 @@
     padding: 1rem;
     text-align: center;
 
+    .time {
+      margin: 1rem;
+    }
+
     &.finished {
       border-color: #666;
       border-style: solid;
