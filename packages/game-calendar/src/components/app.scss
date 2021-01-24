@@ -1,3 +1,4 @@
+@import '../mixins';
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
 :root {
@@ -39,13 +40,29 @@ body {
   }
 }
 
-input[type='text'],
-input[type='number'] {
+a {
+  color: #0cbd9c;
+}
+
+input {
   background: transparent;
   border: none;
   border-bottom: 2px solid #666;
   color: #999;
   padding: 0.4rem 0.1rem;
+
+  &:focus {
+    border-bottom-color: #ee025b;
+  }
+}
+
+input[type=button] {
+  border: 2px solid #666;
+  border-radius: 2px;
+}
+
+.page {
+  margin: 1rem;
 }
 
 .main-pane {
@@ -60,4 +77,33 @@ input[type='number'] {
   display: flex;
   flex-direction: column;
   width: 20rem;
+}
+
+@include mobile {
+  body {
+    display: block;
+    position: relative;
+    transition: transform 200ms;
+
+    &.game-selected {
+      transform: translateX(-100vw);
+    }
+  }
+
+  .sidebar {
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+
+  .main-pane {
+    flex-grow: 0;
+    height: 100vh;
+    left: 100vw;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
 }

@@ -1,7 +1,15 @@
+@import '../mixins';
+
 .game-title {
   align-items: center;
   color: #ddd;
   display: flex;
+
+  .chevron {
+    cursor: pointer;
+    display: none;
+    transform: scaleX(-1);
+  }
 
   .text {
     margin-right: 1rem;
@@ -9,5 +17,14 @@
 
   .icon {
     cursor: pointer;
+  }
+}
+
+@include mobile {
+  .game-title {
+    .chevron {
+      display: block;
+      padding: 0 1rem;
+    }
   }
 }

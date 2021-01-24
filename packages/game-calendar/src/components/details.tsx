@@ -64,7 +64,7 @@ let Details = ({
           <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
           <span class="spacer"></span>
           <label>
-            Platform
+            <span class="elide">Platform</span>
             <Dropdown
               emptyLabel="None"
               onChange={onPlatformChange}
@@ -75,7 +75,7 @@ let Details = ({
           <span class="spacer"></span>
           <div class="delete">
             <Trash onClick={onDeleteClick} />
-            Delete
+            <span class="elide">Delete</span>
           </div>
         </div>
         <Timeline id={game.id} />

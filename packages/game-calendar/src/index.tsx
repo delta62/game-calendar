@@ -5,6 +5,7 @@ import store from '@store'
 import { Route, RouteProvider } from './router'
 import App from '@containers/app'
 import LoginPage from '@containers/login-page'
+import SignUpPage from '@containers/sign-up-page'
 
 render(
   <RouteProvider>
@@ -15,7 +16,10 @@ render(
       <Route path="/login">
         <LoginPage />
       </Route>
+      <Route path="/signup">
+        <SignUpPage />
+      </Route>
     </Provider>
   </RouteProvider>,
-  document.body
+  document.body,
 )

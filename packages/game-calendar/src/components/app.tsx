@@ -1,4 +1,4 @@
-import { useContext } from 'preact/hooks'
+import { useContext, useEffect } from 'preact/hooks'
 
 import AddGame from '@containers/add-game'
 import GameList from '@containers/game-list'
@@ -14,6 +14,14 @@ export interface Props {
 let App = ({ isLoggedIn }: Props) => {
   let { params } = useContext(Context)
   let game = parseInt(params.game, 10)
+
+  useEffect(() => {
+    if (game) {
+      document.body.classList.add('game-selected')
+    } else {
+      document.body.classList.remove('game-selected')
+    }
+  }, [ game ])
 
   return (
     <>

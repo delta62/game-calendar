@@ -1,5 +1,13 @@
+import { JSX } from 'preact'
+
 import './chevron.scss'
 
-let Chevron = () => <span class="chevron"></span>
+export interface Props extends JSX.DOMAttributes<HTMLSpanElement> {
+
+}
+
+let Chevron = ({ ...attrs }: Props) => (
+  <span class="chevron" {...attrs} ></span>
+)
 
 export default Chevron

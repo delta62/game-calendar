@@ -8,12 +8,13 @@ module.exports = merge(config, {
     rules: [
       {
         test: /\.scss$/,
-        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   devServer: {
-    historyApiFallback: true,
-    host: '0.0.0.0',
-  }
+    historyApiFallback: {
+      rewrites: [{ from: /.*\/app.bundle.js/, to: '/app.bundle.js' }],
+    },
+  },
 })
