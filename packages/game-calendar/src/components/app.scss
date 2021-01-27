@@ -1,4 +1,5 @@
 @import '../mixins';
+@import '../forms';
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
 :root {
@@ -48,7 +49,9 @@ input {
   background: transparent;
   border: none;
   border-bottom: 2px solid #666;
+  box-shadow: none;
   color: #999;
+  outline: none;
   padding: 0.4rem 0.1rem;
 
   &:focus {
@@ -56,9 +59,18 @@ input {
   }
 }
 
-input[type=button] {
+button,
+input[type=button],
+input[type=submit] {
+  background: transparent;
   border: 2px solid #666;
   border-radius: 2px;
+  color: #999;
+  padding: .5rem 1rem;
+
+  &:focus {
+    border-color: #ee025b;
+  }
 }
 
 .page {

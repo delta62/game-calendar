@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+
+  .form-item {
+    &.invalid.touched {
+      color: red;
+    }
+
+    & > label {
+      display: flex;
+    }
+
+    .validation-error {
+      font-size: .9rem;
+      padding: .5rem 0;
+      text-align: center;
+    }
+
+    &.invalid:not(.touched) .validation-error {
+      visibility: hidden;
+    }
+  }
+
+  .form-item-label {
+    width: 6rem;
+  }
+
+  .form-item-field {
+    flex-grow: 1;
+  }
+
+  .submit {
+    margin-top: 1rem;
+  }
+
+  :disabled {
+    border-color: #444;
+    color: #444;
+  }
+}

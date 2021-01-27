@@ -16,5 +16,6 @@ module.exports = merge(config, {
     historyApiFallback: {
       rewrites: [{ from: /.*\/app.bundle.js/, to: '/app.bundle.js' }],
     },
+    hot: true,
   },
 })
