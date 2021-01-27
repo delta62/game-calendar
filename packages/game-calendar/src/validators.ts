@@ -1,8 +1,7 @@
-import { Validator } from 'forms'
+import { Validator } from '@delta62/micro-form'
 
 export let sameAs = (field: string): Validator => (value, values) => {
   if (values[field].error) {
-    //console.log('error in the other field', values[field])
     return `${field} must be valid`
   }
 

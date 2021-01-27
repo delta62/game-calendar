@@ -1,5 +1,5 @@
 import { useCallback } from 'preact/hooks'
-import { Form, FormItem } from 'forms'
+import { Form, FormItem } from '@delta62/micro-form'
 
 import Page from '@components/page'
 import { Anchor, Redirect } from '../router'
@@ -24,7 +24,12 @@ let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
       <Redirect to="/" when={isLoggedIn} />
       <Form onSubmit={onSubmit}>
         <FormItem type="email" label="Email" name="email" />
-        <FormItem type="password" label="Password" name="password" validate={passwordValidator} />
+        <FormItem
+          type="password"
+          label="Password"
+          name="password"
+          validate={passwordValidator}
+        />
         <FormItem type="submit" label="Log in" />
       </Form>
       <Anchor className="login" href="/signup">Sign up</Anchor>

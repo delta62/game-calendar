@@ -1,6 +1,6 @@
 {
-  "name": "forms",
-  "version": "0.0.0",
+  "name": "@delta62/micro-form",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "homepage": "",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest"
   },
   "devDependencies": {
     "typescript": "^4.1.3"

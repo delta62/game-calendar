@@ -36,7 +36,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
-    "forms": "^0.0.0",
+    "@delta62/micro-form": "^0.0.1",
     "global": "^4.4.0",
     "preact": "^10.5.7",
     "react-feather": "^2.0.9",

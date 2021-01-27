@@ -1,8 +1,8 @@
 import { useCallback } from 'preact/hooks'
+import { Form, FormItem } from '@delta62/micro-form'
 
 import { Anchor, Redirect } from '../router'
 import Page from '@components/page'
-import { Form, FormItem } from 'forms'
 import { sameAs, minLength } from '../validators'
 
 import './sign-up-page.scss'
