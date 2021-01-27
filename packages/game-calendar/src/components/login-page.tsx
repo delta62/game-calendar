@@ -1,46 +1,34 @@
-import { useRef, useCallback } from 'preact/hooks'
+import { useCallback } from 'preact/hooks'
+import { Form, FormItem } from 'forms'
 
-import { Redirect } from '../router'
+import Page from '@components/page'
+import { Anchor, Redirect } from '../router'
+import { minLength } from '../validators'
+
+import './login-page.scss'
 
 export interface Props {
   isLoggedIn: boolean
   onLogin(email: string, password: string): void
 }
 
+let passwordValidator = minLength(8)
+
 let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
-  let email = useRef<HTMLInputElement>(null)
-  let password = useRef<HTMLInputElement>(null)
-
-  let onKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key !== 'Enter') {
-        return
-      }
-
-      let em = email.current?.value.trim()
-      let pw = password.current?.value
-
-      if (em && pw) {
-        onLogin(em, pw)
-        email.current!.value = ''
-        password.current!.value = ''
-      }
-    },
-    [onLogin]
-  )
+  let onSubmit = useCallback((values: Record<string, string>) => {
+    onLogin(values.email, values.password)
+  }, [ onLogin ])
 
   return (
-    <div>
+    <Page className="login-page" title="Log in">
       <Redirect to="/" when={isLoggedIn} />
-      <h1>Log in</h1>
-      <input
-        ref={email}
-        type="email"
-        placeholder="Email"
-        onKeyDown={onKeyDown}
-      />
-      <input ref={password} type="password" onKeyDown={onKeyDown} />
-    </div>
+      <Form onSubmit={onSubmit}>
+        <FormItem type="email" label="Email" name="email" />
+        <FormItem type="password" label="Password" name="password" validate={passwordValidator} />
+        <FormItem type="submit" label="Log in" />
+      </Form>
+      <Anchor className="login" href="/signup">Sign up</Anchor>
+    </Page>
   )
 }
 

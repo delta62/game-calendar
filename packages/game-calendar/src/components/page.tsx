@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import './page.scss'
 
 export interface Props {
-  className: string
+  className?: string
   title: string
 }
 
