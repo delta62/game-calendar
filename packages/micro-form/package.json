@@ -1,7 +1,7 @@
 {
   "name": "@delta62/micro-form",
   "version": "0.0.1",
-  "description": "> TODO: description",
+  "description": "A tiny form library for Preact",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "homepage": "",
   "license": "MIT",
@@ -25,5 +25,7 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "preact": "^10.5.11"
-  }
+  },
+  "sideEffects": false,
+  "type": "module"
 }

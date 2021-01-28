@@ -2,8 +2,8 @@ import { JSX } from 'preact'
 import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
 import classnames from 'classnames'
 
-import { Validator, compose, email, required } from './validation'
-import Context from './context'
+import { Validator, compose, email, required } from './validation.js'
+import Context from './context.js'
 
 export interface Props {
   label: string

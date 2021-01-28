@@ -1,6 +1,6 @@
-import Submit from './submit'
-import Input from './input'
-import { Validator } from './validation'
+import Submit from './submit.js'
+import Input from './input.js'
+import { Validator } from './validation.js'
 
 export interface SubmitProps {
   label: string

@@ -1,4 +1,4 @@
-import { FormItem } from './context'
+import { FormItem } from './context.js'
 
 export type Validator = (
   field: string,

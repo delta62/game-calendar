@@ -1,8 +1,8 @@
 import { RenderableProps } from 'preact'
 import { useCallback, useState } from 'preact/hooks'
 
-import FormContext, { Fields, FormItem } from './context'
-import { Validator } from './validation'
+import FormContext, { Fields, FormItem } from './context.js'
+import { Validator } from './validation.js'
 
 interface Props {
   onSubmit(fields: Record<string, string>): void

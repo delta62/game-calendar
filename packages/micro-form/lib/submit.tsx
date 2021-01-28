@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'preact/hooks'
 
-import Context from './context'
+import Context from './context.js'
 
 export interface Props {
   label: string
