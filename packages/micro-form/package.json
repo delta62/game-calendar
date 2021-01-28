@@ -1,6 +1,6 @@
 {
   "name": "@delta62/micro-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tiny form library for Preact",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "homepage": "",
