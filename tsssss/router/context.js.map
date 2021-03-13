@@ -1,0 +1,1 @@
+{"version":3,"file":"context.js","sourceRoot":"","sources":["../../src/router/context.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,OAAO,CAAA;AASrC,IAAI,OAAO,GAAG,aAAa,CAAoB;IAC7C,MAAM,EAAE,EAAG;IACX,IAAI,EAAE,QAAQ,CAAC,QAAQ;IACvB,OAAO,KAAI,CAAC;IACZ,cAAc,KAAK,CAAC;CACrB,CAAC,CAAA;AACF,OAAO,CAAC,WAAW,GAAG,QAAQ,CAAA;AAE9B,eAAe,OAAO,CAAA"}

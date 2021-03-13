@@ -1,0 +1,9 @@
+.scroll-wrapper {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.game-list {
+  overflow-y: auto;
+  background-color: #222; /* for scrollbar */
+}
