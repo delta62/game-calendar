@@ -1,7 +1,7 @@
 import { useCallback } from 'preact/hooks'
 import { Form, FormItem } from '@delta62/micro-form'
+import { Anchor, Redirect } from '@delta62/micro-router'
 
-import { Anchor, Redirect } from '../router'
 import Page from '@components/page'
 import { sameAs, minLength } from '../validators'
 

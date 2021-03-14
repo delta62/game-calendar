@@ -1,8 +1,8 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'preact/hooks'
 import { Edit } from 'react-feather'
+import { Context } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
-import { Context } from '../router'
 
 import './game-title.scss'
 

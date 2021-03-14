@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'preact/hooks'
+import { Context, Redirect } from '@delta62/micro-router'
 
 import AddGame from '@containers/add-game'
 import Details from '@containers/details'
 import Sidebar from '@components/sidebar'
-import { Context, Redirect } from '../router'
 
 import './app.scss'
 

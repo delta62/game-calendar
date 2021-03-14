@@ -1,9 +1,9 @@
 import 'preact/debug'
 import { Provider } from 'react-redux'
 import { render } from 'preact'
+import { Route, RouteProvider } from '@delta62/micro-router'
 
 import store from '@store'
-import { Route, RouteProvider } from './router'
 import App from '@containers/app'
 import LoginPage from '@containers/login-page'
 import SignUpPage from '@containers/sign-up-page'

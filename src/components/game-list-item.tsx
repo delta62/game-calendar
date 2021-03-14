@@ -1,12 +1,12 @@
 import classnames from 'classnames'
 import { useCallback, useContext } from 'preact/hooks'
+import { Context } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
 import { DraggableDropEvent, useDrag, useDrop } from '@hoc/draggable'
 import { Game } from '@store'
 import Icon from '@components/icon'
 import Progress from '@components/progress'
-import { Context } from '../router'
 
 import './game-list-item.scss'
 
