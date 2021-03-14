@@ -16,7 +16,7 @@ let passwordValidator = minLength(8)
 
 let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
   let onSubmit = useCallback((values: Record<string, string>) => {
-    onLogin(values.email, values.password)
+    onLogin(values.email!, values.password!)
   }, [ onLogin ])
 
   return (

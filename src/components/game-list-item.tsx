@@ -18,7 +18,7 @@ export interface Props {
 let GameListItem = ({ game , onReorder }: Props) => {
   let { setPath } = useContext(Context)
 
-  let active = false; // selectedId == game.id
+  let active = false;
 
   let dragProps = useDrag(`${game.id}`)
 

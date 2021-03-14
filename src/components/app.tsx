@@ -13,7 +13,7 @@ export interface Props {
 
 let App = ({ isLoggedIn }: Props) => {
   let { params } = useContext(Context)
-  let game = parseInt(params.game, 10)
+  let game = params.game ? parseInt(params.game, 10) : null
 
   useEffect(() => {
     if (game) {

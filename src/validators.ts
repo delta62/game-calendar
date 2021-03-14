@@ -1,11 +1,11 @@
 import { Validator } from '@delta62/micro-form'
 
 export let sameAs = (field: string): Validator => (value, values) => {
-  if (values[field].error) {
+  if (values[field]!.error) {
     return `${field} must be valid`
   }
 
-  if (value !== values[field].value) {
+  if (value !== values[field]!.value) {
     return `Not the same as ${field}`
   }
 

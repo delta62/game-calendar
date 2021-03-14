@@ -7,27 +7,27 @@ import { DragProvider } from '@hoc/draggable.tsx'
 import './game-list.scss'
 
 export interface Props {
-  fetchGames(userId: string, nextPage: string | null): void
+  fetchGames(nextPage: string | null): void
   games: number[]
-  userId: string | null
+  hasNextPage: boolean
   nextPage: string | null
 }
 
-let GameList = ({ fetchGames, games, userId, nextPage }: RenderableProps<Props>) => {
-  useEffect(() => {
-    if (userId) {
-      fetchGames(userId, null)
-    }
-  }, [fetchGames, userId])
+let GameList = ({ fetchGames, hasNextPage, games, nextPage }: RenderableProps<Props>) => {
+  useEffect(() => fetchGames(null), [fetchGames])
 
   let onScroll = useCallback((event: Event) => {
+    if (!hasNextPage) {
+      return
+    }
+
     let el = event.target as HTMLElement
     let remainingScroll = el.scrollHeight - el.scrollTop - el.offsetHeight
 
     if (remainingScroll === 0) {
-      fetchGames(userId!, nextPage)
+      fetchGames(nextPage)
     }
-  }, [ fetchGames, userId, nextPage ]);
+  }, [ fetchGames, nextPage, hasNextPage ]);
 
   return (
     <div class="scroll-wrapper" onScroll={onScroll}>

@@ -1,3 +1,4 @@
+import { SagaIterator } from 'redux-saga'
 import { call, fork, put, select, takeEvery, takeLeading } from 'redux-saga/effects'
 
 import { fetchSuccess, fetchError, updateError } from './action-creators'
@@ -8,10 +9,10 @@ import {
 } from '../user'
 import apiClient from '@client'
 
-function* fetchGames(action: FetchRequest) {
+function* fetchGames(action: FetchRequest): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken()
+    let idToken = yield userSagas.idToken() as any
     let { games, nextPage } = yield call(apiClient.getGames, userId, idToken, action.nextPage)
 
     yield put(fetchSuccess(games, nextPage))
@@ -20,10 +21,10 @@ function* fetchGames(action: FetchRequest) {
   }
 }
 
-function* updateGame({ game }: UpdateGame) {
+function* updateGame({ game }: UpdateGame): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken()
+    let idToken = yield userSagas.idToken() as any
     let path = `users/${userId}/games/${game.id}`
 
     yield call(apiClient.patch, path, idToken, game)
@@ -32,10 +33,10 @@ function* updateGame({ game }: UpdateGame) {
   }
 }
 
-function* addGame({ id, name }: AddGame) {
+function* addGame({ id, name }: AddGame): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken()
+    let idToken = yield userSagas.idToken() as any
     let path = `users/${userId}/games/`
 
     yield call(apiClient.create, path, `${id}`, idToken, { id, name })
@@ -44,10 +45,10 @@ function* addGame({ id, name }: AddGame) {
   }
 }
 
-function* deleteGame({ id }: DeleteGame) {
+function* deleteGame({ id }: DeleteGame): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken()
+    let idToken = yield userSagas.idToken() as any
     let path = `users/${userId}/games/${id}`
 
     yield call(apiClient.drop, path, idToken)
@@ -56,23 +57,23 @@ function* deleteGame({ id }: DeleteGame) {
   }
 }
 
-function* watchLogin() {
+function* watchLogin(): SagaIterator {
   yield takeLeading(FETCH_REQUEST, fetchGames)
 }
 
-function* watchUpdate() {
+function* watchUpdate(): SagaIterator {
   yield takeEvery(UPDATE_GAME, updateGame)
 }
 
-function* watchAdd() {
+function* watchAdd(): SagaIterator {
   yield takeEvery(ADD_GAME, addGame)
 }
 
-function* watchDelete() {
+function* watchDelete(): SagaIterator {
   yield takeEvery(DELETE_GAME, deleteGame)
 }
 
-function* gamesSaga() {
+function* gamesSaga(): SagaIterator {
   yield fork(watchLogin)
   yield fork(watchUpdate)
   yield fork(watchAdd)

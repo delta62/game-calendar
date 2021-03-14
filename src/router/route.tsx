@@ -14,7 +14,7 @@ let match = (path: string, currentPath: string): Record<string, string> | false 
   let params: Record<string, string> = { }
 
   for (let i = 0; i < parts.length; i++) {
-    let part = parts[i]
+    let part = parts[i]!
     let test = currentParts[i]
 
     let isParam = part.startsWith(':')
@@ -27,7 +27,7 @@ let match = (path: string, currentPath: string): Record<string, string> | false 
       }
     } else if (isParam) {
       let key = part.substr(1)
-      params[key] = test
+      params[key] = test ?? ''
     } else if (part !== test) {
       return false
     }

@@ -114,8 +114,8 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
       // Prevent iOS from scrolling like a maniac
       event.preventDefault()
 
-      let x = event instanceof MouseEvent ? event.pageX : event.touches[0].pageX
-      let y = event instanceof MouseEvent ? event.pageY : event.touches[0].pageY
+      let x = event instanceof MouseEvent ? event.pageX : event.touches[0]!.pageX
+      let y = event instanceof MouseEvent ? event.pageY : event.touches[0]!.pageY
 
       if (ref.current.preview) {
         ref.current.preview.style.transform = `translate(${x}px, ${y}px)`

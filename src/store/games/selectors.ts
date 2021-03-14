@@ -1,15 +1,18 @@
 import { Event, Game } from './models'
 import { State } from '../models'
 
-export let getGame = (state: State, id: number): Game => state.games.byId[id]
+export let getGame = (state: State, id: number): Game => state.games.byId[id]!
 
 export let getGames = (state: State): number[] => state.games.allIds
 
 export let getEvents = (state: State, id: number): Event[] => {
   let game = state.games.byId[id]
-
   let started: Event = { type: 'started' }
   let ret = [started]
+
+  if (!game) {
+    return ret
+  }
 
   if (game.started) {
     started.time = game.started
@@ -33,11 +36,13 @@ export let getEvents = (state: State, id: number): Event[] => {
 export let hasGames = (state: State): boolean => state.games.allIds.length > 0
 
 export let getFinishDuration = (state: State, game: number) => (
-  state.games.byId[game].finishDuration
+  state.games.byId[game]!.finishDuration
 )
 
 export let getCompleteDuration = (state: State, game: number) => (
-  state.games.byId[game].completeDuration
+  state.games.byId[game]!.completeDuration
 )
 
-export let getNextPage = (state: State) => state.games.nextPage
+export let getNextPage = (state: State) => state.games.nextPage.next
+
+export let hasNextPage = (state: State) => state.games.nextPage.hasNext

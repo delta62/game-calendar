@@ -10,10 +10,15 @@ export interface Game {
   started?: number
 }
 
+export interface NextPage {
+  hasNext: boolean
+  next: string | null
+}
+
 export interface State {
   allIds: number[]
   byId: Record<number, Game>
-  nextPage: string | null
+  nextPage: NextPage
 }
 
 export interface Event {

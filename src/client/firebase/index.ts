@@ -52,7 +52,7 @@ export let getGames = async (
   nextPageToken: string | null,
 ): Promise<{ games: Game[], nextPage: string | null }> => {
   let query = new URLSearchParams();
-  query.append('orderBy', 'created');
+  query.append('orderBy', 'id');
   if (nextPageToken) {
     query.append('pageToken', nextPageToken)
   }

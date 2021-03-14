@@ -5,6 +5,7 @@ import { State, actionCreators, selectors } from '@store'
 
 let mapState = (state: State) => ({
   games: selectors.getGames(state),
+  hasNextPage: selectors.hasNextPage(state),
   nextPage: selectors.getNextPage(state),
   userId: selectors.getUserId(state),
 })
