@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@delta62/micro-form": "^0.0.2",
+    "@delta62/micro-router": "^1.0.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "global": "^4.4.0",

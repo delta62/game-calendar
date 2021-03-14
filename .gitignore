@@ -1,5 +1,11 @@
 yarn-error.log
-node_modules/
 dist/
 .firebase/
 firebase-config.json
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
