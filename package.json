@@ -33,6 +33,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@delta62/firebase-client": "^0.0.3",
     "@delta62/micro-form": "^0.0.2",
     "@delta62/micro-router": "^1.0.0",
     "classnames": "^2.2.6",
@@ -50,5 +51,8 @@
     "arrowParens": "avoid",
     "singleQuote": true,
     "semi": false
+  },
+  "resolutions": {
+    "@delta62/firebase-client": "portal:/home/sam/src/firebase-client"
   }
 }

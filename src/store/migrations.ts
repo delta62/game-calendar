@@ -1,5 +1,3 @@
-import apiClient from '../client'
-
 const LS_KEY = 'migrationLevel'
 const CURRENT_MIGRATION = 1
 
@@ -21,7 +19,6 @@ export let migrate = () => {
 
   Object.entries(games.byId).forEach(([id, game]) => {
     console.log('migrate', id, game)
-    apiClient.saveGame(userId, game as any)
   })
 
   localStorage.setItem(LS_KEY, `${CURRENT_MIGRATION}`)

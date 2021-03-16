@@ -1,5 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 import { call, put, take, fork, select, takeLeading } from 'redux-saga/effects'
+import { login, refreshToken as refresh } from '@delta62/firebase-client'
 
 import { getUser } from './selectors'
 import {
@@ -16,11 +17,11 @@ import {
   REFRESH_SUCCESS,
   RefreshRequest,
 } from './actions'
-import apiClient from '@client'
 
-function* login(email: string, password: string): SagaIterator {
+function* auth(email: string, password: string): SagaIterator {
   try {
-    let response = yield call(apiClient.login, email, password)
+    let li = login(__API_KEY__)
+    let response = yield call(li, email, password)
     yield put(loginSuccess(response))
   } catch (error) {
     yield put(loginError(error))
@@ -29,7 +30,8 @@ function* login(email: string, password: string): SagaIterator {
 
 function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
   try {
-    let response = yield call(apiClient.refreshToken, refreshToken)
+    let re = refresh(__API_KEY__)
+    let response = yield call(re, refreshToken)
     yield put(refreshTokenSuccess(response))
   } catch (error) {
     yield put(refreshTokenError(error))
@@ -39,7 +41,7 @@ function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
 function* watchLogin(): SagaIterator {
   while (true) {
     let { email, password } = yield take(LOGIN_REQUEST)
-    yield fork(login, email, password)
+    yield fork(auth, email, password)
     yield take(LOGIN_ERROR)
   }
 }
@@ -49,9 +51,9 @@ function* watchRefresh(): SagaIterator {
 }
 
 export function* idToken(): SagaIterator {
-  let { tokenExpires, idToken, refreshToken } = yield select(getUser)
+  let { expires, idToken, refreshToken } = yield select(getUser)
 
-  if (tokenExpires < Date.now() - 60_000) {
+  if (expires < Date.now() - 60_000) {
     yield put(refreshTokenRequest(refreshToken))
     yield take(REFRESH_SUCCESS)
     let user = yield select(getUser)

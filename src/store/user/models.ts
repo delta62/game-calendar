@@ -9,7 +9,7 @@ export interface User {
   id: string
   idToken: string
   refreshToken: string
-  tokenExpires: number
+  expires: number
 }
 
 export interface Error {

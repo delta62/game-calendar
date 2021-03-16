@@ -1,22 +1,27 @@
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, select, takeEvery, takeLeading } from 'redux-saga/effects'
+import { CreateRequest, create, drop, list, update } from '@delta62/firebase-client'
 
 import { fetchSuccess, fetchError, updateError } from './action-creators'
 import { ADD_GAME, DELETE_GAME, FETCH_REQUEST, UPDATE_GAME, AddGame, DeleteGame, FetchRequest, UpdateGame } from './actions'
+import { Game } from './models'
 import {
   sagas as userSagas,
   selectors as userSelectors,
 } from '../user'
-import apiClient from '@client'
 
 function* fetchGames(action: FetchRequest): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken() as any
-    let { games, nextPage } = yield call(apiClient.getGames, userId, idToken, action.nextPage)
+    let authToken = yield userSagas.idToken() as any
+    let path = `users/${userId}/games`
+    let listRequest = { path, authToken, nextPage: action.nextPage }
+    let fn = list(__PROJECT_ID__)
+    let { documents, nextPage } = yield call(fn, listRequest)
 
-    yield put(fetchSuccess(games, nextPage))
+    yield put(fetchSuccess(documents, nextPage))
   } catch (error) {
+    console.error(error)
     yield put(fetchError(error))
   }
 }
@@ -24,37 +29,35 @@ function* fetchGames(action: FetchRequest): SagaIterator {
 function* updateGame({ game }: UpdateGame): SagaIterator {
   try {
     let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken() as any
+    let authToken = yield userSagas.idToken() as any
     let path = `users/${userId}/games/${game.id}`
+    let up = update(__PROJECT_ID__)
 
-    yield call(apiClient.patch, path, idToken, game)
+    yield call(up, { path, authToken, document: game })
   } catch (error) {
     yield put(updateError(error))
   }
 }
 
 function* addGame({ id, name }: AddGame): SagaIterator {
-  try {
-    let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken() as any
-    let path = `users/${userId}/games/`
+  let userId = yield select(userSelectors.getUserId)!
+  let authToken = yield userSagas.idToken() as any
+  let path = `users/${userId}/games/`
+  let cr = create(__PROJECT_ID__)
+  let documentId = `${id}`
+  let document = { id, name }
+  let createRequest: CreateRequest<Game> = { path, authToken, documentId, document }
 
-    yield call(apiClient.create, path, `${id}`, idToken, { id, name })
-  } catch (error) {
-    console.error(error)
-  }
+  yield call(cr, createRequest)
 }
 
 function* deleteGame({ id }: DeleteGame): SagaIterator {
-  try {
-    let userId = yield select(userSelectors.getUserId)!
-    let idToken = yield userSagas.idToken() as any
-    let path = `users/${userId}/games/${id}`
+  let userId = yield select(userSelectors.getUserId)!
+  let authToken = yield userSagas.idToken() as any
+  let path = `users/${userId}/games/${id}`
+  let dr = drop(__PROJECT_ID__)
 
-    yield call(apiClient.drop, path, idToken)
-  } catch (error) {
-    console.error(error)
-  }
+  yield call(dr, { path, authToken })
 }
 
 function* watchLogin(): SagaIterator {

@@ -9,7 +9,7 @@ export let getUserId = (state: State): string | null =>
   state.user.data?.id ?? null
 
 export let getExpiresAt = (state: State): number =>
-  state.user.data?.tokenExpires ?? 0
+  state.user.data?.expires ?? 0
 
 export let getRefreshToken = (state: State): string =>
   state.user.data?.refreshToken ?? ''
