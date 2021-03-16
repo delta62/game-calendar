@@ -1,6 +1,13 @@
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, select, takeEvery, takeLeading } from 'redux-saga/effects'
-import { CreateRequest, create, drop, list, update } from '@delta62/firebase-client'
+import {
+  CreateRequest,
+  ListRequest,
+  create,
+  drop,
+  list,
+  update
+} from '@delta62/firebase-client'
 
 import { fetchSuccess, fetchError, updateError } from './action-creators'
 import { ADD_GAME, DELETE_GAME, FETCH_REQUEST, UPDATE_GAME, AddGame, DeleteGame, FetchRequest, UpdateGame } from './actions'
@@ -15,13 +22,17 @@ function* fetchGames(action: FetchRequest): SagaIterator {
     let userId = yield select(userSelectors.getUserId)!
     let authToken = yield userSagas.idToken() as any
     let path = `users/${userId}/games`
-    let listRequest = { path, authToken, nextPage: action.nextPage }
+    let listRequest: ListRequest = { path, authToken }
+
+    if (action.nextPage) {
+      listRequest.nextPageToken = action.nextPage
+    }
+
     let fn = list(__PROJECT_ID__)
     let { documents, nextPage } = yield call(fn, listRequest)
 
     yield put(fetchSuccess(documents, nextPage))
   } catch (error) {
-    console.error(error)
     yield put(fetchError(error))
   }
 }
