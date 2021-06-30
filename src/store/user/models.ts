@@ -6,7 +6,7 @@ export interface State {
 
 export interface User {
   email: string
-  id: string
+  localId: string
   idToken: string
   refreshToken: string
   expires: number

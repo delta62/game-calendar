@@ -25,7 +25,7 @@ export let migrate = () => {
 }
 
 export let needsMigration = () => {
-  let storageLevel = localStorage.getItem(LS_KEY) ?? '0'
+  let storageLevel = localStorage.getItem(LS_KEY) ?? `${CURRENT_MIGRATION}`
   let migrationLevel = parseInt(storageLevel, 10)
 
   return migrationLevel < CURRENT_MIGRATION
