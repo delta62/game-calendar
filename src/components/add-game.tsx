@@ -7,7 +7,7 @@ export interface Props {
 }
 
 let AddGame = ({ addGame }: Props) => {
-  let ref = useRef<HTMLInputElement>()
+  let ref = useRef<HTMLInputElement>(null)
 
   let onClick = useCallback(() => {
     let value = ref.current?.value.trim()

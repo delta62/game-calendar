@@ -24,7 +24,7 @@ function* auth(email: string, password: string): SagaIterator {
     let response = yield call(li, email, password)
     yield put(loginSuccess(response))
   } catch (error) {
-    yield put(loginError(error))
+    yield put(loginError(error as Error))
   }
 }
 
@@ -34,7 +34,7 @@ function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
     let response = yield call(re, refreshToken)
     yield put(refreshTokenSuccess(response))
   } catch (error) {
-    yield put(refreshTokenError(error))
+    yield put(refreshTokenError(error as Error))
   }
 }
 

@@ -1,4 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'preact/hooks'
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'preact/hooks'
 import { Edit } from 'react-feather'
 import { Context } from '@delta62/micro-router'
 
@@ -15,7 +21,7 @@ let GameTitle = ({ text, onChange }: Props) => {
   let [editing, setEditing] = useState(false)
   let { setPath } = useContext(Context)
 
-  let ref = useRef<HTMLInputElement>()
+  let ref = useRef<HTMLInputElement>(null)
 
   let onBodyClick = useCallback(() => {
     setEditing(false)
@@ -54,7 +60,7 @@ let GameTitle = ({ text, onChange }: Props) => {
 
   let onBackClick = useCallback(() => {
     setPath('/')
-  }, [ setPath ])
+  }, [setPath])
 
   if (!editing) {
     return (

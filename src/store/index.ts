@@ -1,6 +1,6 @@
 import { Store, applyMiddleware, createStore, combineReducers } from 'redux'
 import persistState from 'redux-localstorage'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from '@redux-devtools/extension'
 import createSagaMiddleware from 'redux-saga'
 
 import { State } from './models'

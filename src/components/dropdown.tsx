@@ -15,17 +15,23 @@ export interface Props {
 }
 
 let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
-  let ref = useRef<HTMLSelectElement>()
+  let ref = useRef<HTMLSelectElement>(null)
 
   let onChangeCb = useCallback(() => {
+    if (!ref.current?.value) {
+      return
+    }
+
     onChange(ref.current?.value)
-  }, [ onChange, ref.current ])
+  }, [onChange, ref.current])
 
   return (
     <select ref={ref} class="dropdown" onChange={onChangeCb}>
       <option selected={selected === undefined}>{emptyLabel}</option>
       {options.map(({ name, value }: Option) => (
-        <option value={value} selected={value === selected}>{name}</option>
+        <option value={value} selected={value === selected}>
+          {name}
+        </option>
       ))}
     </select>
   )
