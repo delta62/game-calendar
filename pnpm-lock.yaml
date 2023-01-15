@@ -5,8 +5,8 @@ importers:
   packages/app:
     specifiers:
       '@delta62/firebase-client': ^0.0.4
-      '@delta62/micro-form': ^0.0.2
-      '@delta62/micro-router': ^1.0.0
+      '@delta62/micro-form': workspace:*
+      '@delta62/micro-router': workspace:*
       '@redux-devtools/extension': ^3.2.4
       '@types/react-redux': ^7.1.25
       '@types/redux-localstorage': ^1.0.8
@@ -38,8 +38,8 @@ importers:
       webpack-dev-server: ^4.11.1
       webpack-merge: ^5.8.0
     dependencies:
-      '@delta62/firebase-client': 0.0.4
-      '@delta62/micro-form': 0.0.2_54q7qxzdkt6uyg24o3gbptgy5a
+      '@delta62/firebase-client': link:../firebase-client
+      '@delta62/micro-form': link:../micro-form
       '@delta62/micro-router': link:../micro-router
       '@redux-devtools/extension': 3.2.4_redux@4.2.0
       classnames: 2.3.2
@@ -72,6 +72,12 @@ importers:
       webpack-cli: 5.0.1_y7ttplitmkohdpgkllksfboxwa
       webpack-dev-server: 4.11.1_rjsyjcrmk25kqsjzwkvj3a2evq
       webpack-merge: 5.8.0
+
+  packages/firebase-client:
+    specifiers:
+      typescript: ^4.2.3
+    devDependencies:
+      typescript: 4.9.4
 
   packages/micro-form:
     specifiers:
@@ -462,20 +468,6 @@ packages:
       enabled: 2.0.0
       kuler: 2.0.0
     dev: true
-
-  /@delta62/firebase-client/0.0.4:
-    resolution: {integrity: sha512-sJu/LkmMJWn2lA0uGmfJT9k36OlrjUOo52zdw7A50emkUR229la6oLB6ypUzB/ZMMVFQnpuvE+xG+YwMvJvPAA==}
-    dev: false
-
-  /@delta62/micro-form/0.0.2_54q7qxzdkt6uyg24o3gbptgy5a:
-    resolution: {integrity: sha512-ef8mw4LFzBpIHSEU+XGxR3Zkhvua6bU8j91475pG3sffHxmO6n+Z9E57CkZNzyVZNmB09jfyPNlrk3H0gjamPQ==}
-    peerDependencies:
-      classnames: ^2.2.6
-      preact: ^10.5.11
-    dependencies:
-      classnames: 2.3.2
-      preact: 10.11.3
-    dev: false
 
   /@discoveryjs/json-ext/0.5.7:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}

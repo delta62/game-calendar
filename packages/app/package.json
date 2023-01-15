@@ -33,8 +33,8 @@
   },
   "dependencies": {
     "@delta62/firebase-client": "^0.0.4",
-    "@delta62/micro-form": "^0.0.2",
-    "@delta62/micro-router": "^1.0.0",
+    "@delta62/micro-form": "workspace:*",
+    "@delta62/micro-router": "workspace:*",
     "@redux-devtools/extension": "^3.2.4",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",

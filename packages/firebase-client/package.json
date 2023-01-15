@@ -1,0 +1,19 @@
+{
+  "name": "@delta62/firebase-client",
+  "version": "0.0.4",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  },
+  "files": [
+    "dist/"
+  ]
+}
