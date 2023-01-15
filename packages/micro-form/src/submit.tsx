@@ -1,20 +1,20 @@
-import { useCallback, useContext } from "preact/hooks";
-import Context from "./context.js";
+import { useCallback, useContext } from 'preact/hooks'
+import Context from './context.js'
 
 export interface Props {
-  label: string;
+  label: string
 }
 
 let Submit = ({ label }: Props) => {
-  let { fields, onSubmit } = useContext(Context);
-  let disabled = Object.values(fields).some(({ error }) => error !== false);
+  let { fields, onSubmit } = useContext(Context)
+  let disabled = Object.values(fields).some(({ error }) => error !== false)
   let onSubmitClick = useCallback(
     (e: MouseEvent) => {
-      onSubmit();
-      e.preventDefault();
+      onSubmit()
+      e.preventDefault()
     },
     [onSubmit]
-  );
+  )
 
   return (
     <input
@@ -23,7 +23,7 @@ let Submit = ({ label }: Props) => {
       onClick={onSubmitClick}
       disabled={disabled}
     />
-  );
-};
+  )
+}
 
-export default Submit;
+export default Submit
