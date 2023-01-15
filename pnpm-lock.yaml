@@ -2,9 +2,12 @@ lockfileVersion: 5.4
 
 importers:
 
+  .:
+    specifiers: {}
+
   packages/app:
     specifiers:
-      '@delta62/firebase-client': ^0.0.4
+      '@delta62/firebase-client': workspace:*
       '@delta62/micro-form': workspace:*
       '@delta62/micro-router': workspace:*
       '@redux-devtools/extension': ^3.2.4

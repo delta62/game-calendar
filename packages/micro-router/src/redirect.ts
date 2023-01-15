@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'preact/hooks'
-import Context from './context.js'
+import Context from './context'
 
 interface RedirectProps {
   to: string

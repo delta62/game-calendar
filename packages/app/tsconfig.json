@@ -1,13 +1,21 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-            "@components/*": [ "components/*" ],
-            "@containers/*": [ "containers/*" ],
-            "@context/*": [ "context/*" ],
-            "@hoc/*": [ "hoc/*" ],
-            "@store": [ "store/index" ]
-        }
+  "extends": "../../tsconfig.base.json",
+
+  "references": [
+    { "path": "../firebase-client" },
+    { "path": "../micro-form" },
+    { "path": "../micro-router" }
+  ],
+
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@context/*": ["context/*"],
+      "@hoc/*": ["hoc/*"],
+      "@store": ["store/index"]
     }
+  }
 }

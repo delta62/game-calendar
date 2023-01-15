@@ -8,7 +8,6 @@
     "start": "tsc -w",
     "build": "tsc"
   },
-  "type": "module",
   "sideEffects": false,
   "devDependencies": {
     "typescript": "^4.2.3"

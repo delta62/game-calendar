@@ -32,7 +32,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@delta62/firebase-client": "^0.0.4",
+    "@delta62/firebase-client": "workspace:*",
     "@delta62/micro-form": "workspace:*",
     "@delta62/micro-router": "workspace:*",
     "@redux-devtools/extension": "^3.2.4",

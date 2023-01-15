@@ -1,6 +1,6 @@
 import { RenderableProps } from 'preact'
 import { useContext, useEffect, useState } from 'preact/hooks'
-import Context, { RouteParams } from './context.js'
+import Context, { RouteParams } from './context'
 
 interface RouteProps {
   path: string[] | string

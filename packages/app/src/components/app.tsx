@@ -21,7 +21,7 @@ let App = ({ isLoggedIn }: Props) => {
     } else {
       document.body.classList.remove('game-selected')
     }
-  }, [ game ])
+  }, [game])
 
   return (
     <>

@@ -17,7 +17,6 @@
     "preact": "^10.5.12"
   },
   "sideEffects": false,
-  "type": "module",
   "files": [
     "dist/"
   ]
