@@ -28,8 +28,8 @@ let Input = ({ label, name, type, validate }: Props) => {
   }, [addField, name, type, validate]);
 
   let onChange = useCallback(
-    (event) => {
-      let value = event.currentTarget.value;
+    (event: Event) => {
+      let value = (event.currentTarget as HTMLInputElement).value;
       setField(name, value);
       setTouched(true);
     },
