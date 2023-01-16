@@ -1,8 +1,6 @@
 import { RouteParams } from './context'
 
 let routeMatches = (path: string, currentPath: string) => {
-  console.log(`testing if ${path} matches ${currentPath}?`)
-
   let parts = path.split('/')
   let currentParts = currentPath.split('/')
   let params: RouteParams = {}
@@ -22,12 +20,10 @@ let routeMatches = (path: string, currentPath: string) => {
       let key = part.substring(1)
       params[key] = test ?? ''
     } else if (part !== test) {
-      console.log('nope!')
       return false
     }
   }
 
-  console.log('yes!')
   return params
 }
 

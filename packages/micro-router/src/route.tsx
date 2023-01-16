@@ -6,14 +6,12 @@ interface RouteProps {
   path: string[] | string
 }
 
-console.log('DO')
-
 export function Route(props: PropsWithChildren<RouteProps>) {
   let { path, setRouteParams } = useContext(Context)
   let [isMatch, setIsMatch] = useState(false)
 
   useEffect(() => {
-    let routeParams = {}
+    let routeParams = null
     let routes: string[] = [].concat(props.path as any)
 
     for (let route of routes) {
