@@ -1,5 +1,12 @@
-import { RefObject, RenderableProps, createContext } from 'preact'
-import { useEffect, useContext, useRef, useCallback } from 'preact/hooks'
+import {
+  RefObject,
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useContext,
+  useRef,
+  useCallback,
+} from 'react'
 
 export interface DragLocationData {
   above: boolean
@@ -30,7 +37,7 @@ const CLASS_NAME = '__draggable__'
 let DragContext = createContext<DragContextState>({
   key: null,
   setKey() {},
-  setLastCoords() { },
+  setLastCoords() {},
   setPreviewNode() {},
 })
 DragContext.displayName = 'Drag'
@@ -68,7 +75,7 @@ interface ContextState {
   setPreviewNode(node: HTMLElement, initialX: number, initialY: number): void
 }
 
-export let DragProvider = ({ children }: RenderableProps<{}>) => {
+export let DragProvider = ({ children }: PropsWithChildren<{}>) => {
   let ref = useRef<ContextState>({
     key: null,
     lastX: 0,
@@ -114,8 +121,10 @@ export let DragProvider = ({ children }: RenderableProps<{}>) => {
       // Prevent iOS from scrolling like a maniac
       event.preventDefault()
 
-      let x = event instanceof MouseEvent ? event.pageX : event.touches[0]!.pageX
-      let y = event instanceof MouseEvent ? event.pageY : event.touches[0]!.pageY
+      let x =
+        event instanceof MouseEvent ? event.pageX : event.touches[0]!.pageX
+      let y =
+        event instanceof MouseEvent ? event.pageY : event.touches[0]!.pageY
 
       if (ref.current.preview) {
         ref.current.preview.style.transform = `translate(${x}px, ${y}px)`
@@ -207,7 +216,7 @@ export let useDrag = (data: string, preview?: RefObject<HTMLElement>) => {
   let { setKey, setPreviewNode, setLastCoords } = useContext(DragContext)
 
   let onDragStart = useCallback(
-    (event: MouseEvent | TouchEvent) => {
+    (event: React.MouseEvent | React.TouchEvent) => {
       let e = event as any
       let x = e.pageX ?? e.touches[0].pageX
       let y = e.pageY ?? e.touches[0].pageY

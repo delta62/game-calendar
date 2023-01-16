@@ -1,5 +1,5 @@
 import { Validator } from './validation'
-import { createContext } from 'preact'
+import { createContext } from 'react'
 
 export type Fields = Record<string, FormItem>
 

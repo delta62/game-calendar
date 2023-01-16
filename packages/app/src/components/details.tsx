@@ -1,4 +1,4 @@
-import { useCallback } from 'preact/hooks'
+import { useCallback } from 'react'
 
 import GameTitle from '@components/game-title'
 import { Game } from '@store'
@@ -28,7 +28,7 @@ let Details = ({
   onPlatformSet,
   onRatingSet,
   onTitleSet,
-  platforms
+  platforms,
 }: Props) => {
   if (game) {
     let onDeleteClick = useCallback(() => {
@@ -54,17 +54,17 @@ let Details = ({
         let plat = parseInt(platform, 10)
         onPlatformSet(game.id, plat)
       },
-      [ game, onPlatformSet ],
+      [game, onPlatformSet]
     )
 
     return (
-      <div class="details">
+      <div className="details">
         <GameTitle text={game.name} onChange={onTitleChange} />
-        <div class="metadata">
+        <div className="metadata">
           <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
-          <span class="spacer"></span>
+          <span className="spacer"></span>
           <label>
-            <span class="elide">Platform</span>
+            <span className="elide">Platform</span>
             <Dropdown
               emptyLabel="None"
               onChange={onPlatformChange}
@@ -72,18 +72,20 @@ let Details = ({
               selected={game.platform != null ? `${game.platform}` : undefined}
             />
           </label>
-          <span class="spacer"></span>
-          <div class="delete">
+          <span className="spacer"></span>
+          <div className="delete">
             <Trash onClick={onDeleteClick} />
-            <span class="elide">Delete</span>
+            <span className="elide">Delete</span>
           </div>
         </div>
         <Timeline id={game.id} />
       </div>
     )
   } else {
-    let message = hasGames? 'Select a game' : 'Add some games to your list to get started'
-    return <p class="details-empty">{message}</p>
+    let message = hasGames
+      ? 'Select a game'
+      : 'Add some games to your list to get started'
+    return <p className="details-empty">{message}</p>
   }
 }
 

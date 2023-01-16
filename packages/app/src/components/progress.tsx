@@ -42,12 +42,12 @@ function getClass(props: Props): string {
 }
 
 const Progress = (props: Props) => (
-  <div class={getClass(props)}>
-    <span class="progress-label">{getText(props)}</span>
-    <div class="bars">
-      <span class="sliver started" />
-      <span class="sliver finished" />
-      <span class="sliver completed" />
+  <div className={getClass(props)}>
+    <span className="progress-label">{getText(props)}</span>
+    <div className="bars">
+      <span className="sliver started" />
+      <span className="sliver finished" />
+      <span className="sliver completed" />
     </div>
   </div>
 )

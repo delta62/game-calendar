@@ -5,8 +5,8 @@ export interface Props {
 }
 
 let Icon = ({ type, ...props }: Props) => (
-  <span class="icon" {...props}>
-    <span class={type}></span>
+  <span className="icon" {...props}>
+    <span className={type}></span>
   </span>
 )
 

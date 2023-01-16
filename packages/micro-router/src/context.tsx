@@ -1,4 +1,4 @@
-import { createContext } from 'preact'
+import { createContext } from 'react'
 
 export type RouteParams = Record<string, string>
 

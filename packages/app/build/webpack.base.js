@@ -27,10 +27,6 @@ module.exports = {
     ],
   },
   resolve: {
-    alias: {
-      react: 'preact/compat',
-      'react-dom': 'preact/compat',
-    },
     extensions: ['.js', '.tsx', '.ts'],
     plugins: [new TsconfigPathsPlugin()],
   },

@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'preact/hooks'
+import { useRef, useCallback } from 'react'
 
 import './duration.scss'
 
@@ -27,10 +27,10 @@ let Duration = ({ onChange, value }: Props) => {
   }, [onChange, hoursRef, minutesRef])
 
   return (
-    <div class="duration">
-      <label class="form-item">
+    <div className="duration">
+      <label className="form-item">
         <input
-          class="hours"
+          className="hours"
           ref={hoursRef}
           type="number"
           value={hours}
@@ -38,9 +38,9 @@ let Duration = ({ onChange, value }: Props) => {
         />
         hours
       </label>
-      <label class="form-item">
+      <label className="form-item">
         <input
-          class="minutes"
+          className="minutes"
           ref={minutesRef}
           type="number"
           value={minutes}

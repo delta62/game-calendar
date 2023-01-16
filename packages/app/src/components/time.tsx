@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'preact/hooks'
+import { useCallback, useRef } from 'react'
 
 import './time.scss'
 
@@ -28,10 +28,10 @@ let Time = ({ onChange, value }: Props) => {
   minutesVal = Math.floor(minutesVal)
 
   return (
-    <div class="time">
+    <div className="time">
       <input
         type="number"
-        class="hours"
+        className="hours"
         onChange={onFieldChanged}
         ref={hoursRef}
         value={hoursVal}
@@ -39,7 +39,7 @@ let Time = ({ onChange, value }: Props) => {
       :
       <input
         type="number"
-        class="minutes"
+        className="minutes"
         onChange={onFieldChanged}
         ref={minutesRef}
         value={minutesVal}

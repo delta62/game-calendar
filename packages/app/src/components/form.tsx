@@ -1,5 +1,4 @@
-import { createContext, RenderableProps } from 'preact'
-import { useState } from 'preact/hooks'
+import { createContext, PropsWithChildren, useState } from 'react'
 
 export interface Props {
   onSubmit(values: unknown): void
@@ -11,13 +10,13 @@ interface Context {
 }
 
 export let FormContext = createContext<Context>({
-  fields: { },
-  setField() { },
+  fields: {},
+  setField() {},
 })
 FormContext.displayName = 'Form'
 
-let Form = ({ children }: RenderableProps<Props>) => {
-  let [fields, setFields] = useState<Record<string, string>>({ })
+let Form = ({ children }: PropsWithChildren<Props>) => {
+  let [fields, setFields] = useState<Record<string, string>>({})
 
   let setField = (name: string, value: string) => {
     setFields({
@@ -28,9 +27,7 @@ let Form = ({ children }: RenderableProps<Props>) => {
 
   return (
     <FormContext.Provider value={{ fields, setField }}>
-      <div class="form">
-        {children}
-      </div>
+      <div className="form">{children}</div>
     </FormContext.Provider>
   )
 }

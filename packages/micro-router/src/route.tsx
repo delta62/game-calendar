@@ -1,5 +1,4 @@
-import { RenderableProps } from 'preact'
-import { useContext, useEffect, useState } from 'preact/hooks'
+import { PropsWithChildren, useContext, useEffect, useState } from 'react'
 import Context from './context'
 import routeMatches from './route-matches'
 
@@ -9,7 +8,7 @@ interface RouteProps {
 
 console.log('DO')
 
-export function Route(props: RenderableProps<RouteProps>) {
+export function Route(props: PropsWithChildren<RouteProps>) {
   let { path, setRouteParams } = useContext(Context)
   let [isMatch, setIsMatch] = useState(false)
 

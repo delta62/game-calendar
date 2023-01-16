@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback } from 'preact/hooks'
+import { useCallback } from 'react'
 import { Star } from 'react-feather'
 
 import './rating.scss'
@@ -20,7 +20,7 @@ let Rating = ({ onChange, rating }: Props) => {
   )
 
   return (
-    <div class="rating">
+    <div className="rating">
       {new Array(5).fill(0).map((_, i) => {
         let filled = (i + 1) * 2 <= rating
         return (

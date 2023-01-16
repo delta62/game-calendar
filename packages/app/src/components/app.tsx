@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'preact/hooks'
+import { useContext, useEffect } from 'react'
 import { Context, Redirect } from '@delta62/micro-router'
 
 import AddGame from '@containers/add-game'
@@ -26,11 +26,11 @@ let App = ({ isLoggedIn }: Props) => {
   return (
     <>
       <Redirect to="/login" when={!isLoggedIn} />
-      <section class="sidebar">
+      <section className="sidebar">
         <AddGame />
         <Sidebar />
       </section>
-      <section class="main-pane">
+      <section className="main-pane">
         <Details game={game} />
       </section>
     </>

@@ -1,6 +1,11 @@
 import classnames from 'classnames'
-import { RenderableProps } from 'preact'
-import { useCallback, useContext, useRef, useState } from 'preact/hooks'
+import {
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+} from 'react'
 
 import { FormContext } from './form'
 
@@ -29,7 +34,7 @@ let compose =
   (value, allValues) =>
     validators.every(v => !v || v(value, allValues))
 
-let FormItem = ({ label, name, type, validate }: RenderableProps<Props>) => {
+let FormItem = ({ label, name, type, validate }: PropsWithChildren<Props>) => {
   let { fields, setField } = useContext(FormContext)
   let [isValid, setIsValid] = useState(false)
   let [touched, setTouched] = useState(false)
@@ -60,10 +65,10 @@ let FormItem = ({ label, name, type, validate }: RenderableProps<Props>) => {
   }, [fields, ref.current, validate, setField, setTouched])
 
   return (
-    <label class={classnames('form-item', { invalid: !isValid, touched })}>
-      <span class="form-item-label">{label}</span>
+    <label className={classnames('form-item', { invalid: !isValid, touched })}>
+      <span className="form-item-label">{label}</span>
       <input
-        class="form-item-field"
+        className="form-item-field"
         ref={ref}
         type={type}
         onChange={onChange}

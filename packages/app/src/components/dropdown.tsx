@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'preact/hooks'
+import { useCallback, useRef } from 'react'
 
 import './dropdown.scss'
 
@@ -26,7 +26,7 @@ let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
   }, [onChange, ref.current])
 
   return (
-    <select ref={ref} class="dropdown" onChange={onChangeCb}>
+    <select ref={ref} className="dropdown" onChange={onChangeCb}>
       <option selected={selected === undefined}>{emptyLabel}</option>
       {options.map(({ name, value }: Option) => (
         <option value={value} selected={value === selected}>

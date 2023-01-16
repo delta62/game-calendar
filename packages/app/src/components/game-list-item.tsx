@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback, useContext } from 'preact/hooks'
+import { useCallback, useContext } from 'react'
 import { Context } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
@@ -15,10 +15,10 @@ export interface Props {
   onReorder(id: number, above: boolean, target: number): void
 }
 
-let GameListItem = ({ game , onReorder }: Props) => {
+let GameListItem = ({ game, onReorder }: Props) => {
   let { setPath } = useContext(Context)
 
-  let active = false;
+  let active = false
 
   let dragProps = useDrag(`${game.id}`)
 
@@ -40,21 +40,21 @@ let GameListItem = ({ game , onReorder }: Props) => {
   return (
     <li
       ref={forwardRef}
-      class={classnames('game-list-item', forwardClass, { active })}
+      className={classnames('game-list-item', forwardClass, { active })}
       onClick={onClick}
       {...dragProps}
     >
-      <div class="horizontal">
+      <div className="horizontal">
         <Icon type="handle" {...dragProps} />
-        <div class="vertical">
-          <span class="game-name">{game.name}</span>
+        <div className="vertical">
+          <span className="game-name">{game.name}</span>
           <Progress
             startDate={game.started}
             finishDate={game.finished}
             completeDate={game.completed}
           />
         </div>
-        <div class="selector">
+        <div className="selector">
           <Chevron />
         </div>
       </div>

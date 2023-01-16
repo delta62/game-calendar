@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'preact/hooks'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { Edit } from 'react-feather'
 import { Context } from '@delta62/micro-router'
 
@@ -33,7 +27,7 @@ let GameTitle = ({ text, onChange }: Props) => {
   }, [])
 
   let onTitleClick = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       if (!editing) {
         setEditing(true)
         setTimeout(() => ref.current?.select())
@@ -44,7 +38,7 @@ let GameTitle = ({ text, onChange }: Props) => {
   )
 
   let onKeyUp = useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent) => {
       switch (event.key) {
         case 'Enter':
           onChange(ref.current?.value ?? '')
@@ -64,9 +58,9 @@ let GameTitle = ({ text, onChange }: Props) => {
 
   if (!editing) {
     return (
-      <div class="game-title" onClick={onTitleClick}>
+      <div className="game-title" onClick={onTitleClick}>
         <Chevron onClick={onBackClick} />
-        <h1 class="text">{text}</h1>
+        <h1 className="text">{text}</h1>
         <Edit className="icon" />
       </div>
     )

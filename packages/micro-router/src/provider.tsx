@@ -1,8 +1,7 @@
-import { RenderableProps } from 'preact'
-import { useState, useEffect } from 'preact/hooks'
+import { PropsWithChildren, useState, useEffect } from 'react'
 import Context, { RouteParams } from './context'
 
-export function RouteProvider({ children }: RenderableProps<{}>) {
+export function RouteProvider({ children }: PropsWithChildren<{}>) {
   let [href, setHref] = useState(location.pathname)
   let [params, setParams] = useState({})
 

@@ -1,4 +1,4 @@
-import { useCallback } from 'preact/hooks'
+import { useCallback } from 'react'
 import { Form, FormItem } from '@delta62/micro-form'
 import { Anchor, Redirect } from '@delta62/micro-router'
 
@@ -15,16 +15,20 @@ let confirmValidator = sameAs('password')
 let passwordValidator = minLength(8)
 
 let SignUpPage = ({ onSignUp }: Props) => {
-  let onSubmit = useCallback((values: unknown) => {
-    console.log('onSubmit', values)
-  }, [ onSignUp ])
+  let onSubmit = useCallback(
+    (values: unknown) => {
+      console.log('onSubmit', values)
+    },
+    [onSignUp]
+  )
 
   return (
     <Page className="sign-up" title="Sign Up">
       <Redirect to="/" when={false} />
       <Form onSubmit={onSubmit}>
         <FormItem name="email" label="Email" type="email" />
-        <FormItem name="password"
+        <FormItem
+          name="password"
           label="Password"
           type="password"
           validate={passwordValidator}
@@ -37,7 +41,9 @@ let SignUpPage = ({ onSignUp }: Props) => {
         />
         <FormItem label="Sign Up" type="submit" />
       </Form>
-      <Anchor className="login" href="/login">Log In</Anchor>
+      <Anchor className="login" href="/login">
+        Log In
+      </Anchor>
     </Page>
   )
 }

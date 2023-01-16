@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'preact/hooks'
+import { useRef, useCallback } from 'react'
 
 import './add-game.scss'
 
@@ -18,7 +18,7 @@ let AddGame = ({ addGame }: Props) => {
   }, [addGame])
 
   let onKeyUp = useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === 'Enter') {
         onClick()
       }
@@ -27,15 +27,15 @@ let AddGame = ({ addGame }: Props) => {
   )
 
   return (
-    <div class="add-game">
+    <div className="add-game">
       <input
-        class="text-input"
+        className="text-input"
         type="text"
         ref={ref}
         placeholder="Add a game"
         onKeyUp={onKeyUp}
       />
-      <input class="add-button" type="button" value="+" onClick={onClick} />
+      <input className="add-button" type="button" value="+" onClick={onClick} />
     </div>
   )
 }

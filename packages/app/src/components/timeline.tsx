@@ -13,24 +13,21 @@ export interface Props {
 }
 
 let Timeline = ({ events, game }: Props) => (
-  <div class="timeline">
+  <div className="timeline">
     {events.map(event => (
       <>
-        <div class={classnames('event', { finished: !!event.time })}>
+        <div className={classnames('event', { finished: !!event.time })}>
           {event.type === 'started' && (
             <StartedEvent game={game} time={event.time} />
           )}
           {event.type === 'finished' && (
-            <FinishedEvent
-              game={game}
-              time={event.time}
-            />
+            <FinishedEvent game={game} time={event.time} />
           )}
           {event.type === 'completed' && (
             <CompletedEvent game={game} time={event.time} />
           )}
         </div>
-        <span class="line"></span>
+        <span className="line"></span>
       </>
     ))}
   </div>

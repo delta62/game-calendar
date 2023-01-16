@@ -1,5 +1,5 @@
 import { Validator } from './validation.js'
-import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import classnames from 'classnames'
 import { compose, email, required } from './validation.js'
 import Context from './context.js'
@@ -28,7 +28,7 @@ let Input = ({ label, name, type, validate }: Props) => {
   }, [addField, name, type, validate])
 
   let onChange = useCallback(
-    (event: Event) => {
+    (event: React.ChangeEvent) => {
       let value = (event.currentTarget as HTMLInputElement).value
       setField(name, value)
       setTouched(true)
@@ -44,17 +44,17 @@ let Input = ({ label, name, type, validate }: Props) => {
   let invalid = !!error
 
   return (
-    <div class={classnames('form-item', { touched, invalid })}>
+    <div className={classnames('form-item', { touched, invalid })}>
       <label>
-        <span class="form-item-label">{label}</span>
+        <span className="form-item-label">{label}</span>
       </label>
       <input
-        class="form-item-field"
+        className="form-item-field"
         type={type}
         onChange={onChange}
         onBlur={onBlur}
       />
-      <div class="validation-error">{error || '\u00A0'}</div>
+      <div className="validation-error">{error || '\u00A0'}</div>
     </div>
   )
 }

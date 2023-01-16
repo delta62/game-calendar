@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'preact/hooks'
+import { useContext, useEffect } from 'react'
 import Context from './context'
 
 interface RedirectProps {

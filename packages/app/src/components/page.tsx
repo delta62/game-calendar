@@ -1,4 +1,4 @@
-import { RenderableProps } from 'preact'
+import { PropsWithChildren } from 'react'
 import classnames from 'classnames'
 
 import './page.scss'
@@ -8,8 +8,8 @@ export interface Props {
   title: string
 }
 
-let Page = ({ children, className, title }: RenderableProps<Props>) => (
-  <div class={classnames('page', className)}>
+let Page = ({ children, className, title }: PropsWithChildren<Props>) => (
+  <div className={classnames('page', className)}>
     <h1>{title}</h1>
     {children}
   </div>

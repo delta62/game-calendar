@@ -1,5 +1,4 @@
-import { RenderableProps } from 'preact'
-import { useCallback, useState } from 'preact/hooks'
+import { PropsWithChildren, useCallback, useState } from 'react'
 import FormContext, { FormItem } from './context.js'
 import { Validator } from './validation'
 
@@ -11,7 +10,7 @@ type Fields = Record<string, FormItem>
 
 const DEFAULT_VALIDATOR: Validator = () => false
 
-let Form = ({ children, ...props }: RenderableProps<Props>) => {
+let Form = ({ children, ...props }: PropsWithChildren<Props>) => {
   let [fields, setFields] = useState<Fields>({})
 
   let setField = useCallback(
@@ -52,7 +51,7 @@ let Form = ({ children, ...props }: RenderableProps<Props>) => {
   }, [fields, props.onSubmit])
 
   return (
-    <form class="form">
+    <form className="form">
       <FormContext.Provider value={{ addField, fields, onSubmit, setField }}>
         {children}
       </FormContext.Provider>

@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'preact/hooks'
+import { useCallback, useContext } from 'react'
 import Context from './context.js'
 
 export interface Props {
@@ -9,7 +9,7 @@ let Submit = ({ label }: Props) => {
   let { fields, onSubmit } = useContext(Context)
   let disabled = Object.values(fields).some(({ error }) => error !== false)
   let onSubmitClick = useCallback(
-    (e: MouseEvent) => {
+    (e: React.MouseEvent) => {
       onSubmit()
       e.preventDefault()
     },

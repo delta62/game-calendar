@@ -11,7 +11,7 @@ export interface Props {
 let Button = ({ onClick, text, type }: Props) => (
   <input
     type="button"
-    class={classnames('button', type)}
+    className={classnames('button', type)}
     value={text}
     onClick={onClick}
   />

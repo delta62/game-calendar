@@ -1,4 +1,4 @@
-import { useCallback } from 'preact/hooks'
+import { useCallback } from 'react'
 import { Form, FormItem } from '@delta62/micro-form'
 import { Anchor, Redirect } from '@delta62/micro-router'
 
@@ -15,9 +15,12 @@ export interface Props {
 let passwordValidator = minLength(8)
 
 let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
-  let onSubmit = useCallback((values: Record<string, string>) => {
-    onLogin(values.email!, values.password!)
-  }, [ onLogin ])
+  let onSubmit = useCallback(
+    (values: Record<string, string>) => {
+      onLogin(values.email!, values.password!)
+    },
+    [onLogin]
+  )
 
   return (
     <Page className="login-page" title="Log in">
@@ -32,7 +35,9 @@ let LoginPage = ({ isLoggedIn, onLogin }: Props) => {
         />
         <FormItem type="submit" label="Log in" />
       </Form>
-      <Anchor className="login" href="/signup">Sign up</Anchor>
+      <Anchor className="login" href="/signup">
+        Sign up
+      </Anchor>
     </Page>
   )
 }
