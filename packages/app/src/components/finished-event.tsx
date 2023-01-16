@@ -1,23 +1,37 @@
+import { actionCreators, selectors, State } from '@store'
 import { format } from 'date-fns'
+import { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Button from './button'
 import Time from './time'
 
 export interface Props {
-  finishDuration?: number
-  onFinishGame(): void
-  onSetFinishDuration(duration: number): void
-  onUnfinishGame(): void
+  game: number
   time?: number
 }
 
-export default ({
-  finishDuration,
-  onFinishGame,
-  onSetFinishDuration,
-  onUnfinishGame,
-  time,
-}: Props) => {
+export default ({ game, time }: Props) => {
+  let dispatch = useDispatch()
+  let finishDuration = useSelector<State, number | undefined>(state =>
+    selectors.getFinishDuration(state, game)
+  )
+
+  let onSetFinishDuration = useCallback(
+    (duration: number) => {
+      dispatch(actionCreators.setFinishDuration(game, duration))
+    },
+    [dispatch, game]
+  )
+
+  let onFinishGame = useCallback(() => {
+    dispatch(actionCreators.finishGame(game, true))
+  }, [dispatch, game])
+
+  let onUnfinishGame = useCallback(() => {
+    dispatch(actionCreators.finishGame(game, false))
+  }, [dispatch, game])
+
   if (time) {
     return (
       <>

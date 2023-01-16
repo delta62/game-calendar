@@ -1,21 +1,20 @@
 import { useRef, useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+import { actionCreators } from '@store'
 
 import './add-game.scss'
 
-export interface Props {
-  addGame(name: string): void
-}
-
-let AddGame = ({ addGame }: Props) => {
+let AddGame = () => {
   let ref = useRef<HTMLInputElement>(null)
+  let dispatch = useDispatch()
 
   let onClick = useCallback(() => {
     let value = ref.current?.value.trim()
     if (value) {
-      addGame(value)
+      dispatch(actionCreators.addGame(value))
       ref.current!.value = ''
     }
-  }, [addGame])
+  }, [dispatch])
 
   let onKeyUp = useCallback(
     (event: React.KeyboardEvent) => {
@@ -23,7 +22,7 @@ let AddGame = ({ addGame }: Props) => {
         onClick()
       }
     },
-    [onClick, addGame]
+    [onClick]
   )
 
   return (

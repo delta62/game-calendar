@@ -1,26 +1,29 @@
 import classnames from 'classnames'
 import { useCallback, useContext } from 'react'
 import { Context } from '@delta62/micro-router'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Chevron from '@components/chevron'
 import { DraggableDropEvent, useDrag, useDrop } from '@hoc/draggable'
-import { Game } from '@store'
+import { Game, State, selectors, actionCreators } from '@store'
 import Icon from '@components/icon'
 import Progress from '@components/progress'
 
 import './game-list-item.scss'
 
 export interface Props {
-  game: Game
-  onReorder(id: number, above: boolean, target: number): void
+  gameId: number
 }
 
-let GameListItem = ({ game, onReorder }: Props) => {
+let GameListItem = ({ gameId }: Props) => {
+  let game = useSelector<State, Game | null>(state =>
+    selectors.getGame(state, gameId)
+  )!
+  let dispatch = useDispatch()
   let { setPath } = useContext(Context)
+  let dragProps = useDrag(`${game.id}`)
 
   let active = false
-
-  let dragProps = useDrag(`${game.id}`)
 
   let onClick = useCallback(() => {
     setPath(`/games/${game.id}`)
@@ -29,10 +32,16 @@ let GameListItem = ({ game, onReorder }: Props) => {
   let onDrop = useCallback(
     ({ detail }: DraggableDropEvent) => {
       if (detail.key !== `${game.id}`) {
-        onReorder(parseInt(detail.key, 10), detail.above, game.id)
+        dispatch(
+          actionCreators.reorderGame(
+            parseInt(detail.key, 10),
+            detail.above,
+            game.id
+          )
+        )
       }
     },
-    [onReorder, game]
+    [game]
   )
 
   let { forwardRef, forwardClass } = useDrop<HTMLLIElement>({ onDrop })

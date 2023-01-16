@@ -1,62 +1,59 @@
 import { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { Game, State, actionCreators, selectors } from '@store'
 import GameTitle from '@components/game-title'
-import { Game } from '@store'
 import Rating from '@components/rating'
-import Timeline from '@containers/timeline'
+import Timeline from '@components/timeline'
 import Trash from '@components/trash'
-import Dropdown, { Option } from '@components/dropdown'
+import Dropdown from '@components/dropdown'
 
 import './details.scss'
 
 export interface Props {
-  game: Game | null
-  hasGames: boolean
-  platforms: Option[]
-  onDelete(id: number): void
-  onFinishDurationSet(id: number, duration: number): void
-  onCompleteDurationSet(id: number, duration: number): void
-  onPlatformSet(id: number, platform: number): void
-  onRatingSet(id: number, rating: number): void
-  onTitleSet(id: number, title: string): void
+  gameId: number | null
 }
 
-let Details = ({
-  game,
-  hasGames,
-  onDelete,
-  onPlatformSet,
-  onRatingSet,
-  onTitleSet,
-  platforms,
-}: Props) => {
+let Details = ({ gameId }: Props) => {
+  let game = useSelector<State, Game | null>(state =>
+    selectors.getGame(state, gameId)
+  )
+  let hasGames = useSelector(selectors.hasGames)
+  let platforms = useSelector(selectors.getPlatformOptions)
+  let dispatch = useDispatch()
+
+  let onDelete = useCallback(() => {
+    if (!game) return
+
+    dispatch(actionCreators.deleteGame(game.id))
+  }, [dispatch, game])
+
+  let onRatingChange = useCallback(
+    (rating: number) => {
+      if (!game) return
+      dispatch(actionCreators.setRating(game.id, rating))
+    },
+    [game, dispatch]
+  )
+
+  let onTitleChange = useCallback(
+    (title: string) => {
+      if (!game) return
+      dispatch(actionCreators.setTitle(game.id, title))
+    },
+    [game, dispatch]
+  )
+
+  let onPlatformChange = useCallback(
+    (platform: string) => {
+      if (!game) return
+      let plat = parseInt(platform, 10)
+      dispatch(actionCreators.setPlatform(game.id, plat))
+    },
+    [game, dispatch]
+  )
+
   if (game) {
-    let onDeleteClick = useCallback(() => {
-      onDelete(game.id)
-    }, [onDelete, game])
-
-    let onRatingChange = useCallback(
-      (rating: number) => {
-        onRatingSet(game.id, rating)
-      },
-      [game, onRatingSet]
-    )
-
-    let onTitleChange = useCallback(
-      (title: string) => {
-        onTitleSet(game.id, title)
-      },
-      [game, onTitleSet]
-    )
-
-    let onPlatformChange = useCallback(
-      (platform: string) => {
-        let plat = parseInt(platform, 10)
-        onPlatformSet(game.id, plat)
-      },
-      [game, onPlatformSet]
-    )
-
     return (
       <div className="details">
         <GameTitle text={game.name} onChange={onTitleChange} />
@@ -74,11 +71,11 @@ let Details = ({
           </label>
           <span className="spacer"></span>
           <div className="delete">
-            <Trash onClick={onDeleteClick} />
+            <Trash onClick={onDelete} />
             <span className="elide">Delete</span>
           </div>
         </div>
-        <Timeline id={game.id} />
+        <Timeline game={game.id} />
       </div>
     )
   } else {

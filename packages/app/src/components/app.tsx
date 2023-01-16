@@ -1,17 +1,17 @@
 import { useContext, useEffect } from 'react'
 import { Context, Redirect } from '@delta62/micro-router'
+import { useSelector } from 'react-redux'
 
-import AddGame from '@containers/add-game'
-import Details from '@containers/details'
+import AddGame from '@components/add-game'
+import Details from '@components/details'
 import Sidebar from '@components/sidebar'
+import { selectors } from '@store'
 
 import './app.scss'
 
-export interface Props {
-  isLoggedIn: boolean
-}
+let App = () => {
+  let isLoggedIn = useSelector(selectors.getIsLoggedIn)
 
-let App = ({ isLoggedIn }: Props) => {
   let { params } = useContext(Context)
   let game = params.game ? parseInt(params.game, 10) : null
 
@@ -31,7 +31,7 @@ let App = ({ isLoggedIn }: Props) => {
         <Sidebar />
       </section>
       <section className="main-pane">
-        <Details game={game} />
+        <Details gameId={game} />
       </section>
     </>
   )

@@ -3,11 +3,15 @@ import { createRoot } from 'react-dom/client'
 import { Route, RouteProvider } from '@delta62/micro-router'
 
 import store from '@store'
-import App from '@containers/app'
-import LoginPage from '@containers/login-page'
-import SignUpPage from '@containers/sign-up-page'
+import App from '@components/app'
+import LoginPage from '@components/login-page'
+import SignUpPage from '@components/sign-up-page'
 
-let root = createRoot(document.body)
+let appNode = document.createElement('div')
+appNode.id = 'app'
+document.body.appendChild(appNode)
+
+let root = createRoot(appNode)
 root.render(
   <RouteProvider>
     <Provider store={store}>

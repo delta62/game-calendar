@@ -1,23 +1,31 @@
-import { useCallback, useEffect, PropsWithChildren } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-import GameListItem from '@containers/game-list-item'
+import { actionCreators, selectors } from '@store'
+import GameListItem from '@components/game-list-item'
 import { DragProvider } from '@hoc/draggable'
 
 import './game-list.scss'
 
 export interface Props {
-  fetchGames(nextPage: string | null): void
   games: number[]
   hasNextPage: boolean
   nextPage: string | null
 }
 
-let GameList = ({
-  fetchGames,
-  hasNextPage,
-  games,
-  nextPage,
-}: PropsWithChildren<Props>) => {
+let GameList = () => {
+  let dispatch = useDispatch()
+  let games = useSelector(selectors.getGames)
+  let hasNextPage = useSelector(selectors.hasNextPage)
+  let nextPage = useSelector(selectors.getNextPage)
+
+  let fetchGames = useCallback(
+    (nextPage: string | null) => {
+      dispatch(actionCreators.fetchRequest(nextPage))
+    },
+    [dispatch]
+  )
+
   useEffect(() => {
     fetchGames(null)
   }, [fetchGames])
@@ -44,7 +52,7 @@ let GameList = ({
         <DragProvider>
           <ol>
             {games.map(id => (
-              <GameListItem id={id} />
+              <GameListItem gameId={id} />
             ))}
           </ol>
         </DragProvider>

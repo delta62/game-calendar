@@ -1,14 +1,27 @@
+import { useCallback } from 'react'
 import { format } from 'date-fns'
+import { useDispatch } from 'react-redux'
 
+import { actionCreators } from '@store'
 import Button from '@components/button'
 
 export interface Props {
-  onStartPlaying(): void
-  onStopPlaying(): void
+  game: number
   time?: number
 }
 
-export default ({ onStartPlaying, onStopPlaying, time }: Props) => {
+export default ({ game, time }: Props) => {
+  let dispatch = useDispatch()
+
+  let onStartPlaying = useCallback(() => {
+    dispatch(actionCreators.startGame(game, true))
+  }, [dispatch, game])
+
+  let onStopPlaying = useCallback(
+    () => dispatch(actionCreators.startGame(game, false)),
+    [dispatch, game]
+  )
+
   if (!time) {
     return (
       <>

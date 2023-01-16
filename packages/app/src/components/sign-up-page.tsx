@@ -1,25 +1,24 @@
 import { useCallback } from 'react'
 import { Form, FormItem } from '@delta62/micro-form'
 import { Anchor, Redirect } from '@delta62/micro-router'
+import { useDispatch } from 'react-redux'
 
 import Page from '@components/page'
 import { sameAs, minLength } from '../validators'
 
 import './sign-up-page.scss'
 
-export interface Props {
-  onSignUp(username: string, password: string): void
-}
-
 let confirmValidator = sameAs('password')
 let passwordValidator = minLength(8)
 
-let SignUpPage = ({ onSignUp }: Props) => {
+let SignUpPage = () => {
+  let dispatch = useDispatch()
+
   let onSubmit = useCallback(
     (values: unknown) => {
       console.log('onSubmit', values)
     },
-    [onSignUp]
+    [dispatch]
   )
 
   return (
