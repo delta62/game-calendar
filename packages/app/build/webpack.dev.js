@@ -17,6 +17,6 @@ module.exports = merge(config, {
       rewrites: [{ from: /.*\/app.bundle.js/, to: '/app.bundle.js' }],
     },
     host: '0.0.0.0',
-    hot: true,
+    hot: false,
   },
 })

@@ -7,11 +7,9 @@ import App from '@containers/app'
 import LoginPage from '@containers/login-page'
 import SignUpPage from '@containers/sign-up-page'
 
-let XProvider = Provider as any
-
 render(
   <RouteProvider>
-    <XProvider store={store}>
+    <Provider store={store}>
       <>
         <Route path={['/games/?game', '/']}>
           <App />
@@ -23,7 +21,7 @@ render(
           <SignUpPage />
         </Route>
       </>
-    </XProvider>
+    </Provider>
   </RouteProvider>,
   document.body
 )

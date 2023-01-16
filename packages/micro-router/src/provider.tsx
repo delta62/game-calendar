@@ -19,7 +19,12 @@ export function RouteProvider({ children }: RenderableProps<{}>) {
     setParams(params)
   }
 
-  useEffect(() => (onpopstate = onPopState), [])
+  useEffect(() => {
+    window.addEventListener('popstate', e =>
+      console.log('pop state ocurred!', e)
+    )
+    onpopstate = onPopState
+  }, [])
 
   return (
     <Context.Provider value={{ path: href, setPath, setRouteParams, params }}>

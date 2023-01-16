@@ -13,38 +13,41 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
+    clean: true,
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
+        options: {
+          projectReferences: true,
+        },
       },
-    ]
+    ],
   },
   resolve: {
     alias: {
-      react:       'preact/compat',
+      react: 'preact/compat',
       'react-dom': 'preact/compat',
     },
-    extensions: [ '.js', '.tsx', '.ts' ],
-    plugins: [
-      new TsconfigPathsPlugin(),
-    ],
+    extensions: ['.js', '.tsx', '.ts'],
+    plugins: [new TsconfigPathsPlugin()],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: './static/index.html',      to: 'index.html'        },
+        { from: './static/index.html', to: 'index.html' },
         { from: './static/img/favicon.png', to: './img/favicon.png' },
-        { from: './static/img/logo.png',    to: './img/logo.png'    },
+        { from: './static/img/logo.png', to: './img/logo.png' },
         { from: './static/img/logo512.png', to: './img/logo512.png' },
       ],
     }),
-    new webpack.DefinePlugin(Object.entries(firebaseSettings).reduce((acc, [ key, val ]) => {
+    new webpack.DefinePlugin(
+      Object.entries(firebaseSettings).reduce((acc, [key, val]) => {
         acc[key] = JSON.stringify(val)
         return acc
-    }, { })),
+      }, {})
+    ),
   ],
 }
