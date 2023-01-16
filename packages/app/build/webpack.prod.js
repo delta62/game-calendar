@@ -9,17 +9,28 @@ module.exports = merge(config, {
     rules: [
       {
         test: /\.scss$/,
-        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
-      }
-    ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]_[hash:base64:5]',
+              },
+            },
+          },
+          'sass-loader',
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new BundleAnalyzerPlugin({
-      analyzerMode:   'static',
+      analyzerMode: 'static',
       reportFilename: 'report.html',
-      defaultSizes:   'parsed',
-      openAnalyzer:   false
+      defaultSizes: 'parsed',
+      openAnalyzer: false,
     }),
-  ]
+  ],
 })
