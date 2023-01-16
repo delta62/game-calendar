@@ -8,6 +8,14 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const REFRESH_ERROR = 'REFRESH_ERROR'
 export const REFRESH_REQUEST = 'REFRESH_REQUEST'
 export const REFRESH_SUCCESS = 'REFRESH_SUCCESS'
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST'
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
+export const SIGNUP_ERROR = 'SIGNUP_ERROR'
+
+export interface SignupRequest extends Action<typeof SIGNUP_REQUEST> {
+  email: string
+  password: string
+}
 
 export interface LoginRequest extends Action<typeof LOGIN_REQUEST> {
   email: string

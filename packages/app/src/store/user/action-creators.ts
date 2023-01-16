@@ -6,13 +6,24 @@ import {
   REFRESH_ERROR,
   REFRESH_REQUEST,
   REFRESH_SUCCESS,
+  SIGNUP_REQUEST,
   LoginError,
   LoginRequest,
   LoginSuccess,
   RefreshError,
   RefreshRequest,
   RefreshSuccess,
+  SignupRequest,
 } from './actions'
+
+export let signupRequest = (
+  email: string,
+  password: string
+): SignupRequest => ({
+  type: SIGNUP_REQUEST,
+  email,
+  password,
+})
 
 export let loginRequest = (email: string, password: string): LoginRequest => ({
   type: LOGIN_REQUEST,

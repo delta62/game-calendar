@@ -2,33 +2,32 @@ import { Validator } from './validation.js'
 import Submit from './submit.js'
 import Input from './input.js'
 
-export interface SubmitProps {
+interface Field<T extends string> {
   label: string
-  type: 'submit'
+  type: T
 }
 
-interface NonSubmitProps {
-  label: string
-  name: string
-  type: 'email' | 'password'
+interface InputField<TFields extends {}> extends Field<'email' | 'password'> {
+  name: Extract<keyof TFields, string>
   validate?: Validator
 }
 
-export type Props = SubmitProps | NonSubmitProps
+interface SubmitField extends Field<'submit'> {}
 
-let FormItem = ({ label, type, ...props }: Props) => {
-  switch (type) {
-    case 'submit':
-      return <Submit label={label} />
-    default:
-      return (
-        <Input
-          label={label}
-          name={(props as NonSubmitProps).name}
-          type={type}
-          validate={(props as NonSubmitProps).validate}
-        />
-      )
+export type Props<T extends {} = never> = InputField<T> | SubmitField
+
+let FormItem = <TFields extends {}>(props: Props<TFields>) => {
+  if (props.type === 'submit') {
+    return <Submit label={props.label} />
+  } else {
+    return (
+      <Input
+        label={props.label}
+        name={props.name}
+        type={props.type}
+        validate={props.validate}
+      />
+    )
   }
 }
 
