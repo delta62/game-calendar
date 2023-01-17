@@ -58,7 +58,9 @@ let GameListItem = ({ gameId }: Props) => {
       <div className={styles.horizontal}>
         <Icon type="handle" {...dragProps} />
         <div className={styles.vertical}>
-          <span className={styles.gameName}>{game.name}</span>
+          <span className={styles.gameName} title={game.name}>
+            {game.name}
+          </span>
           <Progress
             startDate={game.started}
             finishDate={game.finished}

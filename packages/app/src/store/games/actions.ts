@@ -11,6 +11,7 @@ export const REORDER_GAME = 'REORDER_GAME'
 export const SELECT_GAME = 'SELECT_GAME'
 export const UPDATE_ERROR = 'UPDATE_ERROR'
 export const UPDATE_GAME = 'UPDATE_GAME'
+export const UNRATE_GAME = 'UNRATE_GAME'
 
 export interface AddGame extends Action<typeof ADD_GAME> {
   id: number
@@ -19,6 +20,10 @@ export interface AddGame extends Action<typeof ADD_GAME> {
 
 export interface UpdateGame extends Action<typeof UPDATE_GAME> {
   game: Pick<Game, 'id'> & Partial<Game>
+}
+
+export interface UnrateGame extends Action<typeof UNRATE_GAME> {
+  id: number
 }
 
 export interface SelectGame extends Action<typeof SELECT_GAME> {
@@ -62,5 +67,6 @@ type AppAction =
   | SelectGame
   | UpdateError
   | UpdateGame
+  | UnrateGame
 
 export default AppAction

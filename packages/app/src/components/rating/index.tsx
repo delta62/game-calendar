@@ -6,28 +6,28 @@ import styles from './styles.scss'
 
 export interface Props {
   onChange(rating: number): void
-  rating: number
+  rating?: number
 }
 
 let Rating = ({ onChange, rating }: Props) => {
   let onChangeClick = useCallback(
-    (i: number) => {
-      return () => {
-        onChange((i + 1) * 2)
-      }
-    },
+    (i: number) => onChange((i + 1) * 2),
     [onChange, rating]
   )
 
   return (
-    <div className={styles.rating}>
+    <div
+      className={classnames(styles.rating, {
+        [styles.unrated]: rating === undefined,
+      })}
+    >
       {Array.from({ length: 5 }).map((_, i) => {
-        let filled = (i + 1) * 2 <= rating
+        let filled = (i + 1) * 2 <= (rating ?? 0)
         return (
           <Star
             key={i}
             className={classnames(styles.icon, { [styles.filled]: filled })}
-            onClick={onChangeClick(i)}
+            onClick={() => onChangeClick(i)}
           />
         )
       })}

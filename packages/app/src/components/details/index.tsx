@@ -31,7 +31,11 @@ let Details = ({ gameId }: Props) => {
   let onRatingChange = useCallback(
     (rating: number) => {
       if (!game) return
-      dispatch(actionCreators.setRating(game.id, rating))
+      if (rating === game.rating) {
+        dispatch(actionCreators.unrateGame(game.id))
+      } else {
+        dispatch(actionCreators.setRating(game.id, rating))
+      }
     },
     [game, dispatch]
   )
@@ -58,7 +62,7 @@ let Details = ({ gameId }: Props) => {
       <div className={styles.details}>
         <GameTitle text={game.name} onChange={onTitleChange} />
         <div className={styles.metadata}>
-          <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
+          <Rating onChange={onRatingChange} rating={game.rating} />
           <span className={styles.spacer}></span>
           <label>
             <span className={styles.elide}>Platform</span>

@@ -3,11 +3,15 @@
 }
 
 .icon {
-  color: gold;
+  color: #e5c412;
   cursor: pointer;
   margin-right: 0.1rem;
 }
 
+.unrated .icon {
+  color: var(--foreground-color);
+}
+
 .filled {
-  fill: gold;
+  fill: #e5c412;
 }
