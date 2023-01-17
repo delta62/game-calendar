@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import classnames from 'classnames'
 import { useSelector } from 'react-redux'
 
@@ -20,7 +21,7 @@ let Timeline = ({ game }: Props) => {
   return (
     <div className={styles.timeline}>
       {events.map(event => (
-        <>
+        <Fragment key={event.type}>
           <div
             className={classnames(styles.event, {
               [styles.finished]: !!event.time,
@@ -37,7 +38,7 @@ let Timeline = ({ game }: Props) => {
             )}
           </div>
           <span className={styles.line}></span>
-        </>
+        </Fragment>
       ))}
     </div>
   )

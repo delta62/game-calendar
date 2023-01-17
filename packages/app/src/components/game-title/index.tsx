@@ -72,7 +72,7 @@ let GameTitle = ({ text, onChange }: Props) => {
           type="text"
           ref={ref}
           onClick={onTitleClick}
-          value={text}
+          defaultValue={text}
           onKeyUp={onKeyUp}
         />
       </>

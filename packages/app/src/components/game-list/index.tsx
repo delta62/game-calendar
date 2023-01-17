@@ -52,7 +52,7 @@ let GameList = () => {
         <DragProvider>
           <ol>
             {games.map(id => (
-              <GameListItem gameId={id} />
+              <GameListItem key={id} gameId={id} />
             ))}
           </ol>
         </DragProvider>

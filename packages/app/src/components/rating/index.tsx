@@ -21,10 +21,11 @@ let Rating = ({ onChange, rating }: Props) => {
 
   return (
     <div className={styles.rating}>
-      {new Array(5).fill(0).map((_, i) => {
+      {Array.from({ length: 5 }).map((_, i) => {
         let filled = (i + 1) * 2 <= rating
         return (
           <Star
+            key={i}
             className={classnames(styles.icon, { [styles.filled]: filled })}
             onClick={onChangeClick(i)}
           />
