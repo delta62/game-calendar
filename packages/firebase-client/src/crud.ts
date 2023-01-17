@@ -47,7 +47,7 @@ export let list =
 
     let url = buildUrl(projectId, path, query)
     let response: any = await json(url, bearer(authToken))
-    let documents = unwrap(response.documents) ?? []
+    let documents = (response.documents ?? []).map(unwrap)
     let nextPage = response.nextPageToken
 
     return { documents, nextPage }

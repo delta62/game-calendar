@@ -17,9 +17,9 @@ let App = () => {
 
   useEffect(() => {
     if (game) {
-      document.body.classList.add('game-selected')
+      document.getElementById('app')!.classList.add('game-selected')
     } else {
-      document.body.classList.remove('game-selected')
+      document.getElementById('app')!.classList.remove('game-selected')
     }
   }, [game])
 

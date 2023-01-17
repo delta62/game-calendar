@@ -82,9 +82,9 @@ input[type='submit'] {
     display: block;
     position: relative;
     transition: transform 200ms;
+  }
 
-    &.game-selected {
-      transform: translateX(-100vw);
-    }
+  .game-selected {
+    transform: translateX(-100vw);
   }
 }

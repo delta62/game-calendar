@@ -1,21 +1,34 @@
 import { SagaIterator } from 'redux-saga'
-import { call, fork, put, select, takeEvery, takeLeading } from 'redux-saga/effects'
+import {
+  call,
+  fork,
+  put,
+  select,
+  takeEvery,
+  takeLeading,
+} from 'redux-saga/effects'
 import {
   CreateRequest,
   ListRequest,
   create,
   drop,
   list,
-  update
+  update,
 } from '@delta62/firebase-client'
 
 import { fetchSuccess, fetchError, updateError } from './action-creators'
-import { ADD_GAME, DELETE_GAME, FETCH_REQUEST, UPDATE_GAME, AddGame, DeleteGame, FetchRequest, UpdateGame } from './actions'
-import { Game } from './models'
 import {
-  sagas as userSagas,
-  selectors as userSelectors,
-} from '../user'
+  ADD_GAME,
+  DELETE_GAME,
+  FETCH_REQUEST,
+  UPDATE_GAME,
+  AddGame,
+  DeleteGame,
+  FetchRequest,
+  UpdateGame,
+} from './actions'
+import { Game } from './models'
+import { sagas as userSagas, selectors as userSelectors } from '../user'
 
 function* fetchGames(action: FetchRequest): SagaIterator {
   try {
@@ -57,7 +70,12 @@ function* addGame({ id, name }: AddGame): SagaIterator {
   let cr = create(__PROJECT_ID__)
   let documentId = `${id}`
   let document = { id, name }
-  let createRequest: CreateRequest<Game> = { path, authToken, documentId, document }
+  let createRequest: CreateRequest<Game> = {
+    path,
+    authToken,
+    documentId,
+    document,
+  }
 
   yield call(cr, createRequest)
 }
