@@ -21,7 +21,7 @@ let Form = <T extends {}>({
         let { validator } = fields[name]!
         let error = validator(value, fields)
         let field = { error, validator, value }
-        let state = { [name]: field, ...fields }
+        let state = { ...fields, [name]: field }
 
         // Validate everything else
         Object.entries(state).forEach(([key, field]) => {

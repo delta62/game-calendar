@@ -1,4 +1,4 @@
-import { Validator } from './validation.js'
+import { DEFAULT_VALIDATOR, Validator } from './validation.js'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import classnames from 'classnames'
 import { compose, email, required } from './validation.js'
@@ -15,13 +15,15 @@ let Input = ({ label, name, type, validate }: Props) => {
   let { addField, fields, setField } = useContext(Context)
   let [touched, setTouched] = useState(false)
 
+  validate ??= DEFAULT_VALIDATOR
+
   useEffect(() => {
     switch (type) {
       case 'email':
-        validate = compose(email, validate)
+        validate = compose(email, validate!)
         break
       case 'password':
-        validate = compose(required, validate)
+        validate = compose(required, validate!)
         break
     }
     addField(name, validate)

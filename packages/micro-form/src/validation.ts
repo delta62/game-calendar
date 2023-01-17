@@ -13,6 +13,6 @@ export let email = (email: string) =>
 
 export let required = (value: string) => (!!value ? false : 'Required')
 
-export let compose = (v1: Validator, v2 = DEFAULT_VALIDATOR): Validator => {
+export let compose = (v1: Validator, v2: Validator): Validator => {
   return (field, fields) => v1(field, fields) || v2(field, fields)
 }

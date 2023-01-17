@@ -1,4 +1,4 @@
-export { login, refreshToken } from './auth.js'
+export { login, signup, refreshToken } from './auth.js'
 export {
   CreateRequest,
   FirebaseRequest,

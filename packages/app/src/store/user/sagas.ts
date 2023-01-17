@@ -1,6 +1,10 @@
 import { SagaIterator } from 'redux-saga'
 import { call, put, take, fork, select, takeLeading } from 'redux-saga/effects'
-import { login, refreshToken as refresh } from '@delta62/firebase-client'
+import {
+  login,
+  refreshToken as refresh,
+  signup as fbSignup,
+} from '@delta62/firebase-client'
 
 import { getUser } from './selectors'
 import {
@@ -9,12 +13,16 @@ import {
   refreshTokenRequest,
   refreshTokenError,
   refreshTokenSuccess,
+  signupError,
+  signupSuccess,
 } from './action-creators'
 import {
   LOGIN_REQUEST,
   LOGIN_ERROR,
   REFRESH_REQUEST,
   REFRESH_SUCCESS,
+  SIGNUP_ERROR,
+  SIGNUP_REQUEST,
   RefreshRequest,
 } from './actions'
 
@@ -28,6 +36,16 @@ function* auth(email: string, password: string): SagaIterator {
   }
 }
 
+function* signup(email: string, password: string): SagaIterator {
+  try {
+    let su = fbSignup(__API_KEY__)
+    let response = yield call(su, email, password)
+    yield put(signupSuccess(response))
+  } catch (error) {
+    yield put(signupError(error as Error))
+  }
+}
+
 function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
   try {
     let re = refresh(__API_KEY__)
@@ -35,6 +53,14 @@ function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
     yield put(refreshTokenSuccess(response))
   } catch (error) {
     yield put(refreshTokenError(error as Error))
+  }
+}
+
+function* watchSignup(): SagaIterator {
+  while (true) {
+    let { email, password } = yield take(SIGNUP_REQUEST)
+    yield fork(signup, email, password)
+    yield take(SIGNUP_ERROR)
   }
 }
 
@@ -64,6 +90,7 @@ export function* idToken(): SagaIterator {
 }
 
 function* userSaga(): SagaIterator {
+  yield fork(watchSignup)
   yield fork(watchRefresh)
   yield fork(watchLogin)
 }

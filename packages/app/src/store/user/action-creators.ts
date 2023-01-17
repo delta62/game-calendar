@@ -6,14 +6,18 @@ import {
   REFRESH_ERROR,
   REFRESH_REQUEST,
   REFRESH_SUCCESS,
+  SIGNUP_ERROR,
   SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
   LoginError,
   LoginRequest,
   LoginSuccess,
   RefreshError,
   RefreshRequest,
   RefreshSuccess,
+  SignupError,
   SignupRequest,
+  SignupSuccess,
 } from './actions'
 
 export let signupRequest = (
@@ -23,6 +27,11 @@ export let signupRequest = (
   type: SIGNUP_REQUEST,
   email,
   password,
+})
+
+export let signupSuccess = (user: User): SignupSuccess => ({
+  type: SIGNUP_SUCCESS,
+  user,
 })
 
 export let loginRequest = (email: string, password: string): LoginRequest => ({
@@ -38,6 +47,11 @@ export let loginSuccess = (user: User): LoginSuccess => ({
 
 export let loginError = (error: Error): LoginError => ({
   type: LOGIN_ERROR,
+  error,
+})
+
+export let signupError = (error: Error): SignupError => ({
+  type: SIGNUP_ERROR,
   error,
 })
 

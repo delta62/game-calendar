@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { Form, FormItem } from '@delta62/micro-form'
 import { Anchor, Redirect } from '@delta62/micro-router'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { actionCreators } from '@store'
+import { actionCreators, selectors } from '@store'
 import Page from '@components/page'
 import { sameAs, minLength } from '../validators'
 
@@ -18,6 +18,7 @@ let confirmValidator = sameAs('password')
 let passwordValidator = minLength(8)
 
 let SignUpPage = () => {
+  let isLoggedIn = useSelector(selectors.getIsLoggedIn)
   let dispatch = useDispatch()
 
   let onSubmit = useCallback(
@@ -29,7 +30,7 @@ let SignUpPage = () => {
 
   return (
     <Page title="Sign Up">
-      <Redirect to="/" when={false} />
+      <Redirect to="/" when={isLoggedIn} />
       <Form<Fields> onSubmit={onSubmit}>
         <FormItem<Fields> name="email" label="Email" type="email" />
         <FormItem<Fields>

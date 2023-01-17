@@ -1,5 +1,9 @@
 import { json, jsonBody, formBody, method } from './http'
-import { Login, RefreshResponse as ModelRefreshResponse } from './models'
+import {
+  Login,
+  RefreshResponse as ModelRefreshResponse,
+  Signup,
+} from './models'
 
 export interface LoginResponse {
   email: string
@@ -9,11 +13,30 @@ export interface LoginResponse {
   expires: number
 }
 
+// Same signature as LoginResponse; change this if they diverge
+export type SignupResponse = LoginResponse
+
 export interface RefreshResponse {
   refreshToken: string
   idToken: string
   expires: number
 }
+
+export let signup =
+  (apiKey: string) =>
+  async (email: string, password: string): Promise<SignupResponse> => {
+    let res: Signup = await json(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
+      method('POST'),
+      jsonBody({
+        email,
+        password,
+        returnSecureToken: true,
+      })
+    )
+    let expires = Date.now() + parseInt(res.expiresIn, 10) * 1000
+    return { ...res, expires }
+  }
 
 export let login =
   (apiKey: string) =>

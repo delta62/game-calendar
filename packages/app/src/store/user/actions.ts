@@ -17,6 +17,14 @@ export interface SignupRequest extends Action<typeof SIGNUP_REQUEST> {
   password: string
 }
 
+export interface SignupError extends Action<typeof SIGNUP_ERROR> {
+  error: Error
+}
+
+export interface SignupSuccess extends Action<typeof SIGNUP_SUCCESS> {
+  user: User
+}
+
 export interface LoginRequest extends Action<typeof LOGIN_REQUEST> {
   email: string
   password: string
@@ -49,5 +57,8 @@ type UserAction =
   | RefreshError
   | RefreshRequest
   | RefreshSuccess
+  | SignupSuccess
+  | SignupError
+  | SignupRequest
 
 export default UserAction

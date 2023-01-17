@@ -98,7 +98,7 @@ export interface Login {
   registered: boolean
 }
 
-export type LoginResponse = FirebaseResponse<Login>
+export type Signup = Login
 
 export interface RefreshResponse {
   expires_in: string
@@ -108,10 +108,6 @@ export interface RefreshResponse {
   user_id: string
   project_id: string
 }
-
-export type Signup = Login
-
-export type SignupResponse = FirebaseResponse<Signup>
 
 export interface ChangeEmail {
   localId: string
