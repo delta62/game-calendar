@@ -11,3 +11,5 @@ firebase-config.json
 .pnp.*
 node_modules
 *.tsbuildinfo
+.firebaserc
+firebase.json
