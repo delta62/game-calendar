@@ -19,10 +19,8 @@ export function RouteProvider({ children }: PropsWithChildren<{}>) {
   }
 
   useEffect(() => {
-    window.addEventListener('popstate', e =>
-      console.log('pop state ocurred!', e)
-    )
-    onpopstate = onPopState
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   return (
