@@ -2,21 +2,21 @@
   display: flex;
   padding: 0.5rem;
   padding-bottom: 1.5rem;
+}
 
-  .text-input {
-    flex-grow: 1;
-    font-size: 18px;
-  }
+.text-input {
+  flex-grow: 1;
+  font-size: 18px;
+}
 
-  .add-button {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: #999;
-    padding: 0 1rem;
+.add-button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  padding: 0 1rem;
 
-    &:hover {
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
   }
 }

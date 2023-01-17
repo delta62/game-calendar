@@ -5,46 +5,46 @@
   font-style: italic;
   margin-top: 0.5em;
   text-align: center;
+}
 
-  .bars {
-    display: flex;
+.bars {
+  display: flex;
+}
+
+.sliver {
+  height: 0.2em;
+  margin-right: 0.4em;
+  transform: skewX(-33deg);
+  transition: width 150ms;
+  width: 0%;
+
+  &.started {
+    background: #0cbd9c;
   }
 
-  .sliver {
-    height: 0.2em;
-    margin-right: 0.4em;
-    transform: skewX(-33deg);
-    transition: width 150ms;
-    width: 0%;
-
-    &.started {
-      background: #0cbd9c;
-    }
-
-    &.finished {
-      background: #0cbd9c;
-    }
-
-    &.completed {
-      background: #0cbd9c;
-    }
+  &.finished {
+    background: #0cbd9c;
   }
 
-  .progress-label {
-    display: none;
-    height: 1.5em;
-    margin-bottom: 0.3em;
+  &.completed {
+    background: #0cbd9c;
   }
+}
 
-  &.started .sliver.started {
-    width: calc(33% - 0.4em);
-  }
+.progress-label {
+  display: none;
+  height: 1.5em;
+  margin-bottom: 0.3em;
+}
 
-  &.finished .sliver.finished {
-    width: calc(33% - 0.4em);
-  }
+.started .sliver.started {
+  width: calc(33% - 0.4em);
+}
 
-  &.completed .sliver.completed {
-    width: calc(33% - 0.4em);
-  }
+.finished .sliver.finished {
+  width: calc(33% - 0.4em);
+}
+
+.completed .sliver.completed {
+  width: calc(33% - 0.4em);
 }

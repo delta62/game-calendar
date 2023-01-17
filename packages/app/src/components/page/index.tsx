@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import classnames from 'classnames'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   className?: string
@@ -9,7 +9,7 @@ export interface Props {
 }
 
 let Page = ({ children, className, title }: PropsWithChildren<Props>) => (
-  <div className={classnames('page', className)}>
+  <div className={classnames(styles.page, className)}>
     <h1>{title}</h1>
     {children}
   </div>

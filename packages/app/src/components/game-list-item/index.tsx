@@ -9,7 +9,7 @@ import { Game, State, selectors, actionCreators } from '@store'
 import Icon from '@components/icon'
 import Progress from '@components/progress'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   gameId: number
@@ -49,21 +49,23 @@ let GameListItem = ({ gameId }: Props) => {
   return (
     <li
       ref={forwardRef}
-      className={classnames('game-list-item', forwardClass, { active })}
+      className={classnames(styles.gameListItem, forwardClass, {
+        [styles.active]: active,
+      })}
       onClick={onClick}
       {...dragProps}
     >
-      <div className="horizontal">
+      <div className={styles.horizontal}>
         <Icon type="handle" {...dragProps} />
-        <div className="vertical">
-          <span className="game-name">{game.name}</span>
+        <div className={styles.vertical}>
+          <span className={styles.gameName}>{game.name}</span>
           <Progress
             startDate={game.started}
             finishDate={game.finished}
             completeDate={game.completed}
           />
         </div>
-        <div className="selector">
+        <div className={styles.selector}>
           <Chevron />
         </div>
       </div>

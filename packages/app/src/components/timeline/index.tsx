@@ -6,7 +6,7 @@ import StartedEvent from '@components/started-event'
 import FinishedEvent from '@components/finished-event'
 import CompletedEvent from '@components/completed-event'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   game: number
@@ -18,10 +18,14 @@ let Timeline = ({ game }: Props) => {
   )
 
   return (
-    <div className="timeline">
+    <div className={styles.timeline}>
       {events.map(event => (
         <>
-          <div className={classnames('event', { finished: !!event.time })}>
+          <div
+            className={classnames(styles.event, {
+              [styles.finished]: !!event.time,
+            })}
+          >
             {event.type === 'started' && (
               <StartedEvent game={game} time={event.time} />
             )}
@@ -32,7 +36,7 @@ let Timeline = ({ game }: Props) => {
               <CompletedEvent game={game} time={event.time} />
             )}
           </div>
-          <span className="line"></span>
+          <span className={styles.line}></span>
         </>
       ))}
     </div>

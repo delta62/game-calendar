@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Option {
   name: string
@@ -26,7 +26,7 @@ let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
   }, [onChange, ref.current])
 
   return (
-    <select ref={ref} className="dropdown" onChange={onChangeCb}>
+    <select ref={ref} className={styles.dropdown} onChange={onChangeCb}>
       <option selected={selected === undefined}>{emptyLabel}</option>
       {options.map(({ name, value }: Option) => (
         <option value={value} selected={value === selected}>

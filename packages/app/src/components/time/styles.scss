@@ -1,11 +1,9 @@
-.time {
-  .minutes,
-  .hours {
-    -webkit-appearance: textfield;
-    appearance: textfield;
-    margin: 0 .5rem;
-    padding: .2rem;
-    text-align: right;
-    width: 3rem;
-  }
+.minutes,
+.hours {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  margin: 0 0.5rem;
+  padding: 0.2rem;
+  text-align: right;
+  width: 3rem;
 }

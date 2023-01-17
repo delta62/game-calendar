@@ -2,34 +2,34 @@
   display: flex;
   flex-direction: column;
   max-width: 50rem;
+}
 
-  .line {
-    border-right: 1px solid #666;
-    height: 3rem;
-    margin: 1rem 0;
-    width: 50%;
+.line {
+  border-right: 1px solid #666;
+  height: 3rem;
+  margin: 1rem 0;
+  width: 50%;
 
-    &:last-child {
-      display: none;
-    }
+  &:last-child {
+    display: none;
+  }
+}
+
+.event {
+  border: 1px dashed #333;
+  padding: 1rem;
+  text-align: center;
+
+  .time {
+    margin: 1rem;
   }
 
-  .event {
-    border: 1px dashed #333;
-    padding: 1rem;
-    text-align: center;
+  &.finished {
+    border-color: #666;
+    border-style: solid;
 
-    .time {
-      margin: 1rem;
-    }
-
-    &.finished {
-      border-color: #666;
-      border-style: solid;
-
-      &:last-of-type {
-        border-color: #0cbd9c;
-      }
+    &:last-of-type {
+      border-color: #0cbd9c;
     }
   }
 }

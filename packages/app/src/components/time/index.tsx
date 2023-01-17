@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   onChange(time: number): void
@@ -28,10 +28,10 @@ let Time = ({ onChange, value }: Props) => {
   minutesVal = Math.floor(minutesVal)
 
   return (
-    <div className="time">
+    <div className={styles.time}>
       <input
         type="number"
-        className="hours"
+        className={styles.hours}
         onChange={onFieldChanged}
         ref={hoursRef}
         value={hoursVal}
@@ -39,7 +39,7 @@ let Time = ({ onChange, value }: Props) => {
       :
       <input
         type="number"
-        className="minutes"
+        className={styles.minutes}
         onChange={onFieldChanged}
         ref={minutesRef}
         value={minutesVal}

@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   onClick(): void
@@ -11,7 +11,7 @@ export interface Props {
 let Button = ({ onClick, text, type }: Props) => (
   <input
     type="button"
-    className={classnames('button', type)}
+    className={classnames(styles.button, type && styles[type])}
     value={text}
     onClick={onClick}
   />

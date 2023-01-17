@@ -8,7 +8,7 @@ import Timeline from '@components/timeline'
 import Trash from '@components/trash'
 import Dropdown from '@components/dropdown'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   gameId: number | null
@@ -55,13 +55,13 @@ let Details = ({ gameId }: Props) => {
 
   if (game) {
     return (
-      <div className="details">
+      <div className={styles.details}>
         <GameTitle text={game.name} onChange={onTitleChange} />
-        <div className="metadata">
+        <div className={styles.metadata}>
           <Rating onChange={onRatingChange} rating={game.rating ?? 0} />
-          <span className="spacer"></span>
+          <span className={styles.spacer}></span>
           <label>
-            <span className="elide">Platform</span>
+            <span className={styles.elide}>Platform</span>
             <Dropdown
               emptyLabel="None"
               onChange={onPlatformChange}
@@ -69,10 +69,10 @@ let Details = ({ gameId }: Props) => {
               selected={game.platform != null ? `${game.platform}` : undefined}
             />
           </label>
-          <span className="spacer"></span>
-          <div className="delete">
+          <span className={styles.spacer}></span>
+          <div className={styles.delete}>
             <Trash onClick={onDelete} />
-            <span className="elide">Delete</span>
+            <span className={styles.elide}>Delete</span>
           </div>
         </div>
         <Timeline game={game.id} />
@@ -82,7 +82,7 @@ let Details = ({ gameId }: Props) => {
     let message = hasGames
       ? 'Select a game'
       : 'Add some games to your list to get started'
-    return <p className="details-empty">{message}</p>
+    return <p className={styles.detailsEmpty}>{message}</p>
   }
 }
 

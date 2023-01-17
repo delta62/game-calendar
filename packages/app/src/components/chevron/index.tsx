@@ -1,7 +1,7 @@
-import './styles.scss'
+import styles from './styles.scss'
 
 let Chevron = ({ ...attrs }: React.HTMLProps<HTMLSpanElement>) => (
-  <span className="chevron" {...attrs}></span>
+  <span className={styles.chevron} {...attrs}></span>
 )
 
 export default Chevron

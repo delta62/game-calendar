@@ -1,6 +1,6 @@
 import { useRef, useCallback } from 'react'
 
-import './duration.scss'
+import styles from './duration.scss'
 
 export interface Props {
   onChange(value: number): void
@@ -27,10 +27,10 @@ let Duration = ({ onChange, value }: Props) => {
   }, [onChange, hoursRef, minutesRef])
 
   return (
-    <div className="duration">
-      <label className="form-item">
+    <div>
+      <label className={styles.formItem}>
         <input
-          className="hours"
+          className={styles.hours}
           ref={hoursRef}
           type="number"
           value={hours}
@@ -38,9 +38,9 @@ let Duration = ({ onChange, value }: Props) => {
         />
         hours
       </label>
-      <label className="form-item">
+      <label className={styles.formItem}>
         <input
-          className="minutes"
+          className={styles.minutes}
           ref={minutesRef}
           type="number"
           value={minutes}

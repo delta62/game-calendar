@@ -1,7 +1,11 @@
 .game-list-item {
   background-position: 0% 0%;
   background-clip: text;
-  background-image: linear-gradient(to right, var(--foreground-color) 33%, #ee025b 66%);
+  background-image: linear-gradient(
+    to right,
+    var(--foreground-color) 33%,
+    #ee025b 66%
+  );
   background-size: 300% 100%;
   border-bottom: 1px solid #333;
   cursor: pointer;
@@ -19,49 +23,49 @@
   }
 
   &:hover:not(.active) {
-    background-color: hsla(0, 0%, 100%, 0.05)
-  }
-
-  .horizontal {
-    align-items: baseline;
-    display: flex;
-
-    & > :first-child {
-      display: none;
-      height: 100%;
-      margin-right: 0.5rem;
-    }
-
-    & > :last-child {
-      margin-left: 0.5rem;
-    }
-  }
-
-  .vertical {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .selector {
-    display: flex;
-    align-self: stretch;
-    align-items: center;
-    position: relative;
-    right: 1rem;
-  }
-
-  .game-name {
-    color: transparent;
-    flex-grow: 1;
-    font-size: 1.2rem;
-    margin: .5rem 0;
-    padding-left: .5rem;
+    background-color: hsla(0, 0%, 100%, 0.05);
   }
 
   &:hover .selector {
     animation: nudge 250ms ease forwards;
   }
+}
+
+.horizontal {
+  align-items: baseline;
+  display: flex;
+
+  & > :first-child {
+    display: none;
+    height: 100%;
+    margin-right: 0.5rem;
+  }
+
+  & > :last-child {
+    margin-left: 0.5rem;
+  }
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.selector {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  position: relative;
+  right: 1rem;
+}
+
+.game-name {
+  color: transparent;
+  flex-grow: 1;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  padding-left: 0.5rem;
 }
 
 @keyframes nudge {
@@ -74,7 +78,7 @@
   }
 
   100% {
-    transform: translateX(.6rem);
+    transform: translateX(0.6rem);
   }
 }
 

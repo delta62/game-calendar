@@ -1,17 +1,17 @@
 .form-item {
   display: flex;
+}
 
-  .form-item-label {
-    text-align: right;
-    width: 6rem;
-  }
+.form-item-label {
+  text-align: right;
+  width: 6rem;
+}
 
-  .form-item-field {
-    flex-grow: 1;
-    margin-left: .5rem;
-  }
+.form-item-field {
+  flex-grow: 1;
+  margin-left: 0.5rem;
+}
 
-  &.invalid.touched .form-item-field {
-    border-bottom-color: red;
-  }
+&.invalid.touched .form-item-field {
+  border-bottom-color: red;
 }

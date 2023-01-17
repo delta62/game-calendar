@@ -5,7 +5,7 @@ import { actionCreators, selectors } from '@store'
 import GameListItem from '@components/game-list-item'
 import { DragProvider } from '@hoc/draggable'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   games: number[]
@@ -47,8 +47,8 @@ let GameList = () => {
   )
 
   return (
-    <div className="scroll-wrapper" onScroll={onScroll}>
-      <div className="game-list">
+    <div className={styles.scrollWrapper} onScroll={onScroll}>
+      <div className={styles.gameList}>
         <DragProvider>
           <ol>
             {games.map(id => (

@@ -2,7 +2,7 @@ import { useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { actionCreators } from '@store'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 let AddGame = () => {
   let ref = useRef<HTMLInputElement>(null)
@@ -26,15 +26,20 @@ let AddGame = () => {
   )
 
   return (
-    <div className="add-game">
+    <div className={styles.addGame}>
       <input
-        className="text-input"
+        className={styles.textInput}
         type="text"
         ref={ref}
         placeholder="Add a game"
         onKeyUp={onKeyUp}
       />
-      <input className="add-button" type="button" value="+" onClick={onClick} />
+      <input
+        className={styles.addButton}
+        type="button"
+        value="+"
+        onClick={onClick}
+      />
     </div>
   )
 }

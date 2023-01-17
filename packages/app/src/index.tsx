@@ -7,9 +7,9 @@ import App from '@components/app'
 import LoginPage from '@components/login-page'
 import SignUpPage from '@components/sign-up-page'
 
-let appNode = document.createElement('div')
-appNode.id = 'app'
-document.body.appendChild(appNode)
+import '../global.scss'
+
+let appNode = document.getElementById('app')!
 
 let root = createRoot(appNode)
 root.render(

@@ -15,6 +15,13 @@ module.exports = merge(config, {
             options: {
               modules: {
                 localIdentName: '[local]_[hash:base64:5]',
+                exportLocalsConvention: 'camelCase',
+                mode: resourcePath => {
+                  if (/global\.scss$/.test(resourcePath)) {
+                    return 'global'
+                  }
+                  return 'local'
+                },
               },
             },
           },

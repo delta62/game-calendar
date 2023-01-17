@@ -9,7 +9,7 @@ import {
 
 import { FormContext } from '../form'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export type Validator = (
   value: string,
@@ -65,10 +65,15 @@ let FormItem = ({ label, name, type, validate }: PropsWithChildren<Props>) => {
   }, [fields, ref.current, validate, setField, setTouched])
 
   return (
-    <label className={classnames('form-item', { invalid: !isValid, touched })}>
-      <span className="form-item-label">{label}</span>
+    <label
+      className={classnames(styles.formItem, {
+        [styles.invalid]: !isValid,
+        [styles.touched]: touched,
+      })}
+    >
+      <span className={styles.formItemLabel}>{label}</span>
       <input
-        className="form-item-field"
+        className={styles.formItemField}
         ref={ref}
         type={type}
         onChange={onChange}

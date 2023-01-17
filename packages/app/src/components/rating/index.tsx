@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { useCallback } from 'react'
 import { Star } from 'react-feather'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   onChange(rating: number): void
@@ -20,12 +20,12 @@ let Rating = ({ onChange, rating }: Props) => {
   )
 
   return (
-    <div className="rating">
+    <div className={styles.rating}>
       {new Array(5).fill(0).map((_, i) => {
         let filled = (i + 1) * 2 <= rating
         return (
           <Star
-            className={classnames('icon', { filled })}
+            className={classnames(styles.icon, { [styles.filled]: filled })}
             onClick={onChangeClick(i)}
           />
         )

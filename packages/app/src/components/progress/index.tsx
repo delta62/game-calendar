@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   startDate?: number
@@ -28,26 +28,26 @@ function getText(props: Props): string {
 }
 
 function getClass(props: Props): string {
-  let classes = ['progress']
+  let classes = [styles.progress]
   if (props.startDate) {
-    classes.push('started')
+    classes.push(styles.started)
   }
   if (props.finishDate) {
-    classes.push('finished')
+    classes.push(styles.finished)
   }
   if (props.completeDate) {
-    classes.push('completed')
+    classes.push(styles.completed)
   }
   return classes.join(' ')
 }
 
 const Progress = (props: Props) => (
   <div className={getClass(props)}>
-    <span className="progress-label">{getText(props)}</span>
-    <div className="bars">
-      <span className="sliver started" />
-      <span className="sliver finished" />
-      <span className="sliver completed" />
+    <span className={styles.progressLabel}>{getText(props)}</span>
+    <div className={styles.bars}>
+      <span className={`${styles.sliver} ${styles.started}`} />
+      <span className={`${styles.sliver} ${styles.finished}`} />
+      <span className={`${styles.sliver} ${styles.completed}`} />
     </div>
   </div>
 )

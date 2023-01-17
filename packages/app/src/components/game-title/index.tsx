@@ -4,7 +4,7 @@ import { Context } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 export interface Props {
   onChange(title: string): void
@@ -58,10 +58,10 @@ let GameTitle = ({ text, onChange }: Props) => {
 
   if (!editing) {
     return (
-      <div className="game-title" onClick={onTitleClick}>
+      <div className={styles.gameTitle} onClick={onTitleClick}>
         <Chevron onClick={onBackClick} />
-        <h1 className="text">{text}</h1>
-        <Edit className="icon" />
+        <h1 className={styles.text}>{text}</h1>
+        <Edit className={styles.icon} />
       </div>
     )
   } else {

@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux'
 
 import AddGame from '@components/add-game'
 import Details from '@components/details'
-import Sidebar from '@components/sidebar'
+import GameList from '@components/game-list'
 import { selectors } from '@store'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 let App = () => {
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
@@ -26,11 +26,11 @@ let App = () => {
   return (
     <>
       <Redirect to="/login" when={!isLoggedIn} />
-      <section className="sidebar">
+      <section className={styles.sidebar}>
         <AddGame />
-        <Sidebar />
+        <GameList />
       </section>
-      <section className="main-pane">
+      <section className={styles.mainPane}>
         <Details gameId={game} />
       </section>
     </>
