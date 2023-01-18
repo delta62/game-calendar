@@ -1,87 +1,7 @@
-export interface FirebaseToken {
-  idToken: string
-  email: string
-  refreshToken: string
-  expiresIn: string
-  localId: string
-  registered: boolean
+export interface FirebaseError {
+  code: number
+  message: string
 }
-
-interface FieldReference {
-  fieldPath: string
-}
-
-interface Projection {
-  fields: FieldReference[]
-}
-
-interface CollectionSelector {
-  collectionId: string
-  allDescendants?: boolean
-}
-
-type CompositeOperator = 'AND'
-
-interface CompositeFilter {
-  compositeFilter: {
-    op: CompositeOperator
-    filters: Filter[]
-  }
-}
-
-type FieldOperator =
-  | 'LESS_THAN'
-  | 'LESS_THAN_OR_EQUAL'
-  | 'GREATER_THAN'
-  | 'GREATER_THAN_OR_EQUAL'
-  | 'EQUAL'
-  | 'ARRAY_CONTAINS'
-
-interface FieldFilter {
-  fieldFilter: {
-    field: FieldReference
-    op: FieldOperator
-    value: Value
-  }
-}
-
-type UnaryOperator = 'IS_NAN' | 'IS_NULL'
-
-interface UnaryFilter {
-  unaryFilter: {
-    op: UnaryOperator
-    field: FieldReference
-  }
-}
-
-type Filter = CompositeFilter | FieldFilter | UnaryFilter
-
-type Direction = 'ASCENDING' | 'DESCENDING'
-
-interface Order {
-  field: FieldReference
-  direction: Direction
-}
-
-export interface StructuredQuery {
-  select?: Projection
-  from?: CollectionSelector[]
-  where?: Filter
-  orderBy?: Order[]
-  offset?: number
-  limit?: number
-}
-
-interface Document {
-  name: string
-  fields: Record<string, Value>
-}
-
-interface UpdateWriteOperation {
-  update: Document
-}
-
-export type Write = UpdateWriteOperation
 
 export interface ErrorResponse {
   error: FirebaseError
@@ -89,7 +9,12 @@ export interface ErrorResponse {
 
 export type FirebaseResponse<T> = ErrorResponse | T
 
-export interface Login {
+export interface FirestoreResponse {
+  documents?: FirestoreDocument[]
+  nextPageToken?: string
+}
+
+export interface LoginResponse {
   idToken: string
   email: string
   refreshToken: string
@@ -98,7 +23,7 @@ export interface Login {
   registered: boolean
 }
 
-export type Signup = Login
+export type SignupResponse = LoginResponse
 
 export interface RefreshResponse {
   expires_in: string
@@ -107,50 +32,6 @@ export interface RefreshResponse {
   id_token: string
   user_id: string
   project_id: string
-}
-
-export interface ChangeEmail {
-  localId: string
-  email: string
-  passwordHash: string
-  providerUserInfo: unknown
-  idToken: string
-  refreshToken: string
-  expiresIn: string
-}
-
-export type ChangeEmailResponse = FirebaseResponse<ChangeEmail>
-
-export interface ChangePassword {
-  localId: string
-  email: string
-  passwordHash: string
-  providerUserInfo: unknown
-  idToken: string
-  refreshToken: string
-  expiresIn: string
-}
-
-export type ChangePasswordResponse = FirebaseResponse<ChangePassword>
-
-interface DeleteAccount {}
-
-export type DeleteAccountResponse = FirebaseResponse<DeleteAccount>
-
-export interface ResetPassword {
-  email: string
-}
-
-export type ResetPasswordResponse = FirebaseResponse<ResetPassword>
-
-export interface FirebaseError {
-  code: number
-  message: string
-}
-
-export interface FirestoreResponse {
-  documents?: FirestoreDocument[]
-  nextPageToken?: string
 }
 
 export interface FirestoreDocument extends MapValueInternal {

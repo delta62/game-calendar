@@ -1,9 +1,9 @@
-type RequestBuilderFn = (init: RequestInit) => RequestInit
+type RequestBuilder = (init: RequestInit) => RequestInit
 type RequestMethod = 'DELETE' | 'PATCH' | 'POST'
 
 export let req = async (
   url: string,
-  ...params: RequestBuilderFn[]
+  ...params: RequestBuilder[]
 ): Promise<Response> => {
   let init = params.reduce((acc, param) => param(acc), {})
   let res = await fetch(url, init)
@@ -15,57 +15,67 @@ export let req = async (
   return res
 }
 
-export let json = async <T>(
+export let json = async <T = unknown>(
   url: string,
-  ...params: RequestBuilderFn[]
+  ...params: RequestBuilder[]
 ): Promise<T> => {
   let res = await req(url, ...params)
   return res.json()
 }
 
-export let method = (method: RequestMethod) => (init: RequestInit) => ({
-  ...init,
-  method,
-})
+export let method =
+  (method: RequestMethod): RequestBuilder =>
+  init => ({
+    ...init,
+    method,
+  })
 
-export let contentType = (contentType: string) => (init: RequestInit) => ({
-  ...init,
-  headers: {
-    ...init.headers,
-    'Content-Type': contentType,
-  },
-})
-
-export let formBody = (body: Record<string, string>) => (init: RequestInit) => {
-  let encodedBody = Object.entries(body)
-    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-    .join('&')
-  return {
+export let contentType =
+  (contentType: string): RequestBuilder =>
+  init => ({
     ...init,
     headers: {
       ...init.headers,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': contentType,
     },
-    body: encodedBody,
+  })
+
+export let formBody =
+  (body: Record<string, string>): RequestBuilder =>
+  init => {
+    let encodedBody = Object.entries(body)
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join('&')
+    return {
+      ...init,
+      headers: {
+        ...init.headers,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: encodedBody,
+    }
   }
-}
 
-export let jsonBody = (body: any) => (init: RequestInit) => ({
-  ...init,
-  headers: {
-    ...init.headers,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(body),
-})
+export let jsonBody =
+  (body: any): RequestBuilder =>
+  init => ({
+    ...init,
+    headers: {
+      ...init.headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
 
-export let bearer = (token: string) => (init: RequestInit) => ({
-  ...init,
-  headers: {
-    ...init.headers,
-    Authorization: `Bearer ${token}`,
-  },
-})
+export let bearer =
+  (token: string): RequestBuilder =>
+  init => ({
+    ...init,
+    headers: {
+      ...init.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  })
 
 export let post = method('POST')
 export let patch = method('PATCH')

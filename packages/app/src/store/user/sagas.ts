@@ -28,8 +28,7 @@ import {
 
 function* auth(email: string, password: string): SagaIterator {
   try {
-    let li = login(__API_KEY__)
-    let response = yield call(li, email, password)
+    let response = yield call(login(__API_KEY__), email, password)
     yield put(loginSuccess(response))
   } catch (error) {
     yield put(loginError(error as Error))
@@ -38,8 +37,7 @@ function* auth(email: string, password: string): SagaIterator {
 
 function* signup(email: string, password: string): SagaIterator {
   try {
-    let su = fbSignup(__API_KEY__)
-    let response = yield call(su, email, password)
+    let response = yield call(fbSignup(__API_KEY__), email, password)
     yield put(signupSuccess(response))
   } catch (error) {
     yield put(signupError(error as Error))
@@ -48,8 +46,7 @@ function* signup(email: string, password: string): SagaIterator {
 
 function* refreshAuthToken({ refreshToken }: RefreshRequest): SagaIterator {
   try {
-    let re = refresh(__API_KEY__)
-    let response = yield call(re, refreshToken)
+    let response = yield call(refresh(__API_KEY__), refreshToken)
     yield put(refreshTokenSuccess(response))
   } catch (error) {
     yield put(refreshTokenError(error as Error))
