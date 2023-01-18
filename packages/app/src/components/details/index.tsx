@@ -65,7 +65,7 @@ let Details = ({ gameId }: Props) => {
           <Rating onChange={onRatingChange} rating={game.rating} />
           <span className={styles.spacer}></span>
           <label>
-            <span className={styles.elide}>Platform</span>
+            <span className={`${styles.elide} ${styles.label}`}>Platform</span>
             <Dropdown
               emptyLabel="None"
               onChange={onPlatformChange}
