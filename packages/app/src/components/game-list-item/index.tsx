@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { useCallback, useContext } from 'react'
-import { Context } from '@delta62/micro-router'
+import { RouteContext } from '@delta62/micro-router'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Chevron from '@components/chevron'
@@ -20,9 +20,8 @@ let GameListItem = ({ gameId }: Props) => {
     selectors.getGame(state, gameId)
   )!
   let dispatch = useDispatch()
-  let { setPath } = useContext(Context)
+  let { setPath } = useContext(RouteContext)
   let dragProps = useDrag(`${game.id}`)
-
   let active = false
 
   let onClick = useCallback(() => {

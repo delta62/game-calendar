@@ -1,5 +1,5 @@
 import { PropsWithChildren, useContext, useEffect, useState } from 'react'
-import Context from './context'
+import { RouteContext } from './context'
 import routeMatches from './route-matches'
 
 interface RouteProps {
@@ -7,7 +7,7 @@ interface RouteProps {
 }
 
 export function Route(props: PropsWithChildren<RouteProps>) {
-  let { path, setRouteParams } = useContext(Context)
+  let { path, setRouteParams } = useContext(RouteContext)
   let [isMatch, setIsMatch] = useState(false)
 
   useEffect(() => {

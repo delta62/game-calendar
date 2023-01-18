@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState, useEffect } from 'react'
-import Context, { RouteParams } from './context'
+import { RouteContext, RouteParams } from './context'
 
 export function RouteProvider({ children }: PropsWithChildren<{}>) {
   let [href, setHref] = useState(location.pathname)
@@ -24,8 +24,10 @@ export function RouteProvider({ children }: PropsWithChildren<{}>) {
   }, [])
 
   return (
-    <Context.Provider value={{ path: href, setPath, setRouteParams, params }}>
+    <RouteContext.Provider
+      value={{ path: href, setPath, setRouteParams, params }}
+    >
       {children}
-    </Context.Provider>
+    </RouteContext.Provider>
   )
 }

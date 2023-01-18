@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import Context from './context'
+import { RouteContext } from './context'
 
 interface RedirectProps {
   to: string
@@ -7,7 +7,7 @@ interface RedirectProps {
 }
 
 export function Redirect({ to, when = true }: RedirectProps) {
-  let { setPath } = useContext(Context)
+  let { setPath } = useContext(RouteContext)
 
   useEffect(() => {
     if (when) {

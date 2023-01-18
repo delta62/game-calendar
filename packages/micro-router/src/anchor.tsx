@@ -1,5 +1,5 @@
 import { PropsWithChildren, useContext, useEffect, useState } from 'react'
-import Context from './context'
+import { RouteContext } from './context'
 
 interface AnchorProps {
   className?: string
@@ -12,7 +12,7 @@ export function Anchor({
   href,
 }: PropsWithChildren<AnchorProps>) {
   let [isActive, setIsActive] = useState(false)
-  let { setPath } = useContext(Context)
+  let { setPath } = useContext(RouteContext)
 
   useEffect(() => setIsActive(location.pathname === href))
 

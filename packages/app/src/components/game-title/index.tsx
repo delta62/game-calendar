@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { Edit } from 'react-feather'
-import { Context } from '@delta62/micro-router'
+import { RouteContext } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
 
@@ -13,7 +13,7 @@ export interface Props {
 
 let GameTitle = ({ text, onChange }: Props) => {
   let [editing, setEditing] = useState(false)
-  let { setPath } = useContext(Context)
+  let { setPath } = useContext(RouteContext)
 
   let ref = useRef<HTMLInputElement>(null)
 

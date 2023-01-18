@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { Context, Redirect } from '@delta62/micro-router'
+import { RouteContext, Redirect } from '@delta62/micro-router'
 import { useSelector } from 'react-redux'
 
 import AddGame from '@components/add-game'
@@ -11,8 +11,7 @@ import styles from './styles.scss'
 
 let App = () => {
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
-
-  let { params } = useContext(Context)
+  let { params } = useContext(RouteContext)
   let game = params.game ? parseInt(params.game, 10) : null
 
   useEffect(() => {

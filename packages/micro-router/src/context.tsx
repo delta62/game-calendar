@@ -9,12 +9,11 @@ interface RouteContextState {
   setRouteParams(routeParams: Record<string, string>): void
 }
 
-let Context = createContext<RouteContextState>({
+export let RouteContext = createContext<RouteContextState>({
   params: {},
   path: location.pathname,
   setPath() {},
   setRouteParams() {},
 })
-Context.displayName = 'Router'
 
-export default Context
+RouteContext.displayName = 'Router'
