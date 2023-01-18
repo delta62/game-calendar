@@ -9,6 +9,10 @@
   border-radius: 100px;
 }
 
+.back {
+  transform: rotate(180deg);
+}
+
 .chevron::after {
   content: '';
   display: block;

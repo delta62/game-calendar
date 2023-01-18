@@ -12,6 +12,11 @@ const DEFAULT_STATE: Record<number, Platform> = {
   6: { id: 6, name: 'Super Nintendo' },
   7: { id: 7, name: 'Playstation 5' },
   8: { id: 8, name: 'Wii' },
+  9: { id: 9, name: 'Nintendo 64' },
+  10: { id: 10, name: 'Nintendo' },
+  11: { id: 11, name: 'Game Boy' },
+  12: { id: 12, name: 'Game Boy Color' },
+  13: { id: 13, name: 'Game Boy Advance' },
 }
 
 let platforms = (state: State = DEFAULT_STATE, action: Action): State => {

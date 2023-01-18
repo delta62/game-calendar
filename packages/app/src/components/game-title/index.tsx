@@ -59,7 +59,7 @@ let GameTitle = ({ text, onChange }: Props) => {
   if (!editing) {
     return (
       <div className={styles.gameTitle} onClick={onTitleClick}>
-        <Chevron onClick={onBackClick} />
+        <Chevron direction="back" onClick={onBackClick} />
         <h1 className={styles.text}>{text}</h1>
         <Edit className={styles.icon} />
       </div>
@@ -67,7 +67,7 @@ let GameTitle = ({ text, onChange }: Props) => {
   } else {
     return (
       <>
-        <Chevron onClick={onBackClick} />
+        <Chevron direction="back" onClick={onBackClick} />
         <input
           type="text"
           ref={ref}
