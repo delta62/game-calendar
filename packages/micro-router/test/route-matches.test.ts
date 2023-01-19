@@ -1,4 +1,4 @@
-import routeMatches from '../src/route-matches'
+import routeMatches from '../lib/route-matches'
 
 describe('does not match', () => {
   test('when the given path is too long', () => {
