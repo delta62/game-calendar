@@ -11,23 +11,16 @@ export function Route(props: PropsWithChildren<RouteProps>) {
   let [isMatch, setIsMatch] = useState(false)
 
   useEffect(() => {
-    let routeParams = null
-    let routes: string[] = [].concat(props.path as any)
-
-    for (let route of routes) {
-      let params = routeMatches(route, path)
-      if (params) {
-        routeParams = params
-        break
-      }
-    }
+    let routes = ([] as string[]).concat(props.path)
+    let routeParams = routes
+      .map(route => routeMatches(route, path))
+      .find(x => !!x)
 
     if (routeParams) {
       setRouteParams(routeParams)
-      setIsMatch(true)
-    } else {
-      setIsMatch(false)
     }
+
+    setIsMatch(!!routeParams)
   }, [path, props.path])
 
   return isMatch ? <>{props.children}</> : null

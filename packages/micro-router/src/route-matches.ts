@@ -1,22 +1,20 @@
 import { RouteParams } from './context'
 
-let routeMatches = (path: string, currentPath: string) => {
-  let parts = path.split('/')
-  let currentParts = currentPath.split('/')
+let routeMatches = (routePath: string, currentPath: string) => {
+  let routeParts = routePath.split('/').filter(x => !!x)
+  let currentParts = currentPath.split('/').filter(x => !!x)
   let params: RouteParams = {}
 
-  for (let i = 0; i < parts.length; i++) {
-    let part = parts[i]!
+  if (routeParts.length !== currentParts.length) {
+    return false
+  }
+
+  for (let i = 0; i < routeParts.length; i++) {
+    let part = routeParts[i]!
     let test = currentParts[i]
     let isParam = part.startsWith(':')
-    let isOption = part.startsWith('?')
 
-    if (isOption) {
-      let key = part.substring(1)
-      if (test) {
-        params[key] = test
-      }
-    } else if (isParam) {
+    if (isParam) {
       let key = part.substring(1)
       params[key] = test ?? ''
     } else if (part !== test) {
