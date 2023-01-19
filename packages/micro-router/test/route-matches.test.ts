@@ -43,8 +43,23 @@ describe('matches', () => {
     expect(result).toEqual({})
   })
 
+  test('when the leading slash is missing', () => {
+    let result = routeMatches('route/to/page', '/route/to/page')
+    expect(result).toEqual({})
+  })
+
   test('when a trailing slash is present', () => {
     let result = routeMatches('/route/to/page', '/route/to/page/')
+    expect(result).toEqual({})
+  })
+
+  test('when both leading and trailing slashes are added', () => {
+    let result = routeMatches('route/to/page', '/route/to/page/')
+    expect(result).toEqual({})
+  })
+
+  test('when both leading and trailing slashes are removed', () => {
+    let result = routeMatches('/route/to/page/', 'route/to/page')
     expect(result).toEqual({})
   })
 

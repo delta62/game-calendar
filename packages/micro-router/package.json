@@ -1,8 +1,8 @@
 {
   "name": "@delta62/micro-router",
   "version": "1.0.0",
-  "main": "dist/lib/index.js",
-  "typings": "dist/lib/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -23,6 +23,6 @@
   },
   "sideEffects": false,
   "files": [
-    "dist/lib/"
+    "dist/"
   ]
 }
