@@ -3,8 +3,9 @@
 A tiny router for React apps
 
 This library aims to provide the most useful high-level features of client-side
-routing without extra bells or whistles. If you are looking for a Cadillac
-router with nested routes and other more complex features, something such as
+routing without extra bells or whistles. It's about 3kb after minification, and
+has no dependencies. If you are looking for a Cadillac router with nested routes
+and other more complex features, something such as
 [`react-router`](https://www.npmjs.com/package/react-router) may be what you're
 looking for.
 
