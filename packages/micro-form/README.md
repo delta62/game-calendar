@@ -1,17 +1,21 @@
 # `forms`
 
-A tiny form library for Preact
+A tiny form library for React
 
 ## Usage
 
-Use the `<Form>` tag to create a Preact context, and embed `<FormItem>`s inside
+Use the `<Form>` tag to create a React context, and embed `<FormItem>`s inside
 of it:
 
-```js
+```tsx
 import { Form, FormItem } from '@delta62/micro-form'
 
 let MyForm = () => (
-  <Form onSubmit={(fields) => { console.log(fields) }}>
+  <Form
+    onSubmit={fields => {
+      console.log(fields)
+    }}
+  >
     <FormItem type="email" label="Email" name="email" />
     <FormItem type="password" label="Password" name="password" />
     <FormItem type="submit" label="Submit" />
@@ -37,7 +41,7 @@ let isFoo = (field, fields) => {
   return 'Must be "foo"'
 }
 
-<FormItem name="pw" type="password" validate={isFoo} />
+;<FormItem name="pw" type="password" validate={isFoo} />
 ```
 
 A validation function accepts two arguments - the value of the field being
@@ -49,7 +53,7 @@ A form value contains the following data:
 
 ```ts
 interface FormValue {
-    error: string | false
-    value: string
+  error: string | false
+  value: string
 }
 ```
