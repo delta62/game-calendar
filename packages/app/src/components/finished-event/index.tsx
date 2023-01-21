@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Button from '@components/button'
+import TimelineItem from '@components/timeline-item'
 import Time from '@components/time'
 
 export interface Props {
@@ -34,18 +34,23 @@ export default ({ game, time }: Props) => {
 
   if (time) {
     return (
-      <>
-        <p>Finished on {format(time, 'LLL do yyyy')}</p>
+      <TimelineItem
+        label={`Finished on ${format(time, 'LLL do yyyy')}`}
+        callToAction="Mark as unfinished"
+        callToActionClick={onUnfinishGame}
+        past={true}
+      >
         <Time value={finishDuration} onChange={onSetFinishDuration} />
-        <Button text="Mark as unfinished" onClick={onUnfinishGame} />
-      </>
+      </TimelineItem>
     )
   }
 
   return (
-    <>
-      <p>Not finished yet</p>
-      <Button text="Game cleared" type="primary" onClick={onFinishGame} />
-    </>
+    <TimelineItem
+      label="Not finished yet"
+      callToAction="Game cleared"
+      buttonType="primary"
+      callToActionClick={onFinishGame}
+    />
   )
 }

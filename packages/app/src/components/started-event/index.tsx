@@ -3,9 +3,7 @@ import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 
 import { actionCreators } from '@store'
-import Button from '@components/button'
-
-import styles from './styles.scss'
+import TimelineItem from '@components/timeline-item'
 
 export interface Props {
   game: number
@@ -26,17 +24,21 @@ export default ({ game, time }: Props) => {
 
   if (!time) {
     return (
-      <>
-        <p className={styles.label}>Not started yet</p>
-        <Button text="Start playing" type="primary" onClick={onStartPlaying} />
-      </>
+      <TimelineItem
+        label="Not started yet"
+        buttonType="primary"
+        callToAction="Start playing"
+        callToActionClick={onStartPlaying}
+      />
     )
   }
 
   return (
-    <>
-      <p className={styles.label}>Started on {format(time, 'LLL do yyyy')}</p>
-      <Button text="Stop playing" onClick={onStopPlaying} />
-    </>
+    <TimelineItem
+      label={`Started on ${format(time, 'LLL do yyyy')}`}
+      callToAction="Stop playing"
+      callToActionClick={onStopPlaying}
+      past={false}
+    />
   )
 }

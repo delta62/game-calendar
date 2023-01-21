@@ -1,0 +1,22 @@
+.label {
+  padding-bottom: 0.5rem;
+}
+
+.event {
+  border: 1px dashed #333;
+  padding: 1rem;
+  text-align: center;
+
+  &.past {
+    border-color: #666;
+    border-style: solid;
+
+    &:last-of-type {
+      border-color: #0cbd9c;
+    }
+  }
+}
+
+.time {
+  margin: 1rem;
+}

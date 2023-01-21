@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import classnames from 'classnames'
 import { useSelector } from 'react-redux'
 
 import { State, Event, selectors } from '@store'
@@ -22,21 +21,15 @@ let Timeline = ({ game }: Props) => {
     <div className={styles.timeline}>
       {events.map(event => (
         <Fragment key={event.type}>
-          <div
-            className={classnames(styles.event, {
-              [styles.finished]: !!event.time,
-            })}
-          >
-            {event.type === 'started' && (
-              <StartedEvent game={game} time={event.time} />
-            )}
-            {event.type === 'finished' && (
-              <FinishedEvent game={game} time={event.time} />
-            )}
-            {event.type === 'completed' && (
-              <CompletedEvent game={game} time={event.time} />
-            )}
-          </div>
+          {event.type === 'started' && (
+            <StartedEvent game={game} time={event.time} />
+          )}
+          {event.type === 'finished' && (
+            <FinishedEvent game={game} time={event.time} />
+          )}
+          {event.type === 'completed' && (
+            <CompletedEvent game={game} time={event.time} />
+          )}
           <span className={styles.line}></span>
         </Fragment>
       ))}

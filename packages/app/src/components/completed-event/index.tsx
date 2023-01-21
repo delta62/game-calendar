@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import { useSelector, useDispatch } from 'react-redux'
 
+import TimelineItem from '@components/timeline-item'
 import { State, actionCreators, selectors } from '@store'
-import Button from '@components/button'
 import Time from '@components/time'
 import { useCallback } from 'react'
 
@@ -34,18 +34,21 @@ export default ({ game, time }: Props) => {
 
   if (time) {
     return (
-      <>
-        <p>100% complete on {format(time, 'LLL do yyyy')}</p>
+      <TimelineItem
+        label={`100% complete on ${format(time, 'LLL do yyyy')}`}
+        callToAction="Mark as incomplete"
+        callToActionClick={onUncompleteGame}
+      >
         <Time value={completeDuration} onChange={onSetCompleteDuration} />
-        <Button text="Mark as incomplete" onClick={onUncompleteGame} />
-      </>
+      </TimelineItem>
     )
   }
 
   return (
-    <>
-      <p>Not 100% completed yet</p>
-      <Button text="Mark as 100% complete" onClick={onCompleteGame} />
-    </>
+    <TimelineItem
+      label="Not 100% completed yet"
+      callToAction="Mark as 100% complete"
+      callToActionClick={onCompleteGame}
+    ></TimelineItem>
   )
 }
