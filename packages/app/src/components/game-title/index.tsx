@@ -1,5 +1,4 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { Edit } from 'react-feather'
+import { useCallback, useContext } from 'react'
 import { RouteContext } from '@delta62/micro-router'
 
 import Chevron from '@components/chevron'
@@ -12,72 +11,44 @@ export interface Props {
 }
 
 let GameTitle = ({ text, onChange }: Props) => {
-  let [editing, setEditing] = useState(false)
   let { setPath } = useContext(RouteContext)
-
-  let ref = useRef<HTMLInputElement>(null)
-
-  let onBodyClick = useCallback(() => {
-    setEditing(false)
-  }, [ref, setEditing])
-
-  useEffect(() => {
-    document.addEventListener('click', onBodyClick)
-    return () => document.removeEventListener('click', onBodyClick)
-  }, [])
-
-  let onTitleClick = useCallback(
-    (event: React.MouseEvent) => {
-      if (!editing) {
-        setEditing(true)
-        setTimeout(() => ref.current?.select())
-      }
-      event.stopPropagation()
-    },
-    [editing, setEditing]
-  )
-
-  let onKeyUp = useCallback(
-    (event: React.KeyboardEvent) => {
-      switch (event.key) {
-        case 'Enter':
-          onChange(ref.current?.value ?? '')
-          setEditing(false)
-          break
-        case 'Escape':
-          setEditing(false)
-          break
-      }
-    },
-    [ref, onChange]
-  )
 
   let onBackClick = useCallback(() => {
     setPath('/')
   }, [setPath])
 
-  if (!editing) {
-    return (
-      <div className={styles.gameTitle} onClick={onTitleClick}>
-        <Chevron direction="back" onClick={onBackClick} />
-        <h1 className={styles.text}>{text}</h1>
-        <Edit className={styles.icon} />
-      </div>
-    )
-  } else {
-    return (
-      <>
-        <Chevron direction="back" onClick={onBackClick} />
-        <input
-          type="text"
-          ref={ref}
-          onClick={onTitleClick}
-          defaultValue={text}
-          onKeyUp={onKeyUp}
-        />
-      </>
-    )
-  }
+  let onBlur = useCallback(
+    (event: React.FormEvent) => {
+      let content = event.currentTarget.textContent || ''
+      if (content === text) return
+      onChange(content)
+    },
+    [text, onChange]
+  )
+
+  let onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLHeadingElement>) => {
+      if (event.key !== 'Enter') return
+      event.currentTarget.blur()
+      event.preventDefault()
+    },
+    []
+  )
+
+  return (
+    <div className={styles.gameTitle}>
+      <Chevron direction="back" onClick={onBackClick} />
+      <h1
+        contentEditable
+        onKeyDown={onKeyDown}
+        onBlur={onBlur}
+        suppressContentEditableWarning={true}
+        className={styles.text}
+      >
+        {text}
+      </h1>
+    </div>
+  )
 }
 
 export default GameTitle

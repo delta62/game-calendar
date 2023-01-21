@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { actionCreators } from '@store'
 import Button from '@components/button'
 
+import styles from './styles.scss'
+
 export interface Props {
   game: number
   time?: number
@@ -25,7 +27,7 @@ export default ({ game, time }: Props) => {
   if (!time) {
     return (
       <>
-        <p>Not started yet</p>
+        <p className={styles.label}>Not started yet</p>
         <Button text="Start playing" type="primary" onClick={onStartPlaying} />
       </>
     )
@@ -33,7 +35,7 @@ export default ({ game, time }: Props) => {
 
   return (
     <>
-      <p>Started on {format(time, 'LLL do yyyy')}</p>
+      <p className={styles.label}>Started on {format(time, 'LLL do yyyy')}</p>
       <Button text="Stop playing" onClick={onStopPlaying} />
     </>
   )

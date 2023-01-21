@@ -3,15 +3,16 @@
 }
 
 .icon {
-  color: #e5c412;
+  color: var(--light-glyph-color);
   cursor: pointer;
   margin-right: 0.1rem;
 }
 
 .unrated .icon {
-  color: var(--foreground-color);
+  color: var(--light-glyph-color);
 }
 
 .filled {
+  color: #e5c412;
   fill: #e5c412;
 }

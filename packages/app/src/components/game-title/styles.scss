@@ -4,14 +4,12 @@
   align-items: center;
   color: #ddd;
   display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .text {
   margin-right: 1rem;
-}
-
-.icon {
-  cursor: pointer;
 }
 
 @include mobile {

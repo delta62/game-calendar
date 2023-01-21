@@ -15,7 +15,7 @@ let root = createRoot(appNode)
 root.render(
   <RouteProvider>
     <Provider store={store}>
-      <Route path={['/games/?game', '/']}>
+      <Route path={['/games/:game', '/']}>
         <App />
       </Route>
       <Route path="/login">
