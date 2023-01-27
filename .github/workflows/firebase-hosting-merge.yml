@@ -1,5 +1,5 @@
 name: Deploy to Firebase Hosting on merge
-"on":
+'on':
   push:
     branches:
       - main
@@ -17,12 +17,13 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: "^7.26.1"
-          run_install: false
+          version: '^7.26.1'
+          run_install: true
+      - run: cd packages/app
       - run: pnpm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMECAL_DBDD6 }}"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMECAL_DBDD6 }}'
           channelId: live
           projectId: gamecal-dbdd6
