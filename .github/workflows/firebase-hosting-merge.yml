@@ -19,16 +19,16 @@ jobs:
         with:
           version: '^7.26.1'
           run_install: true
-      - name: Build source
-        working-directory: ./packages/app
-        run: pnpm run build
-      - name: Populate firebase keys
+      - name: Populate Firebase settings
         working-directory: ./packages/app
         run: >
           echo '{
             "__PROJECT_ID__": "${{ secrets.FIREBASE_PROJECT_ID }}",
             "__API_KEY__": "${{ secrets.FIREBASE_API_KEY }}"
           }' > firebase-config.json
+      - name: Build source
+        working-directory: ./packages/app
+        run: pnpm run build
       - name: Deploy to Firebase hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
