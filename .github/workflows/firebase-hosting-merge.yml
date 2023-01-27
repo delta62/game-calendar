@@ -31,8 +31,8 @@ jobs:
           }' > firebase-config.json
       - name: Deploy to Firebase hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
-        working-directory: ./packages/app
         with:
+          entryPoint: ./packages/app
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMECAL_DBDD6 }}'
           channelId: live
