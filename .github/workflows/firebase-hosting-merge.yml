@@ -19,10 +19,11 @@ jobs:
         with:
           version: '^7.26.1'
           run_install: true
-      - run: cd packages/app
       - name: Build source
+        working-directory: ./packages/app
         run: pnpm run build
       - name: Populate firebase keys
+        working-directory: ./packages/app
         run: >
           echo '{
             "__PROJECT_ID__": "${{ secrets.FIREBASE_PROJECT_ID }}",
@@ -30,6 +31,7 @@ jobs:
           }' > firebase-config.json
       - name: Deploy to Firebase hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
+        working-directory: ./packages/app
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMECAL_DBDD6 }}'
