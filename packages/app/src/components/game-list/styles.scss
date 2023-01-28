@@ -4,6 +4,7 @@
 }
 
 .game-list {
+  overflow-x: hidden;
   overflow-y: auto;
   background-color: #222; /* for scrollbar */
 }
