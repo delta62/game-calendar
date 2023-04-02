@@ -1,6 +1,6 @@
 {
   "name": "@delta62/micro-form",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A tiny form library for React",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "homepage": "",
