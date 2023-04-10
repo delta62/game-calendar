@@ -11,6 +11,8 @@ export interface FirebaseRequest {
 
 export interface ListRequest extends FirebaseRequest {
   nextPageToken?: string
+  orderBy?: string
+  pageSize?: number
 }
 
 export interface ListResponse<T> {
@@ -28,7 +30,7 @@ export interface UpdateRequest<T extends {}> extends FirebaseRequest {
 }
 
 let buildUrl = (projectId: string, path: string, query?: URLSearchParams) => {
-  let q = query ? `?${query.toString()}` : ''
+  let q = query ? `?${query}` : ''
   return `${API_ROOT}/projects/${projectId}/databases/(default)/documents/${path}${q}`
 }
 
@@ -38,8 +40,12 @@ export let list =
     path,
     authToken,
     nextPageToken,
+    orderBy,
+    pageSize,
   }: ListRequest): Promise<ListResponse<T>> => {
-    let query = new URLSearchParams({ orderBy: 'id' })
+    let query = new URLSearchParams()
+    orderBy != null && query.append('orderBy', orderBy)
+    pageSize != null && query.append('pageSize', `${pageSize}`)
 
     if (nextPageToken) {
       query.append('pageToken', nextPageToken)

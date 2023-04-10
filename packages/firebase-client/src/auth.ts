@@ -1,7 +1,11 @@
 import { json, jsonBody, formBody, method } from './http'
-import { LoginResponse, RefreshResponse, SignupResponse } from './models'
+import {
+  LoginResponse as ModelLoginResponse,
+  RefreshResponse as ModelRefreshResponse,
+  SignupResponse as ModelSignupResponse,
+} from './models'
 
-export interface Login {
+export interface LoginResponse {
   email: string
   localId: string
   idToken: string
@@ -9,13 +13,12 @@ export interface Login {
   expires: number
 }
 
-export type Signup = Login
+export type SignupResponse = LoginResponse
 
-export interface Refresh {
-  refreshToken: string
-  idToken: string
-  expires: number
-}
+export type RefreshResponse = Pick<
+  LoginResponse,
+  'refreshToken' | 'idToken' | 'expires'
+>
 
 const ACCOUNTS_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts'
 
@@ -25,8 +28,8 @@ let parseExpires = (expires: string): number => {
 
 export let signup =
   (apiKey: string) =>
-  async (email: string, password: string): Promise<Signup> => {
-    let response = await json<SignupResponse>(
+  async (email: string, password: string): Promise<SignupResponse> => {
+    let response = await json<ModelSignupResponse>(
       `${ACCOUNTS_ENDPOINT}:signUp?key=${apiKey}`,
       method('POST'),
       jsonBody({
@@ -41,8 +44,8 @@ export let signup =
 
 export let login =
   (apiKey: string) =>
-  async (email: string, password: string): Promise<Login> => {
-    let response = await json<LoginResponse>(
+  async (email: string, password: string): Promise<LoginResponse> => {
+    let response = await json<ModelLoginResponse>(
       `${ACCOUNTS_ENDPOINT}:signInWithPassword?key=${apiKey}`,
       method('POST'),
       jsonBody({
@@ -57,8 +60,8 @@ export let login =
 
 export let refreshToken =
   (apiKey: string) =>
-  async (refreshToken: string): Promise<Refresh> => {
-    let response = await json<RefreshResponse>(
+  async (refreshToken: string): Promise<RefreshResponse> => {
+    let response = await json<ModelRefreshResponse>(
       `https://securetoken.googleapis.com/v1/token?key=${apiKey}`,
       method('POST'),
       formBody({
