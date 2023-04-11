@@ -19,21 +19,21 @@ export default (response: MapValueInternal): any => {
   }, {} as Record<string, any>)
 }
 
-let unwrap = (response: Value) => {
+let unwrap = <T = unknown>(response: Value): T => {
   if (isStringValue(response)) {
-    return response.stringValue
+    return response.stringValue as T
   }
 
   if (isIntegerValue(response)) {
-    return parseInt(response.integerValue, 10)
+    return parseInt(response.integerValue, 10) as T
   }
 
   if (isDoubleValue(response)) {
-    return parseFloat(response.doubleValue)
+    return parseFloat(response.doubleValue) as T
   }
 
   if (isArrayValue(response)) {
-    response.arrayValue.values?.map(unwrap) ?? []
+    return response.arrayValue.values?.map(unwrap) as T
   }
 
   if (isMapValue(response)) {
@@ -44,13 +44,13 @@ let unwrap = (response: Value) => {
           return acc
         },
         {} as Record<string, any>
-      )
+      ) as T
     }
-    return {}
+    return {} as T
   }
 
   if (isNullValue(response)) {
-    return null
+    return null as T
   }
 
   throw new Error('Unexpected field type')
