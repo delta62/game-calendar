@@ -1,4 +1,4 @@
-export { RouteContext } from './context'
+export { RouteContext, useParams } from './context'
 export { Route } from './route'
 export { Anchor } from './anchor'
 export { Redirect } from './redirect'
