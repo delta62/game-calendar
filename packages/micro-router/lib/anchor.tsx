@@ -10,7 +10,7 @@ import { RouteContext } from './context'
 interface AnchorProps {
   className?: string
   href: string
-  query?: Record<string, string | number>
+  query?: Record<string, string | number | undefined>
 }
 
 export function Anchor({
