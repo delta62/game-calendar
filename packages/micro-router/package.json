@@ -1,6 +1,6 @@
 {
   "name": "@delta62/micro-router",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
