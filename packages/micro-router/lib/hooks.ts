@@ -18,12 +18,12 @@ let searchToRecord = (search: string): QueryParams => {
 }
 
 export let useQueryParams = (): QueryParams => {
-  let [params, setParams] = useState<QueryParams>()
+  let [params, setParams] = useState<QueryParams>({})
 
   useEffect(() => {
     let query = searchToRecord(window.location.search)
     setParams(query)
   }, [window.location.search])
 
-  return params!
+  return params
 }
