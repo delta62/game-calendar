@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 
 export type RouteParams = Record<string, string>
 
@@ -17,8 +17,3 @@ export let RouteContext = createContext<RouteContextState>({
 })
 
 RouteContext.displayName = 'Router'
-
-export let useParams = () => {
-  let { params } = useContext(RouteContext)
-  return params
-}
