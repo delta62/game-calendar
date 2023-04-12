@@ -2,6 +2,7 @@ import { RouteContext, RouteParams } from './context'
 import { useContext, useEffect, useState } from 'react'
 
 export type QueryParams = Record<string, string>
+export type MaybeQueryParams = Record<string, string | undefined>
 
 export let useParams = (): RouteParams => {
   let { params } = useContext(RouteContext)
@@ -17,7 +18,7 @@ let searchToRecord = (search: string): QueryParams => {
   }, {})
 }
 
-export let useQueryParams = (): QueryParams => {
+export let useQueryParams = (): MaybeQueryParams => {
   let [params, setParams] = useState<QueryParams>({})
 
   useEffect(() => {
@@ -26,4 +27,29 @@ export let useQueryParams = (): QueryParams => {
   }, [window.location.search])
 
   return params
+}
+
+export interface RedirectArgs<Q extends QueryParams = {}> {
+  query?: Q
+  to: string
+  when?: boolean
+}
+
+export let useRedirect = <Q extends QueryParams = {}>(
+  args: RedirectArgs<Q>
+) => {
+  let { setPath } = useContext(RouteContext)
+
+  useEffect(() => {
+    if (!args.when) return
+
+    let params = Object.entries(args.query ?? {})
+    let url = new URL(args.to)
+
+    for (let [key, value] of params) {
+      url.searchParams.append(key, `${value}`)
+    }
+
+    setPath(args.to)
+  }, [args])
 }

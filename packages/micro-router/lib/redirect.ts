@@ -1,19 +1,11 @@
-import { useContext, useEffect } from 'react'
-import { RouteContext } from './context'
+import { useRedirect, RedirectArgs, QueryParams } from './hooks'
 
-interface RedirectProps {
-  to: string
-  when?: boolean
-}
-
-export function Redirect({ to, when = true }: RedirectProps) {
-  let { setPath } = useContext(RouteContext)
-
-  useEffect(() => {
-    if (when) {
-      setPath(to)
-    }
-  }, [to, when])
+export let Redirect = <T extends QueryParams = {}>({
+  to,
+  when = true,
+  query,
+}: RedirectArgs<T>) => {
+  useRedirect({ to, when, query })
 
   return null
 }
