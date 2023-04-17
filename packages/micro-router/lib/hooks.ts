@@ -43,8 +43,10 @@ export let useRedirect = <Q extends QueryParams = {}>(
   useEffect(() => {
     if (!args.when) return
 
+    let path = args.to.startsWith('/') ? args.to : `/${args.to}`
+    let { origin } = window.location
+    let url = new URL(`${origin}${path}`)
     let params = Object.entries(args.query ?? {})
-    let url = new URL(args.to)
 
     for (let [key, value] of params) {
       url.searchParams.append(key, `${value}`)
