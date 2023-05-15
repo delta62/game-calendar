@@ -1,4 +1,13 @@
-import { bearer, req, post, del, patch, jsonBody, json } from './http'
+import {
+  anonymous,
+  bearer,
+  req,
+  post,
+  del,
+  patch,
+  jsonBody,
+  json,
+} from './http'
 import unwrap from './unwrap'
 import wrap from './wrap'
 
@@ -6,7 +15,7 @@ const API_ROOT = 'https://firestore.googleapis.com/v1'
 
 export interface FirebaseRequest {
   path: string
-  authToken: string
+  authToken?: string
 }
 
 export interface ListRequest extends FirebaseRequest {
@@ -52,7 +61,8 @@ export let list =
     }
 
     let url = buildUrl(projectId, path, query)
-    let response: any = await json(url, bearer(authToken))
+    let auth = authToken ? bearer(authToken) : anonymous
+    let response: any = await json(url, auth)
     let documents = (response.documents ?? []).map(unwrap)
     let nextPage = response.nextPageToken
 
@@ -69,14 +79,16 @@ export let create =
   }: CreateRequest<T>): Promise<void> => {
     let query = new URLSearchParams({ documentId })
     let url = buildUrl(projectId, path, query)
-    await req(url, post, bearer(authToken), jsonBody(wrap(document)))
+    let auth = authToken ? bearer(authToken) : anonymous
+    await req(url, post, auth, jsonBody(wrap(document)))
   }
 
 export let drop =
   (projectId: string) =>
   async ({ path, authToken }: FirebaseRequest): Promise<void> => {
     let url = buildUrl(projectId, path)
-    await req(url, del, bearer(authToken))
+    let auth = authToken ? bearer(authToken) : anonymous
+    await req(url, del, auth)
   }
 
 export let update =
@@ -96,5 +108,6 @@ export let update =
       name: path,
       ...wrap(document),
     }
-    await req(url, patch, bearer(authToken), jsonBody(body))
+    let auth = authToken ? bearer(authToken) : anonymous
+    await req(url, patch, auth, jsonBody(body))
   }

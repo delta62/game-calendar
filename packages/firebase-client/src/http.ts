@@ -77,6 +77,8 @@ export let bearer =
     },
   })
 
+export let anonymous: RequestBuilder = init => init
+
 export let post = method('POST')
 export let patch = method('PATCH')
 export let del = method('DELETE')
