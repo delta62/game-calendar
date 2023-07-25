@@ -2,13 +2,22 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "es2015",
-    "composite": true,
 
     "jsx": "react-jsx",
 
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@context/*": ["context/*"],
+      "@hoc/*": ["hoc/*"],
+      "@store": ["store/index"]
+    },
 
     "strict": true,
     "noUnusedLocals": true,
