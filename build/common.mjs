@@ -7,6 +7,8 @@ import chalk from 'chalk'
 
 let pkgFile = await fs.readFile('./package.json', { encoding: 'utf-8' })
 let pkg = JSON.parse(pkgFile)
+let cfgFile = await fs.readFile('./firebase-config.json', { encoding: 'utf-8' })
+let cfg = JSON.parse(cfgFile)
 
 export let appName = () => pkg.name
 
@@ -31,7 +33,6 @@ export let buildOptions = ({
   metafile = false,
 }) => {
   let watch = !isProduction
-  let host = isProduction ? 'https://when.hockey' : 'http://localhost:8080'
 
   return {
     entryPoints: ['src/index.tsx'],
@@ -44,10 +45,8 @@ export let buildOptions = ({
       '.svg': 'text',
     },
     define: {
-      API_ROOT: '"https://nhlcal-api.fly.dev"',
-      FRONTEND_HOST: JSON.stringify(host),
-      PRODUCTION: JSON.stringify(isProduction),
-      VERSION: `"${pkg.version}"`,
+      __PROJECT_ID__: `"${cfg.__PROJECT_ID__}"`,
+      __API_KEY__: `"${cfg.__API_KEY__}"`,
     },
     plugins: [
       clean({
