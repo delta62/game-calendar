@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import AddGame from '@components/add-game'
 import Details from '@components/details'
-import GameList from '@components/game-list'
+import { AllGamesList } from '@components/game-list'
 import { selectors } from '@store'
 
 import styles from './styles.scss'
@@ -27,7 +27,7 @@ let App = () => {
       <Redirect to="/login" when={!isLoggedIn} />
       <section className={styles.sidebar}>
         <AddGame />
-        <GameList />
+        <AllGamesList />
       </section>
       <section className={styles.mainPane}>
         <Details gameId={game} />

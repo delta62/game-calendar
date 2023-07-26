@@ -9,6 +9,12 @@ import SignUpPage from '@components/sign-up-page'
 
 import '../global.scss'
 
+if (DEVELOPMENT) {
+  new EventSource('/esbuild').addEventListener('change', () =>
+    location.reload()
+  )
+}
+
 let appNode = document.getElementById('app')!
 
 let root = createRoot(appNode)

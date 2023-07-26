@@ -9,7 +9,43 @@ export let getGame = (state: State, id: number | null): Game | null => {
   }
 }
 
-export let getGames = (state: State): number[] => state.games.allIds
+let getGames = (state: State): number[] => state.games.allIds
+
+export let startedGames = (state: State): Game[] => {
+  let allIds = getGames(state)
+
+  return allIds
+    .filter(id => {
+      let game = state.games.byId[id]
+      return game?.started && !game?.finished
+    })
+    .map(id => state.games.byId[id]!)
+    .sort((a, b) => b.started! - a.started!)
+}
+
+export let backlogGames = (state: State): Game[] => {
+  let allIds = getGames(state)
+
+  return allIds
+    .filter(id => {
+      let game = state.games.byId[id]
+      return !game?.started
+    })
+    .map(id => state.games.byId[id]!)
+    .sort((a, b) => a.id - b.id)
+}
+
+export let finishedGames = (state: State): Game[] => {
+  let allIds = getGames(state)
+
+  return allIds
+    .filter(id => {
+      let game = state.games.byId[id]
+      return game?.finished
+    })
+    .map(id => state.games.byId[id]!)
+    .sort((a, b) => b.finished! - a.finished!)
+}
 
 export let getEvents = (state: State, id: number): Event[] => {
   let game = state.games.byId[id]

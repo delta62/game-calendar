@@ -47,6 +47,7 @@ export let buildOptions = ({
     define: {
       __PROJECT_ID__: `"${cfg.__PROJECT_ID__}"`,
       __API_KEY__: `"${cfg.__API_KEY__}"`,
+      DEVELOPMENT: JSON.stringify(!isProduction),
     },
     plugins: [
       clean({

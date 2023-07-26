@@ -1,21 +1,37 @@
 import { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { actionCreators, selectors } from '@store'
+import { actionCreators, Game, selectors } from '@store'
+import { ListGroup } from '@components/list-group'
 import GameListItem from '@components/game-list-item'
-import { DragProvider } from '@hoc/draggable'
 
 import styles from './styles.scss'
 
-export interface Props {
-  games: number[]
-  hasNextPage: boolean
-  nextPage: string | null
+export let AllGamesList = () => {
+  let startedGames = useSelector(selectors.startedGames)
+  let backlogGames = useSelector(selectors.backlogGames)
+  let finishedGames = useSelector(selectors.finishedGames)
+
+  return (
+    <div>
+      <ListGroup name="In Progress">
+        <GameList games={startedGames} />
+      </ListGroup>
+      <ListGroup name="Backlog">
+        <GameList games={backlogGames} />
+      </ListGroup>
+      <ListGroup name="Finished">
+        <GameList games={finishedGames} />
+      </ListGroup>
+    </div>
+  )
 }
 
-let GameList = () => {
+export interface GameListProps {
+  games: Game[]
+}
+
+let GameList = ({ games }: GameListProps) => {
   let dispatch = useDispatch()
-  let games = useSelector(selectors.getGames)
   let hasNextPage = useSelector(selectors.hasNextPage)
   let nextPage = useSelector(selectors.getNextPage)
 
@@ -49,13 +65,11 @@ let GameList = () => {
   return (
     <div className={styles.scrollWrapper} onScroll={onScroll}>
       <div className={styles.gameList}>
-        <DragProvider>
-          <ol>
-            {games.map(id => (
-              <GameListItem key={id} gameId={id} />
-            ))}
-          </ol>
-        </DragProvider>
+        <ol>
+          {games.map(game => (
+            <GameListItem key={game.id} gameId={game.id} />
+          ))}
+        </ol>
       </div>
     </div>
   )
