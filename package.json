@@ -34,7 +34,8 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
     "redux-localstorage": "^0.4.1",
-    "redux-saga": "^1.2.2"
+    "redux-saga": "^1.2.2",
+    "reselect": "^4.1.8"
   },
   "prettier": {
     "semi": false,

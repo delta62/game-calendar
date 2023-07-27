@@ -1,5 +1,6 @@
 import { Event, Game } from './models'
 import { State } from '../models'
+import { createSelector } from 'reselect'
 
 export let getGame = (state: State, id: number | null): Game | null => {
   if (id != null) {
@@ -9,71 +10,77 @@ export let getGame = (state: State, id: number | null): Game | null => {
   }
 }
 
-let getGames = (state: State): number[] => state.games.allIds
+let selectAllIds = (state: State) => state.games.allIds
+let selectAllGames = (state: State) => state.games.byId
 
-export let startedGames = (state: State): Game[] => {
-  let allIds = getGames(state)
+export let startedGames = createSelector(
+  selectAllIds,
+  selectAllGames,
+  (ids, games) =>
+    ids
+      .filter(id => {
+        let game = games[id]
+        return game?.started && !game?.finished
+      })
+      .map(id => games[id]!)
+      .sort((a, b) => b.started! - a.started!)
+)
 
-  return allIds
-    .filter(id => {
-      let game = state.games.byId[id]
-      return game?.started && !game?.finished
-    })
-    .map(id => state.games.byId[id]!)
-    .sort((a, b) => b.started! - a.started!)
-}
+export let backlogGames = createSelector(
+  selectAllIds,
+  selectAllGames,
+  (ids, games) =>
+    ids
+      .filter(id => {
+        let game = games[id]
+        return !game?.started
+      })
+      .map(id => games[id]!)
+      .sort((a, b) => a.id - b.id)
+)
 
-export let backlogGames = (state: State): Game[] => {
-  let allIds = getGames(state)
+export let finishedGames = createSelector(
+  selectAllIds,
+  selectAllGames,
+  (ids, games) =>
+    ids
+      .filter(id => {
+        let game = games[id]
+        return game?.finished
+      })
+      .map(id => games[id]!)
+      .sort((a, b) => b.finished! - a.finished!)
+)
 
-  return allIds
-    .filter(id => {
-      let game = state.games.byId[id]
-      return !game?.started
-    })
-    .map(id => state.games.byId[id]!)
-    .sort((a, b) => a.id - b.id)
-}
+export let getEvents = createSelector(
+  selectAllGames,
+  (_: State, gameId: number) => gameId,
+  (games, gameId) => {
+    let game = games[gameId]
+    let started: Event = { type: 'started' }
+    let ret = [started]
 
-export let finishedGames = (state: State): Game[] => {
-  let allIds = getGames(state)
+    if (!game) return ret
 
-  return allIds
-    .filter(id => {
-      let game = state.games.byId[id]
-      return game?.finished
-    })
-    .map(id => state.games.byId[id]!)
-    .sort((a, b) => b.finished! - a.finished!)
-}
+    if (game.started) {
+      started.time = game.started
 
-export let getEvents = (state: State, id: number): Event[] => {
-  let game = state.games.byId[id]
-  let started: Event = { type: 'started' }
-  let ret = [started]
+      ret.push({
+        type: 'finished',
+        time: game.finished,
+      })
+    }
 
-  if (!game) {
+    if (game.finished) {
+      ret.push({
+        type: 'completed',
+        time: game.completed,
+      })
+    }
+
     return ret
   }
-
-  if (game.started) {
-    started.time = game.started
-
-    ret.push({
-      type: 'finished',
-      time: game.finished,
-    })
-  }
-
-  if (game.finished) {
-    ret.push({
-      type: 'completed',
-      time: game.completed,
-    })
-  }
-
-  return ret
-}
+)
 
 export let hasGames = (state: State): boolean => state.games.allIds.length > 0
 
