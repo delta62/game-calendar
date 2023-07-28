@@ -30,9 +30,9 @@ let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
       ref={ref}
       className={styles.dropdown}
       onChange={onChangeCb}
-      value={selected}
+      value={selected ?? ''}
     >
-      <option>{emptyLabel}</option>
+      <option value="">{emptyLabel}</option>
       {options.map(({ name, value }: Option) => (
         <option key={value} value={value}>
           {name}
