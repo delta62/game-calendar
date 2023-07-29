@@ -5,26 +5,33 @@ import Page from '@components/page'
 import { minLength } from '../../validators'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators, selectors } from '@store'
+import { useFormTheme } from 'hooks/form-theme'
 
 import styles from './styles.scss'
+
+interface FormValues {
+  email: string
+  password: string
+}
 
 let passwordValidator = minLength(8)
 
 let LoginPage = () => {
+  let classNames = useFormTheme()
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
-  let onLogin = useDispatch()
+  let dispatch = useDispatch()
 
   let onSubmit = useCallback(
-    (values: Record<string, string>) => {
-      onLogin(actionCreators.loginRequest(values.email!, values.password!))
+    ({ email, password }: FormValues) => {
+      dispatch(actionCreators.loginRequest(email, password))
     },
-    [onLogin]
+    [dispatch]
   )
 
   return (
     <Page title="Log in">
       <Redirect to="/" when={isLoggedIn} />
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} classNames={classNames}>
         <FormItem type="email" label="Email" name="email" />
         <FormItem
           type="password"

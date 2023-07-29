@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+
+  :disabled {
+    border-color: #444;
+    color: #444;
+  }
+}
+
+.item {
+  &.invalid.touched {
+    color: red;
+  }
+
+  & > label {
+    display: flex;
+  }
+
+  &.invalid:not(.touched) .validation-error {
+    visibility: hidden;
+  }
+}
+
+.validation-error {
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.label {
+  width: 6rem;
+}
+
+.field {
+  flex-grow: 1;
+}

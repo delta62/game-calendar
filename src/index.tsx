@@ -5,7 +5,7 @@ import { Route, RouteProvider } from '@delta62/micro-router'
 import store from '@store'
 import App from '@components/app'
 import LoginPage from '@components/login-page'
-import SignUpPage from '@components/sign-up-page'
+import { SignUpPage } from '@components/sign-up-page'
 
 import '../global.scss'
 
