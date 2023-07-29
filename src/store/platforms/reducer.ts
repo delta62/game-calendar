@@ -1,8 +1,8 @@
-import { Action } from 'redux'
+import { Platform } from './models'
 
-import { State, Platform } from './models'
+export type State = Record<number, Platform>
 
-const DEFAULT_STATE: Record<number, Platform> = {
+const DEFAULT_STATE: State = {
   0: { id: 0, name: 'Gamecube' },
   1: { id: 1, name: 'PC' },
   2: { id: 2, name: 'Playstation' },
@@ -19,11 +19,4 @@ const DEFAULT_STATE: Record<number, Platform> = {
   13: { id: 13, name: 'Game Boy Advance' },
 }
 
-let platforms = (state: State = DEFAULT_STATE, action: Action): State => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
-export default platforms
+export let reducer = (state: State = DEFAULT_STATE) => state

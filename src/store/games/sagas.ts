@@ -105,11 +105,9 @@ function* watchDelete(): SagaIterator {
   yield takeEvery(DELETE_GAME, deleteGame)
 }
 
-function* gamesSaga(): SagaIterator {
+export function* saga(): SagaIterator {
   yield fork(watchLogin)
   yield fork(watchUpdate)
   yield fork(watchAdd)
   yield fork(watchDelete)
 }
-
-export default gamesSaga

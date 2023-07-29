@@ -15,12 +15,6 @@ export interface NextPage {
   next: string | null
 }
 
-export interface State {
-  allIds: number[]
-  byId: Record<number, Game>
-  nextPage: NextPage
-}
-
 export interface Event {
   type: 'started' | 'finished' | 'completed'
   time?: number

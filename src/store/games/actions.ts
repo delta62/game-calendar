@@ -7,7 +7,6 @@ export const DELETE_GAME = 'DELETE_GAME'
 export const FETCH_ERROR = 'FETCH_ERROR'
 export const FETCH_REQUEST = 'FETCH_REQUEST'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
-export const REORDER_GAME = 'REORDER_GAME'
 export const SELECT_GAME = 'SELECT_GAME'
 export const UPDATE_ERROR = 'UPDATE_ERROR'
 export const UPDATE_GAME = 'UPDATE_GAME'
@@ -34,12 +33,6 @@ export interface DeleteGame extends Action<typeof DELETE_GAME> {
   id: number
 }
 
-export interface ReorderGame extends Action<typeof REORDER_GAME> {
-  id: number
-  before: boolean
-  target: number
-}
-
 export interface FetchRequest extends Action<typeof FETCH_REQUEST> {
   nextPage: string | null
 }
@@ -63,7 +56,6 @@ type AppAction =
   | FetchError
   | FetchRequest
   | FetchSuccess
-  | ReorderGame
   | SelectGame
   | UpdateError
   | UpdateGame

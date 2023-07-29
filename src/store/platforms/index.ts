@@ -1,3 +1,2 @@
-export { State } from './models'
-export { default as reducer } from './reducer'
+export { reducer, State } from './reducer'
 export * as selectors from './selectors'

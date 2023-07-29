@@ -5,7 +5,6 @@ import {
   FETCH_ERROR,
   FETCH_REQUEST,
   FETCH_SUCCESS,
-  REORDER_GAME,
   SELECT_GAME,
   UPDATE_ERROR,
   UPDATE_GAME,
@@ -14,7 +13,6 @@ import {
   FetchError,
   FetchRequest,
   FetchSuccess,
-  ReorderGame,
   SelectGame,
   UpdateError,
   UpdateGame,
@@ -130,15 +128,4 @@ export let setCompleteDuration = (
     id,
     completeDuration,
   },
-})
-
-export let reorderGame = (
-  id: number,
-  before: boolean,
-  target: number
-): ReorderGame => ({
-  type: REORDER_GAME,
-  id,
-  before,
-  target,
 })

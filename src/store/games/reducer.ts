@@ -1,14 +1,14 @@
-import { Reducer, combineReducers } from 'redux'
-
+import { combineReducers } from 'redux'
 import Action, {
   ADD_GAME,
   DELETE_GAME,
   FETCH_SUCCESS,
-  REORDER_GAME,
+  FETCH_ERROR,
   UPDATE_GAME,
   UNRATE_GAME,
+  FETCH_REQUEST,
 } from './actions'
-import { Game, NextPage, State } from './models'
+import { Game, NextPage } from './models'
 
 type AllIds = number[]
 type ById = Record<number, Game>
@@ -19,17 +19,6 @@ let allIds = (state: AllIds = [], action: Action): AllIds => {
       return [...state, action.id]
     case DELETE_GAME:
       return state.filter(x => x !== action.id)
-    case REORDER_GAME:
-      let newState = state.filter(x => x !== action.id)
-      let targetIdx = newState.findIndex(x => x === action.target)
-
-      if (!action.before) {
-        targetIdx += 1
-      }
-
-      newState.splice(targetIdx, 0, action.id)
-
-      return newState
     case FETCH_SUCCESS:
       return state.concat(action.games.map(game => game.id))
     default:
@@ -87,10 +76,35 @@ let nextPage = (
   }
 }
 
-let reducer: Reducer<State, Action> = combineReducers({
+let isLoading = (state: boolean = false, action: Action): boolean => {
+  switch (action.type) {
+    case FETCH_SUCCESS:
+    case FETCH_ERROR:
+      return false
+    case FETCH_REQUEST:
+      return true
+    default:
+      return state
+  }
+}
+
+let error = (state: unknown | null = null, action: Action): unknown | null => {
+  switch (action.type) {
+    case FETCH_ERROR:
+      return action.error
+    case FETCH_SUCCESS:
+      return null
+    default:
+      return state
+  }
+}
+
+export let reducer = combineReducers({
   byId,
   allIds,
   nextPage,
+  isLoading,
+  error,
 })
 
-export default reducer
+export type State = ReturnType<typeof reducer>

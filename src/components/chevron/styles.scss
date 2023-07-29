@@ -2,15 +2,10 @@
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(var(--ggs, 1));
   width: 22px;
   height: 22px;
   border: 2px solid transparent;
   border-radius: 100px;
-}
-
-.back {
-  transform: rotate(180deg);
 }
 
 .chevron::after {
@@ -25,4 +20,8 @@
   transform: rotate(-45deg);
   right: 6px;
   top: 4px;
+}
+
+.back {
+  transform: rotate(180deg);
 }

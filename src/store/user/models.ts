@@ -1,9 +1,3 @@
-export interface State {
-  data: User | null
-  error: Error | null
-  request: boolean
-}
-
 export interface User {
   email: string
   localId: string

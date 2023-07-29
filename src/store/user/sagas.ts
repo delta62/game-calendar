@@ -86,10 +86,8 @@ export function* idToken(): SagaIterator {
   return idToken
 }
 
-function* userSaga(): SagaIterator {
+export function* saga(): SagaIterator {
   yield fork(watchSignup)
   yield fork(watchRefresh)
   yield fork(watchLogin)
 }
-
-export default userSaga

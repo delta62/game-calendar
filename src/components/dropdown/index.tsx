@@ -1,5 +1,4 @@
 import { useCallback, useRef } from 'react'
-
 import styles from './styles.scss'
 
 export interface Option {

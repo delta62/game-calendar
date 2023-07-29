@@ -1,15 +1,17 @@
+@use 'colors';
+
 .rating {
   display: flex;
 }
 
 .icon {
-  color: var(--light-glyph-color);
+  color: colors.$glyph-light;
   cursor: pointer;
   margin-right: 0.1rem;
 }
 
 .unrated .icon {
-  color: var(--light-glyph-color);
+  color: colors.$glyph-light;
 }
 
 .filled {

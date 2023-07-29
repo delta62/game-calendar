@@ -57,4 +57,6 @@ let error = (state: ErrorState = null, action: Action): ErrorState => {
   }
 }
 
-export default combineReducers({ request, error, data })
+export let reducer = combineReducers({ request, error, data })
+
+export type State = ReturnType<typeof reducer>

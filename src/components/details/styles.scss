@@ -1,4 +1,4 @@
-@import '../../mixins';
+@use 'breakpoints';
 
 .details {
   padding: 1rem;
@@ -49,16 +49,24 @@
   justify-content: center;
 }
 
-@include mobile {
+.game-title {
+  margin-bottom: 0.5rem;
+}
+
+.elide {
+  display: none;
+}
+
+.spacer {
+  margin: 0 0.75rem;
+}
+
+@include breakpoints.tablet {
   .game-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .elide {
-    display: none;
-  }
-
-  .spacer {
-    margin: 0 0.75rem;
+    display: block;
   }
 }

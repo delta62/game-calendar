@@ -1,5 +1,5 @@
-@import 'src/mixins';
-@import 'src/forms';
+@use 'colors';
+@import 'reset';
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
 :root {
@@ -10,20 +10,14 @@
   --dark-glyph-color: #333;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html,
 body {
   height: 100%;
 }
 
 body {
-  background: var(--background-color);
-  color: var(--foreground-color);
+  background: colors.$bg;
+  color: colors.$fg;
   font-family: 'Titillium Web', sans-serif;
   font-size: 18px;
   min-width: 360px;
@@ -77,14 +71,12 @@ input[type='submit'] {
   }
 }
 
-@include mobile {
-  body {
-    display: block;
-    position: relative;
-    transition: transform 200ms;
-  }
+body {
+  display: block;
+  position: relative;
+  transition: transform 200ms;
+}
 
-  .game-selected {
-    transform: translateX(-100vw);
-  }
+.game-selected {
+  transform: translateX(-100vw);
 }
