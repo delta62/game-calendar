@@ -16,8 +16,8 @@ if (DEVELOPMENT) {
 }
 
 let appNode = document.getElementById('app')!
-
 let root = createRoot(appNode)
+
 root.render(
   <RouteProvider>
     <Provider store={store}>

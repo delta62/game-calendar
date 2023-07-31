@@ -12,7 +12,7 @@ export let AllGamesList = () => {
   let finishedGames = useSelector(selectors.finishedGames)
 
   return (
-    <div>
+    <div className={styles.gameList}>
       <ListGroup name="In Progress">
         <GameList games={startedGames} />
       </ListGroup>

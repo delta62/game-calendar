@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@delta62/firebase-client": "^1.1.0",
-    "@delta62/micro-form": "^1.3.0",
+    "@delta62/micro-form": "^1.4.0",
     "@delta62/micro-router": "^2.3.0",
     "@redux-devtools/extension": "^3.2.4",
     "classnames": "^2.3.2",
