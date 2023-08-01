@@ -95,3 +95,7 @@ export let getCompleteDuration = (
 export let getNextPage = (state: State) => state.games.nextPage.next
 
 export let hasNextPage = (state: State) => state.games.nextPage.hasNext
+
+export let getIsLoading = (state: State): boolean => {
+  return state.games.isLoading && state.games.allIds.length === 0
+}

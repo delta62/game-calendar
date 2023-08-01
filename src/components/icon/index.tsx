@@ -1,7 +1,9 @@
 import styles from './styles.scss'
 
+export type IconType = 'handle' | 'spinner'
+
 export interface Props {
-  type: 'handle'
+  type: IconType
 }
 
 let Icon = ({ type, ...props }: Props) => (

@@ -8,9 +8,11 @@ import { AllGamesList } from '@components/game-list'
 import { selectors } from '@store'
 
 import styles from './styles.scss'
+import { Splash } from '@components/splash'
 
 let App = () => {
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
+  let isLoading = useSelector(selectors.getIsLoading)
   let { params } = useContext(RouteContext)
   let game = params.game ? parseInt(params.game, 10) : null
 
@@ -32,6 +34,7 @@ let App = () => {
       <section className={styles.mainPane}>
         <Details gameId={game} />
       </section>
+      <Splash isLoading={isLoading} />
     </>
   )
 }
