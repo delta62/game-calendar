@@ -3,6 +3,7 @@ import { call, put, take, fork, select, takeLeading } from 'redux-saga/effects'
 import {
   login,
   refreshToken as refresh,
+  resetPassword as fbResetPassword,
   signup as fbSignup,
 } from '@delta62/firebase-client'
 
@@ -23,7 +24,9 @@ import {
   REFRESH_SUCCESS,
   SIGNUP_ERROR,
   SIGNUP_REQUEST,
+  FORGOT_PASSWORD,
   RefreshRequest,
+  ResetPasswordRequest,
 } from './actions'
 
 function* auth(email: string, password: string): SagaIterator {
@@ -41,6 +44,15 @@ function* signup(email: string, password: string): SagaIterator {
     yield put(signupSuccess(response))
   } catch (error) {
     yield put(signupError(error as Error))
+  }
+}
+
+function* forgotPassword({ email }: ResetPasswordRequest): SagaIterator {
+  try {
+    let response = yield call(fbResetPassword(__API_KEY__), email)
+    console.log({ message: 'reset email sent', response })
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -69,6 +81,10 @@ function* watchLogin(): SagaIterator {
   }
 }
 
+function* watchResetPassword(): SagaIterator {
+  yield takeLeading(FORGOT_PASSWORD, forgotPassword)
+}
+
 function* watchRefresh(): SagaIterator {
   yield takeLeading(REFRESH_REQUEST, refreshAuthToken)
 }
@@ -90,4 +106,5 @@ export function* saga(): SagaIterator {
   yield fork(watchSignup)
   yield fork(watchRefresh)
   yield fork(watchLogin)
+  yield fork(watchResetPassword)
 }

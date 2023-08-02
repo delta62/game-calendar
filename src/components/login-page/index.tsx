@@ -44,6 +44,9 @@ let LoginPage = () => {
       <Anchor className={styles.login} href="/signup">
         Sign up
       </Anchor>
+      <Anchor className={styles.login} href="/forgot">
+        Forgot password
+      </Anchor>
     </Page>
   )
 }

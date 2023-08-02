@@ -10,7 +10,7 @@
 }
 
 .item {
-  &.invalid.touched {
+  &:global(.invalid.touched) {
     color: red;
   }
 
@@ -18,7 +18,7 @@
     display: flex;
   }
 
-  &.invalid:not(.touched) .validation-error {
+  &:global(.invalid):not(:global(.touched)) .validation-error {
     visibility: hidden;
   }
 }
@@ -34,5 +34,5 @@
 }
 
 .field {
-  flex-grow: 1;
+  width: 100%;
 }

@@ -11,6 +11,7 @@ export const REFRESH_SUCCESS = 'REFRESH_SUCCESS'
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST'
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
 export const SIGNUP_ERROR = 'SIGNUP_ERROR'
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD'
 
 export interface SignupRequest extends Action<typeof SIGNUP_REQUEST> {
   email: string
@@ -50,6 +51,10 @@ export interface RefreshSuccess extends Action<typeof REFRESH_SUCCESS> {
   user: Partial<User>
 }
 
+export interface ResetPasswordRequest extends Action<typeof FORGOT_PASSWORD> {
+  email: string
+}
+
 type UserAction =
   | LoginError
   | LoginRequest
@@ -57,6 +62,7 @@ type UserAction =
   | RefreshError
   | RefreshRequest
   | RefreshSuccess
+  | ResetPasswordRequest
   | SignupSuccess
   | SignupError
   | SignupRequest

@@ -6,6 +6,7 @@ import store from '@store'
 import App from '@components/app'
 import LoginPage from '@components/login-page'
 import { SignUpPage } from '@components/sign-up-page'
+import { ForgotPasswordPage } from '@components/forgot-pw-page'
 
 import '../global.scss'
 
@@ -29,6 +30,9 @@ root.render(
       </Route>
       <Route path="/signup">
         <SignUpPage />
+      </Route>
+      <Route path="/forgot">
+        <ForgotPasswordPage />
       </Route>
     </Provider>
   </RouteProvider>

@@ -1,5 +1,6 @@
 import { Error, User } from './models'
 import {
+  FORGOT_PASSWORD,
   LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -18,6 +19,7 @@ import {
   SignupError,
   SignupRequest,
   SignupSuccess,
+  ResetPasswordRequest,
 } from './actions'
 
 export let signupRequest = (
@@ -68,4 +70,9 @@ export let refreshTokenSuccess = (user: Partial<User>): RefreshSuccess => ({
 export let refreshTokenError = (error: Error): RefreshError => ({
   type: REFRESH_ERROR,
   error,
+})
+
+export let forgotPassword = (email: string): ResetPasswordRequest => ({
+  type: FORGOT_PASSWORD,
+  email,
 })
