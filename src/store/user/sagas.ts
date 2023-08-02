@@ -49,8 +49,7 @@ function* signup(email: string, password: string): SagaIterator {
 
 function* forgotPassword({ email }: ResetPasswordRequest): SagaIterator {
   try {
-    let response = yield call(fbResetPassword(__API_KEY__), email)
-    console.log({ message: 'reset email sent', response })
+    yield call(fbResetPassword(__API_KEY__), email)
   } catch (error) {
     console.error(error)
   }

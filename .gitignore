@@ -12,4 +12,3 @@ firebase-config.json
 node_modules
 *.tsbuildinfo
 .firebaserc
-firebase.json
