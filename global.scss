@@ -1,3 +1,4 @@
+@use 'breakpoints';
 @use 'colors';
 @import 'reset';
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
@@ -80,4 +81,10 @@ body {
 
 :global(.game-selected) {
   transform: translateX(-100vw);
+}
+
+@include breakpoints.tablet {
+  :global(.game-selected) {
+    transform: translateX(0);
+  }
 }

@@ -1,8 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { RouteContext } from '@delta62/micro-router'
-
 import Chevron from '@components/chevron'
-
 import styles from './styles.scss'
 
 export interface Props {

@@ -25,7 +25,8 @@ export let Splash = ({ isLoading }: Props) => {
 
   return (
     <div className={className}>
-      <Icon type="spinner" />
+      <Icon className={styles.icon} type="spinner" />
+      <h2>Loading your games...</h2>
     </div>
   )
 }

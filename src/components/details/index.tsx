@@ -1,13 +1,11 @@
 import { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { Game, State, actionCreators, selectors } from '@store'
 import GameTitle from '@components/game-title'
 import Rating from '@components/rating'
 import Timeline from '@components/timeline'
 import Trash from '@components/trash'
 import Dropdown from '@components/dropdown'
-
 import styles from './styles.scss'
 
 export interface Props {
@@ -64,7 +62,7 @@ let Details = ({ gameId }: Props) => {
         <div className={styles.metadata}>
           <Rating onChange={onRatingChange} rating={game.rating} />
           <span className={styles.spacer}></span>
-          <label>
+          <label className={styles.platform}>
             <span className={`${styles.elide} ${styles.label}`}>Platform</span>
             <Dropdown
               emptyLabel="None"
