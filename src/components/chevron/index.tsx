@@ -5,11 +5,13 @@ export interface Props extends React.HTMLProps<HTMLSpanElement> {
   direction?: 'back'
 }
 
-let Chevron = ({ direction, ...attrs }: Props) => (
+export let Chevron = ({ direction, className, ...attrs }: Props) => (
   <span
-    className={classNames(styles.chevron, direction && styles[direction])}
+    className={classNames(
+      className,
+      styles.chevron,
+      direction && styles[direction]
+    )}
     {...attrs}
   ></span>
 )
-
-export default Chevron

@@ -1,6 +1,29 @@
 .title {
+  align-items: center;
+  gap: 0.5rem;
   color: #666;
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
+  display: flex;
   padding: 0.2rem 0.5rem;
+}
+
+.chevron {
+  transition: transform 200ms;
+}
+
+.expanded .chevron {
+  transform: rotate(90deg);
+}
+
+.content {
+  max-height: 0;
+  transition: max-height 200ms linear;
+  overflow: hidden;
+}
+
+.expanded .content {
+  max-height: 33vh;
+  height: unset;
+  overflow-y: auto;
 }
