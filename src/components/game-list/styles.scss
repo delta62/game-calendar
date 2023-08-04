@@ -1,6 +1,8 @@
-.scroll-wrapper {
-  flex-grow: 1;
-  overflow: auto;
+.all-games {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .game-list {

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators, Game, selectors } from '@store'
 import { ListGroup } from '@components/list-group'
 import GameListItem from '@components/game-list-item'
-
 import styles from './styles.scss'
 
 export let AllGamesList = () => {
@@ -12,7 +11,7 @@ export let AllGamesList = () => {
   let finishedGames = useSelector(selectors.finishedGames)
 
   return (
-    <div className={styles.gameList}>
+    <div className={styles.allGames}>
       <ListGroup name="In Progress">
         <GameList games={startedGames} />
       </ListGroup>
@@ -42,9 +41,7 @@ let GameList = ({ games }: GameListProps) => {
     [dispatch]
   )
 
-  useEffect(() => {
-    fetchGames(null)
-  }, [fetchGames])
+  useEffect(() => fetchGames(null), [fetchGames])
 
   let onScroll = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -63,14 +60,12 @@ let GameList = ({ games }: GameListProps) => {
   )
 
   return (
-    <div className={styles.scrollWrapper} onScroll={onScroll}>
-      <div className={styles.gameList}>
-        <ol>
-          {games.map(game => (
-            <GameListItem key={game.id} gameId={game.id} />
-          ))}
-        </ol>
-      </div>
+    <div className={styles.gameList} onScroll={onScroll}>
+      <ol>
+        {games.map(game => (
+          <GameListItem key={game.id} gameId={game.id} />
+        ))}
+      </ol>
     </div>
   )
 }

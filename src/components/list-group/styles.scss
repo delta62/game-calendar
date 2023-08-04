@@ -12,17 +12,17 @@
   transition: transform 200ms;
 }
 
-.expanded .chevron {
+.chevron.expanded {
   transform: rotate(90deg);
 }
 
 .content {
-  height: 0;
+  max-height: 0;
   overflow: hidden;
 }
 
-.expanded .content {
-  height: 33vh;
-  height: unset;
+.content.expanded {
+  flex: 1 0 0;
+  max-height: 100vh;
   overflow-y: auto;
 }

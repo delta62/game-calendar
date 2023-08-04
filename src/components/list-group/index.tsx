@@ -1,4 +1,5 @@
 import { PropsWithChildren, useCallback, useState } from 'react'
+import classNames from 'classnames'
 import { Chevron } from '@components/chevron'
 import styles from './styles.scss'
 
@@ -14,12 +15,20 @@ export let ListGroup = ({ name, children }: PropsWithChildren<Props>) => {
   }, [setExpanded])
 
   return (
-    <div className={expanded ? styles.expanded : ''}>
+    <>
       <div className={styles.title} onClick={onTitleClick}>
-        <Chevron className={styles.chevron} />
+        <Chevron
+          className={classNames(styles.chevron, {
+            [styles.expanded]: expanded,
+          })}
+        />
         {name}
       </div>
-      <div className={styles.content}>{children}</div>
-    </div>
+      <div
+        className={classNames(styles.content, { [styles.expanded]: expanded })}
+      >
+        {children}
+      </div>
+    </>
   )
 }
