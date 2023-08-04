@@ -38,6 +38,7 @@ export default ({ game, time }: Props) => {
         label={`100% complete on ${format(time, 'LLL do yyyy')}`}
         callToAction="Mark as incomplete"
         callToActionClick={onUncompleteGame}
+        past={true}
       >
         <Time value={completeDuration} onChange={onSetCompleteDuration} />
       </TimelineItem>
@@ -49,6 +50,7 @@ export default ({ game, time }: Props) => {
       label="Not 100% completed yet"
       callToAction="Mark as 100% complete"
       callToActionClick={onCompleteGame}
+      past={false}
     ></TimelineItem>
   )
 }

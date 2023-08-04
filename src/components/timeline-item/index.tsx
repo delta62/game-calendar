@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react'
 import classnames from 'classnames'
-
 import Button from '@components/button'
-
 import styles from './styles.scss'
 
 export interface Props {
@@ -10,7 +8,7 @@ export interface Props {
   callToAction: string
   callToActionClick(): void
   buttonType?: 'primary'
-  past?: boolean
+  past: boolean
 }
 
 let TimelineItem = ({
@@ -19,14 +17,14 @@ let TimelineItem = ({
   children,
   label,
   callToActionClick,
-  past = false,
+  past,
 }: PropsWithChildren<Props>) => (
   <div
     className={classnames(styles.event, {
       [styles.past]: past,
     })}
   >
-    <p className={styles.label}>{label}</p>
+    <p>{label}</p>
     {children}
     <Button text={callToAction} type={buttonType} onClick={callToActionClick} />
   </div>

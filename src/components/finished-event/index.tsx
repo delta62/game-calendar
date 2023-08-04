@@ -51,6 +51,7 @@ export default ({ game, time }: Props) => {
       callToAction="Game cleared"
       buttonType="primary"
       callToActionClick={onFinishGame}
+      past={false}
     />
   )
 }

@@ -1,11 +1,10 @@
-.label {
-  padding-bottom: 0.5rem;
-}
-
 .event {
+  align-items: center;
   border: 1px dashed #333;
-  padding: 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
 
   &.past {
     border-color: #666;
@@ -15,8 +14,4 @@
       border-color: #0cbd9c;
     }
   }
-}
-
-.time {
-  margin: 1rem;
 }

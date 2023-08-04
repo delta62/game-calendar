@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
-
 import { actionCreators } from '@store'
 import TimelineItem from '@components/timeline-item'
 
@@ -29,6 +28,7 @@ export default ({ game, time }: Props) => {
         buttonType="primary"
         callToAction="Start playing"
         callToActionClick={onStartPlaying}
+        past={false}
       />
     )
   }
@@ -38,7 +38,7 @@ export default ({ game, time }: Props) => {
       label={`Started on ${format(time, 'LLL do yyyy')}`}
       callToAction="Stop playing"
       callToActionClick={onStopPlaying}
-      past={false}
+      past={true}
     />
   )
 }
