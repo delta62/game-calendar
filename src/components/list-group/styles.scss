@@ -17,13 +17,12 @@
 }
 
 .content {
-  max-height: 0;
-  transition: max-height 200ms linear;
+  height: 0;
   overflow: hidden;
 }
 
 .expanded .content {
-  max-height: 33vh;
+  height: 33vh;
   height: unset;
   overflow-y: auto;
 }
