@@ -42,15 +42,6 @@ let selectors = {
 }
 
 let reducer = combineReducers({ games, platforms, user, view })
-
-// -- MIGRATION CODE -------------------------------------
-import { migrate, needsMigration } from './migrations'
-if (needsMigration()) {
-  migrate()
-  window.location.reload()
-}
-// -------------------------------------------------------
-
 let sagaMiddleware = createSagaMiddleware()
 let enhancer = composeWithDevTools(
   persistState(['user', 'view'], { key: 'game-calendar' }),
