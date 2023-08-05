@@ -53,7 +53,7 @@ if (needsMigration()) {
 
 let sagaMiddleware = createSagaMiddleware()
 let enhancer = composeWithDevTools(
-  (persistState as any)(['user', 'view'], { key: 'reduxx' }),
+  persistState(['user', 'view'], { key: 'game-calendar' }),
   applyMiddleware(sagaMiddleware)
 )
 

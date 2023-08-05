@@ -10,3 +10,18 @@ declare module '*.scss' {
   const content: any
   export default content
 }
+
+declare module 'redux-localstorage' {
+  import { StoreEnhancer } from 'redux'
+
+  export interface Config {
+    key?: string
+  }
+
+  declare function persistState(
+    paths?: string | string[],
+    config?: Config
+  ): StoreEnhancer<unknown, {}>
+
+  export default persistState
+}
