@@ -22,19 +22,26 @@ import {
   reducer as platforms,
   selectors as platformSelectors,
 } from './platforms'
+import {
+  reducer as view,
+  actionCreators as viewActionCreators,
+  selectors as viewSelectors,
+} from './view'
 
 let actionCreators = {
   ...userActionCreators,
   ...gamesActionCreators,
+  ...viewActionCreators,
 }
 
 let selectors = {
   ...userSelectors,
   ...gamesSelectors,
   ...platformSelectors,
+  ...viewSelectors,
 }
 
-let reducer = combineReducers({ games, platforms, user })
+let reducer = combineReducers({ games, platforms, user, view })
 
 // -- MIGRATION CODE -------------------------------------
 import { migrate, needsMigration } from './migrations'
@@ -46,7 +53,7 @@ if (needsMigration()) {
 
 let sagaMiddleware = createSagaMiddleware()
 let enhancer = composeWithDevTools(
-  (persistState as any)('user', { key: 'reduxx' }),
+  (persistState as any)(['user', 'view'], { key: 'reduxx' }),
   applyMiddleware(sagaMiddleware)
 )
 
@@ -57,4 +64,5 @@ export * from './models'
 export { actionCreators, selectors }
 export { Event, Game } from './games'
 export { User } from './user'
+export { View } from './view'
 export default store

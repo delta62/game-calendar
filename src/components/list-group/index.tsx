@@ -1,18 +1,24 @@
-import { PropsWithChildren, useCallback, useState } from 'react'
+import { PropsWithChildren, useCallback } from 'react'
 import classNames from 'classnames'
 import { Chevron } from '@components/chevron'
 import styles from './styles.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators, selectors, State, View } from '@store'
 
 export interface Props {
   name: string
+  view: View
 }
 
-export let ListGroup = ({ name, children }: PropsWithChildren<Props>) => {
-  let [expanded, setExpanded] = useState(true)
+export let ListGroup = ({ name, children, view }: PropsWithChildren<Props>) => {
+  let dispatch = useDispatch()
+  let expanded = useSelector<State, boolean>(state =>
+    selectors.getIsExpanded(state, view)
+  )
 
   let onTitleClick = useCallback(() => {
-    setExpanded(state => !state)
-  }, [setExpanded])
+    dispatch(actionCreators.toggleView(view, !expanded))
+  }, [dispatch, actionCreators.toggleView, expanded])
 
   return (
     <>
