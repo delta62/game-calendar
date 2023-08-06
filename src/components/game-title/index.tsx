@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { RouteContext } from '@delta62/micro-router'
-import { Chevron } from '@components/chevron'
+import { Chevron } from '@components'
 import styles from './styles.scss'
 
 export interface Props {
@@ -8,7 +8,7 @@ export interface Props {
   text: string
 }
 
-let GameTitle = ({ text, onChange }: Props) => {
+export let GameTitle = ({ text, onChange }: Props) => {
   let { setPath } = useContext(RouteContext)
 
   let onBackClick = useCallback(() => {
@@ -48,5 +48,3 @@ let GameTitle = ({ text, onChange }: Props) => {
     </div>
   )
 }
-
-export default GameTitle

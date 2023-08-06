@@ -8,7 +8,7 @@ export interface Props {
   type?: 'primary'
 }
 
-let Button = ({ onClick, text, type }: Props) => (
+export let Button = ({ onClick, text, type }: Props) => (
   <input
     type="button"
     className={classnames(styles.button, type && styles[type])}
@@ -16,5 +16,3 @@ let Button = ({ onClick, text, type }: Props) => (
     onClick={onClick}
   />
 )
-
-export default Button

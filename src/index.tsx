@@ -1,13 +1,8 @@
-import { Provider } from 'react-redux'
+import { Provider as StoreProvider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
 import { Route, RouteProvider } from '@delta62/micro-router'
-
 import store from '@store'
-import App from '@components/app'
-import LoginPage from '@components/login-page'
-import { SignUpPage } from '@components/sign-up-page'
-import { ForgotPasswordPage } from '@components/forgot-pw-page'
-
+import { App, LoginPage, SignUpPage, ForgotPasswordPage } from '@components'
 import '../global.scss'
 
 if (DEVELOPMENT) {
@@ -21,7 +16,7 @@ let root = createRoot(appNode)
 
 root.render(
   <RouteProvider>
-    <Provider store={store}>
+    <StoreProvider store={store}>
       <Route path={['/games/:game', '/']}>
         <App />
       </Route>
@@ -34,6 +29,6 @@ root.render(
       <Route path="/forgot">
         <ForgotPasswordPage />
       </Route>
-    </Provider>
+    </StoreProvider>
   </RouteProvider>
 )

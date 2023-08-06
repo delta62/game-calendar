@@ -2,16 +2,14 @@ import { actionCreators, selectors, State } from '@store'
 import { format } from 'date-fns'
 import { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import TimelineItem from '@components/timeline-item'
-import Time from '@components/time'
+import { TimelineItem, Time } from '@components'
 
 export interface Props {
   game: number
   time?: number
 }
 
-export default ({ game, time }: Props) => {
+export let FinishedEvent = ({ game, time }: Props) => {
   let dispatch = useDispatch()
   let finishDuration = useSelector<State, number | undefined>(state =>
     selectors.getFinishDuration(state, game)

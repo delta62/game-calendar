@@ -2,16 +2,15 @@ import classnames from 'classnames'
 import { useCallback, useContext } from 'react'
 import { RouteContext } from '@delta62/micro-router'
 import { useSelector } from 'react-redux'
-import { Chevron } from '@components/chevron'
+import { Chevron, Progress } from '@components'
 import { Game, State, selectors } from '@store'
-import Progress from '@components/progress'
 import styles from './styles.scss'
 
 export interface Props {
   gameId: number
 }
 
-let GameListItem = ({ gameId }: Props) => {
+export let GameListItem = ({ gameId }: Props) => {
   let game = useSelector<State, Game | null>(state =>
     selectors.getGame(state, gameId)
   )!
@@ -47,5 +46,3 @@ let GameListItem = ({ gameId }: Props) => {
     </li>
   )
 }
-
-export default GameListItem

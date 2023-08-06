@@ -41,7 +41,7 @@ function getClass(props: Props): string {
   return classes.join(' ')
 }
 
-const Progress = (props: Props) => (
+export let Progress = (props: Props) => (
   <div className={getClass(props)}>
     <span className={styles.progressLabel}>{getText(props)}</span>
     <div className={styles.bars}>
@@ -51,5 +51,3 @@ const Progress = (props: Props) => (
     </div>
   </div>
 )
-
-export default Progress

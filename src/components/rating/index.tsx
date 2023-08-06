@@ -1,7 +1,6 @@
 import classnames from 'classnames'
 import { useCallback } from 'react'
 import { Star } from 'react-feather'
-
 import styles from './styles.scss'
 
 export interface Props {
@@ -9,7 +8,7 @@ export interface Props {
   rating?: number
 }
 
-let Rating = ({ onChange, rating }: Props) => {
+export let Rating = ({ onChange, rating }: Props) => {
   let onChangeClick = useCallback(
     (i: number) => onChange((i + 1) * 2),
     [onChange, rating]
@@ -34,5 +33,3 @@ let Rating = ({ onChange, rating }: Props) => {
     </div>
   )
 }
-
-export default Rating

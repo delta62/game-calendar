@@ -4,8 +4,6 @@ export interface Props {
   onClick(): void
 }
 
-let Trash = ({ onClick }: Props) => (
+export let Trash = ({ onClick }: Props) => (
   <span className={styles.trash} onClick={onClick}></span>
 )
-
-export default Trash

@@ -13,7 +13,7 @@ export interface Props {
   selected?: string
 }
 
-let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
+export let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
   let ref = useRef<HTMLSelectElement>(null)
 
   let onChangeCb = useCallback(() => {
@@ -40,5 +40,3 @@ let Dropdown = ({ emptyLabel, onChange, options, selected }: Props) => {
     </select>
   )
 }
-
-export default Dropdown

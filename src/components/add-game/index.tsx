@@ -1,10 +1,9 @@
 import { useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { actionCreators } from '@store'
-
 import styles from './styles.scss'
 
-let AddGame = () => {
+export let AddGame = () => {
   let ref = useRef<HTMLInputElement>(null)
   let dispatch = useDispatch()
 
@@ -43,5 +42,3 @@ let AddGame = () => {
     </div>
   )
 }
-
-export default AddGame

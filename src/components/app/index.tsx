@@ -1,16 +1,11 @@
 import { useContext, useEffect } from 'react'
 import { RouteContext, Redirect } from '@delta62/micro-router'
 import { useSelector } from 'react-redux'
-
-import AddGame from '@components/add-game'
-import Details from '@components/details'
-import { AllGamesList } from '@components/game-list'
+import { AddGame, Details, AllGamesList, Splash } from '@components'
 import { selectors } from '@store'
-
 import styles from './styles.scss'
-import { Splash } from '@components/splash'
 
-let App = () => {
+export let App = () => {
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
   let isLoading = useSelector(selectors.getIsLoading)
   let { params } = useContext(RouteContext)
@@ -38,5 +33,3 @@ let App = () => {
     </>
   )
 }
-
-export default App

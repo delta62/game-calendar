@@ -2,14 +2,14 @@ import { useCallback } from 'react'
 import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { actionCreators } from '@store'
-import TimelineItem from '@components/timeline-item'
+import { TimelineItem } from '@components'
 
 export interface Props {
   game: number
   time?: number
 }
 
-export default ({ game, time }: Props) => {
+export let StartedEvent = ({ game, time }: Props) => {
   let dispatch = useDispatch()
 
   let onStartPlaying = useCallback(() => {

@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators, Game, selectors } from '@store'
-import { ListGroup } from '@components/list-group'
-import GameListItem from '@components/game-list-item'
+import { ListGroup, GameListItem } from '@components'
 import styles from './styles.scss'
 
 export let AllGamesList = () => {

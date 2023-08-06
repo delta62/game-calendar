@@ -7,7 +7,7 @@ export interface Props {
   value?: number
 }
 
-let Time = ({ onChange, value }: Props) => {
+export let Time = ({ onChange, value }: Props) => {
   let hoursRef = useRef<HTMLInputElement>(null)
   let minutesRef = useRef<HTMLInputElement>(null)
 
@@ -47,5 +47,3 @@ let Time = ({ onChange, value }: Props) => {
     </div>
   )
 }
-
-export default Time

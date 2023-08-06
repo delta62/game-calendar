@@ -1,9 +1,9 @@
 import { PropsWithChildren, useCallback } from 'react'
 import classNames from 'classnames'
-import { Chevron } from '@components/chevron'
-import styles from './styles.scss'
+import { Chevron } from '@components'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators, selectors, State, View } from '@store'
+import styles from './styles.scss'
 
 export interface Props {
   name: string

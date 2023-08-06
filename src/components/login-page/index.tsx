@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Form, FormItem } from '@delta62/micro-form'
 import { Anchor, Redirect } from '@delta62/micro-router'
-import Page from '@components/page'
+import { Page } from '@components'
 import { minLength } from '../../validators'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators, selectors } from '@store'
@@ -16,7 +16,7 @@ interface FormValues {
 
 let passwordValidator = minLength(8)
 
-let LoginPage = () => {
+export let LoginPage = () => {
   let classNames = useFormTheme()
   let isLoggedIn = useSelector(selectors.getIsLoggedIn)
   let dispatch = useDispatch()
@@ -50,5 +50,3 @@ let LoginPage = () => {
     </Page>
   )
 }
-
-export default LoginPage

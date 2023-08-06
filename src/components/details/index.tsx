@@ -1,18 +1,14 @@
 import { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Game, State, actionCreators, selectors } from '@store'
-import GameTitle from '@components/game-title'
-import Rating from '@components/rating'
-import Timeline from '@components/timeline'
-import Trash from '@components/trash'
-import Dropdown from '@components/dropdown'
+import { GameTitle, Rating, Timeline, Trash, Dropdown } from '@components'
 import styles from './styles.scss'
 
 export interface Props {
   gameId: number | null
 }
 
-let Details = ({ gameId }: Props) => {
+export let Details = ({ gameId }: Props) => {
   let game = useSelector<State, Game | null>(state =>
     selectors.getGame(state, gameId)
   )
@@ -87,5 +83,3 @@ let Details = ({ gameId }: Props) => {
     return <p className={styles.detailsEmpty}>{message}</p>
   }
 }
-
-export default Details

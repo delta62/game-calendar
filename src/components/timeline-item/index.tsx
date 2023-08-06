@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import classnames from 'classnames'
-import Button from '@components/button'
+import { Button } from '@components'
 import styles from './styles.scss'
 
 export interface Props {
@@ -11,7 +11,7 @@ export interface Props {
   past: boolean
 }
 
-let TimelineItem = ({
+export let TimelineItem = ({
   callToAction,
   buttonType,
   children,
@@ -29,5 +29,3 @@ let TimelineItem = ({
     <Button text={callToAction} type={buttonType} onClick={callToActionClick} />
   </div>
 )
-
-export default TimelineItem

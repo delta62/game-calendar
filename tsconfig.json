@@ -12,7 +12,7 @@
     "outDir": "dist",
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
+      "@components": ["components/index"],
       "@containers/*": ["containers/*"],
       "@context/*": ["context/*"],
       "@hoc/*": ["hoc/*"],

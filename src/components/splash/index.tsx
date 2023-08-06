@@ -1,4 +1,4 @@
-import Icon from '@components/icon'
+import { Icon } from '@components'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './styles.scss'

@@ -1,10 +1,7 @@
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
-
 import { State, Event, selectors } from '@store'
-import StartedEvent from '@components/started-event'
-import FinishedEvent from '@components/finished-event'
-import CompletedEvent from '@components/completed-event'
+import { StartedEvent, FinishedEvent, CompletedEvent } from '@components'
 
 import styles from './styles.scss'
 
@@ -12,7 +9,7 @@ export interface Props {
   game: number
 }
 
-let Timeline = ({ game }: Props) => {
+export let Timeline = ({ game }: Props) => {
   let events = useSelector<State, Event[]>(state =>
     selectors.getEvents(state, game)
   )
@@ -36,5 +33,3 @@ let Timeline = ({ game }: Props) => {
     </div>
   )
 }
-
-export default Timeline

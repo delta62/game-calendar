@@ -3,7 +3,7 @@ import { TypedForm } from '@delta62/micro-form'
 import { Anchor, Redirect, RouteContext } from '@delta62/micro-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators, selectors } from '@store'
-import Page from '@components/page'
+import { Page } from '@components'
 import { useFormTheme } from 'hooks/form-theme'
 import styles from './styles.scss'
 
