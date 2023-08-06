@@ -6,7 +6,7 @@
   overflow-y: auto;
   background-color: colors.$bg; /* for scrollbar */
   flex-grow: 0;
-  height: 100vh;
+  height: 100%;
   left: 100vw;
   position: absolute;
   top: 0;
@@ -16,7 +16,7 @@
 .sidebar {
   border-right: 1px solid #666;
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   width: 20rem;
   left: 0;

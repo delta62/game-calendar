@@ -24,6 +24,6 @@
 
 .content.expanded {
   flex: 1 0 0;
-  max-height: 100vh;
+  max-height: unset;
   overflow-y: auto;
 }
