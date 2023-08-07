@@ -11,13 +11,17 @@ export let AllGamesList = () => {
 
   return (
     <div className={styles.allGames}>
-      <ListGroup name="In Progress" view="inprogress">
+      <ListGroup
+        name="In Progress"
+        view="inprogress"
+        count={startedGames.length}
+      >
         <GameList games={startedGames} />
       </ListGroup>
-      <ListGroup name="Backlog" view="backlog">
+      <ListGroup name="Backlog" view="backlog" count={backlogGames.length}>
         <GameList games={backlogGames} />
       </ListGroup>
-      <ListGroup name="Finished" view="finished">
+      <ListGroup name="Finished" view="finished" count={finishedGames.length}>
         <GameList games={finishedGames} />
       </ListGroup>
     </div>

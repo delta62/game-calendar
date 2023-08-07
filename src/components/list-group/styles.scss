@@ -1,12 +1,14 @@
+@use 'colors';
+
 .title {
   align-items: center;
   gap: 0.5rem;
-  color: #666;
+  color: colors.$fg;
   cursor: default;
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
+  border-top: 1px solid colors.$glyph-light;
+  border-bottom: 1px solid colors.$glyph-light;
   display: flex;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 1rem;
 }
 
 .chevron {
@@ -26,4 +28,9 @@
   flex: 1 0 0;
   max-height: unset;
   overflow-y: auto;
+}
+
+.count {
+  flex-grow: 1;
+  text-align: right;
 }

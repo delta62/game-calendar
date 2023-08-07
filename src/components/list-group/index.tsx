@@ -8,9 +8,15 @@ import styles from './styles.scss'
 export interface Props {
   name: string
   view: View
+  count: number
 }
 
-export let ListGroup = ({ name, children, view }: PropsWithChildren<Props>) => {
+export let ListGroup = ({
+  name,
+  count,
+  children,
+  view,
+}: PropsWithChildren<Props>) => {
   let dispatch = useDispatch()
   let expanded = useSelector<State, boolean>(state =>
     selectors.getIsExpanded(state, view)
@@ -29,6 +35,7 @@ export let ListGroup = ({ name, children, view }: PropsWithChildren<Props>) => {
           })}
         />
         {name}
+        <span className={styles.count}>{count}</span>
       </div>
       <div
         className={classNames(styles.content, { [styles.expanded]: expanded })}
